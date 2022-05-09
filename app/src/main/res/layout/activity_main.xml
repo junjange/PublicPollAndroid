@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="mainActivity"
+            type="com.junjange.myapplication.ui.MainActivity" />
+    </data>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity"
+    android:background="@drawable/layout_background"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="57dp"
+            android:layout_height="28dp"
+            android:src="@drawable/logo_pbp_letter"/>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15sp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="30dp"
+
+                android:textSize="24sp"
+                android:text="How do you like\ntang shooook?"
+                android:textColor="?android:attr/textColorPrimary"/>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/quick_question1_bg"
+                    android:layout_width="255dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/layout_button_background"
+                    app:cardCornerRadius="10sp"
+                    app:strokeColor="#b3b6e8"
+                    app:strokeWidth="2dp"
+                    >
+                    <TextView
+                        android:id="@+id/quick_question1_txt"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:textColor="#989898"
+                        android:text="Dip un Sauce"
+                        >
+
+                    </TextView>
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/quick_question2_bg"
+                    android:layout_width="255dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10sp"
+                    app:strokeColor="#b3b6e8"
+                    app:strokeWidth="2dp"
+                    >
+                    <TextView
+                        android:id="@+id/quick_question2_txt"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:textColor="#989898"
+                        android:text="Pour Sauce"
+                        >
+
+                    </TextView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_btn"
+            android:layout_margin="15dp"
+            android:layout_width="140dp"
+            android:layout_height="110dp"
+            android:backgroundTint="@color/white"
+            android:clipToPadding="true"
+            android:layout_weight="1"
+            app:cardCornerRadius="15sp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_search" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Search"
+                    android:textColor="#aeadad"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="15dp"
+            android:layout_width="140dp"
+            android:layout_height="110dp"
+            android:backgroundTint="@color/white"
+            android:clipToPadding="true"
+            android:layout_weight="1"
+            app:cardCornerRadius="15sp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_hot" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Hot Polls"
+                    android:textColor="#aeadad"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:layout_width="310dp"
+        android:layout_height="64dp"
+        android:backgroundTint="#dcdcdc"
+        app:cardCornerRadius="15sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_all_polls" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:text="All Polls"
+                android:textColor="#aeadad"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                />
+
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="310dp"
+        android:layout_height="90dp"
+        android:backgroundTint="#bbb1e5"
+        app:cardCornerRadius="15sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/icon_edit" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:text="New Poll"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:fontFamily="sans-serif"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:text="Add your own poll"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</LinearLayout>
+</layout>
