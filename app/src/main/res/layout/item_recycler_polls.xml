@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="15dp"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="15sp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <!-- 투표 이미지 -->
+
+        <ImageView
+            android:layout_marginStart="21dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/image_default"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_margin="21dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                >
+
+                <!-- 해시태그 text -->
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:textColor="#989898"
+                    android:text="Dip un Sauce"
+                    />
+
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/icon_people"
+                    android:layout_marginEnd="8dp"
+                    />
+
+
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:gravity="right"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#989898"
+                    android:text="75"
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:fontFamily="sans-serif"
+                android:layout_width="186dp"
+                android:layout_height="52dp"
+                android:textSize="16sp"
+                android:maxLines = "2"
+                android:ellipsize="end"
+                android:text="How do to thiknk avkut sdth?"
+                android:textColor="#6d6d6d"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+

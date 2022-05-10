@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.junjange.myapplication" >
+    package="com.junjange.myapplication">
 
     <application
         android:allowBackup="true"
@@ -8,16 +8,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UIPractice" >
+        android:theme="@style/Theme.UIPractice">
+        <activity
+            android:name=".ui.HotPollsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PollsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.VoteActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.SearchActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" >
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
