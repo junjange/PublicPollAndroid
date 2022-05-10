@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="147dp"
+    android:layout_height="201dp"
+    app:cardCornerRadius="15sp"
+    android:layout_margin="17dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 이미지 -->
+        <ImageView
+            android:layout_marginStart="18sp"
+            android:layout_marginTop="18sp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:layout_gravity="center"
+            android:src="@drawable/image_default"/>
+
+
+
+        <TextView
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:maxLines = "3"
+            android:ellipsize="end"
+            android:text="Dip in sauceDip in sauceDip in sauceDip in sauce"
+            android:textColor="#6d6d6d"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+

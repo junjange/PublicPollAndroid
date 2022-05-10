@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil.setContentView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.databinding.ActivityMainBinding
@@ -26,6 +27,13 @@ class MainActivity : AppCompatActivity() {
 
             binding.quickQuestion1Txt.setTextColor(Color.BLACK)
             binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
+
+            binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
+            binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+            binding.quickQuestion1Turnout.visibility = View.VISIBLE
+            binding.quickQuestion2Turnout.visibility = View.VISIBLE
+
+
         }
 
         // 빠른 투표 2번 항목 클릭시
@@ -37,6 +45,11 @@ class MainActivity : AppCompatActivity() {
 
             binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
             binding.quickQuestion2Txt.setTextColor(Color.BLACK)
+
+            binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
+            binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
+            binding.quickQuestion1Turnout.visibility = View.VISIBLE
+            binding.quickQuestion2Turnout.visibility = View.VISIBLE
 
         }
 
