@@ -4,7 +4,7 @@
     <data>
         <variable
             name="mainActivity"
-            type="com.junjange.myapplication.ui.MainActivity" />
+            type="com.junjange.myapplication.ui.view.MainActivity" />
     </data>
 
 <LinearLayout
@@ -13,7 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.view.MainActivity"
     android:background="@drawable/layout_background"
     android:orientation="vertical">
 
@@ -178,6 +178,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
+        android:layout_marginTop="15dp"
 
         android:layout_gravity="center">
 
@@ -224,6 +225,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/hot_polls_btn"
             android:layout_margin="15dp"
             android:layout_width="140dp"
             android:layout_height="110dp"
@@ -265,13 +267,13 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="15dp"
+        android:id="@+id/all_polls_btn"
         android:layout_gravity="center"
         android:layout_width="310dp"
         android:layout_height="64dp"
         android:backgroundTint="#dcdcdc"
         android:layout_weight="1"
-
+        android:layout_marginTop="15dp"
         app:cardCornerRadius="15sp">
 
         <LinearLayout

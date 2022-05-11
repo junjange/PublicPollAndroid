@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="searchActivity"
-            type="com.junjange.myapplication.ui.SearchActivity" />
+            name="viewModel"
+            type="com.junjange.myapplication.ui.viewmodel.SearchViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.SearchActivity"
+        tools:context=".ui.view.SearchActivity"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -50,6 +50,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+
                     android:id="@+id/et_search_field"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -61,8 +62,10 @@
                     android:gravity="center_vertical"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:hint="투표를 입력하세요."
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+
+                    /><requestFocus />
+
 
                 <ImageButton
                     android:id="@+id/textClearButton"
@@ -78,6 +81,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_margin="20sp"
+            />
 
 
 

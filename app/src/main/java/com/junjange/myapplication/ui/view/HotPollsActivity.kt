@@ -1,12 +1,12 @@
-package com.junjange.myapplication.ui
+package com.junjange.myapplication.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.junjange.myapplication.R
 
-class SearchActivity : AppCompatActivity() {
+class HotPollsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(R.layout.activity_hot_polls)
     }
 }
