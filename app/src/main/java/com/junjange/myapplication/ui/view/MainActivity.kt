@@ -1,4 +1,4 @@
-package com.junjange.myapplication.ui
+package com.junjange.myapplication.ui.view
 
 import android.content.Intent
 import android.graphics.Color
@@ -55,7 +55,17 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.searchBtn.setOnClickListener {
-            startActivity(Intent(this@MainActivity,SearchActivity::class.java))
+            startActivity(Intent(this@MainActivity, SearchActivity::class.java))
+
+        }
+
+        binding.hotPollsBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, HotPollsActivity::class.java))
+
+        }
+
+        binding.allPollsBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PollsActivity::class.java))
 
         }
 

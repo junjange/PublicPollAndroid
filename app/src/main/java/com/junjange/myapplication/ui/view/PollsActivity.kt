@@ -1,4 +1,4 @@
-package com.junjange.myapplication.ui
+package com.junjange.myapplication.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
