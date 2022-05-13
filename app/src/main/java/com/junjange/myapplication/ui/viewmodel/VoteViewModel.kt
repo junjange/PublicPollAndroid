@@ -1,15 +1,16 @@
 package com.junjange.myapplication.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.junjange.myapplication.repository.BoardRepository
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.repository.VoteRepository
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: BoardRepository) : ViewModel(){
+class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     private val _retrofitTodoList = MutableLiveData<ModelBoard>()
 
     // LiveData
@@ -25,9 +26,11 @@ class SearchViewModel(private val repository: BoardRepository) : ViewModel(){
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SearchViewModel(BoardRepository.getInstance(application)!!) as T
+            return VoteViewModel(VoteRepository.getInstance(application)!!) as T
         }
     }
+
+
 
 
 }

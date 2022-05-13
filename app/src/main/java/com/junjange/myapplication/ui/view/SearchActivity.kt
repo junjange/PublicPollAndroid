@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.junjange.myapplication.adapter.BoardRecyclerAdapter
 import com.junjange.myapplication.databinding.ActivitySearchBinding
 import com.junjange.myapplication.ui.viewmodel.SearchViewModel
-import com.junjange.myapplication.util.textChangesToFlow
+import com.junjange.myapplication.utils.textChangesToFlow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
@@ -22,9 +22,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlin.coroutines.CoroutineContext
 
-@FlowPreview
-@ExperimentalCoroutinesApi
-@DelicateCoroutinesApi
+
 class SearchActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, SearchViewModel.Factory(application))[SearchViewModel::class.java] }
@@ -40,7 +38,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 키보드 설정
-        var imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
 
         // 데이터 바인딩

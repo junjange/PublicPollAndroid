@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.junjange.myapplication.repository.BoardRepository
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.repository.QuickVoteRepository
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: BoardRepository) : ViewModel(){
+class MainViewModel(private val repository: QuickVoteRepository) : ViewModel(){
     private val _retrofitTodoList = MutableLiveData<ModelBoard>()
 
     // LiveData
@@ -25,9 +25,11 @@ class SearchViewModel(private val repository: BoardRepository) : ViewModel(){
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SearchViewModel(BoardRepository.getInstance(application)!!) as T
+            return MainViewModel(QuickVoteRepository.getInstance(application)!!) as T
         }
     }
+
+
 
 
 }

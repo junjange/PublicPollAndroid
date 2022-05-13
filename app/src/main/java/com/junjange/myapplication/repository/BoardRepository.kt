@@ -15,12 +15,6 @@ result.body : 실질적으로 받게되는 데이터입니다. `as Type`으로 �
 
 class BoardRepository(application : Application) {
 
-    // Use Retrofit
-    suspend fun retrofitSelectAllTodo(): ModelBoard {
-        val response = BoardObject.getRetrofitService.getBoard()
-        return if (response.isSuccessful) response.body() as ModelBoard else ModelBoard(ArrayList())
-
-    }
     // singleton pattern
     companion object {
         private var instance: BoardRepository? = null
@@ -29,5 +23,12 @@ class BoardRepository(application : Application) {
             if (instance == null) instance = BoardRepository(application)
             return instance
         }
+    }
+
+    // Use Retrofit
+    suspend fun retrofitSelectAllTodo(): ModelBoard {
+        val response = BoardObject.getRetrofitService.getBoard()
+        return if (response.isSuccessful) response.body() as ModelBoard else ModelBoard(ArrayList())
+
     }
 }
