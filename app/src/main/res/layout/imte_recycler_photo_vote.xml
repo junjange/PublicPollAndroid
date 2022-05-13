@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.junjange.myapplication.data.ModelBoardComponent" />
+    </data>
+
+<androidx.cardview.widget.CardView
     android:layout_width="147dp"
     android:layout_height="201dp"
     app:cardCornerRadius="15sp"
@@ -49,5 +58,6 @@
 </androidx.cardview.widget.CardView>
 
 
+</layout>
 
 

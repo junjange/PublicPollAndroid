@@ -1,4 +1,4 @@
-package com.junjange.myapplication.util
+package com.junjange.myapplication.utils
 
 import android.content.ContentValues.TAG
 import android.text.Editable

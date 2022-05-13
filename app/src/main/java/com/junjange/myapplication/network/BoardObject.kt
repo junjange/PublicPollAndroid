@@ -1,13 +1,14 @@
 package com.junjange.myapplication.network
 
+import com.junjange.myapplication.utils.API
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+// singleton pattern
 object BoardObject {
-    // 서버 주소
-    private const val BASE_URL = "http://3.37.103.23/bulletin_board/"
+
     var token: String = ""
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -29,7 +30,7 @@ object BoardObject {
 
     private val getRetrofit by lazy{
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(API.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

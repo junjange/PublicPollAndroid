@@ -2,6 +2,7 @@ package com.junjange.myapplication.network
 
 import com.google.gson.JsonObject
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.utils.API
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Field
@@ -20,11 +21,11 @@ Callback Hell을 방지하려면 Response를 이용해서 하는 것이 더 좋�
 
 // 결과 xml 파일에 접근해서 정보 가져오기
 interface BoardInterface {
-    @GET("get_post_list.php")
+    @GET(API.GET_POST)
     suspend fun getBoard(): Response<ModelBoard>
 
     @FormUrlEncoded
-    @POST("add_post_2.php")
+    @POST(API.ADD_POST)
     fun postBoard(
         @Field("title") title: String,
         @Field("contents") contents: String
