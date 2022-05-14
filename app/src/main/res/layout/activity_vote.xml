@@ -3,7 +3,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="viewModel"
@@ -11,15 +10,10 @@
     </data>
 
 <androidx.core.widget.NestedScrollView
-
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.VoteActivity"
-    >
-
-
-
+    android:fillViewport = "true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,139 +22,167 @@
 
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="21dp"
-        android:orientation="horizontal"
-        android:layout_gravity="right" >
-
-
-        <!-- 티어 이미지 -->
-
-        <TextView
-            android:text="Jeniffer"
-            android:textSize="16sp"
-            android:textColor="#9f9f9f"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="21dp"
+            android:orientation="horizontal"
+            android:layout_gravity="right" >
 
 
-    </LinearLayout>
+            <!-- 티어 이미지 -->
+
+            <TextView
+                android:text="Jeniffer"
+                android:textSize="16sp"
+                android:textColor="#9f9f9f"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
 
 
 
 
-    <TextView
-        android:layout_marginStart="55dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textColor="@color/black"
-        android:text="How do you\nthink about this?"/>
-
+        <TextView
+            android:layout_marginStart="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:textColor="@color/black"
+            android:text="How do you\nthink about this?"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/normal_vote_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photo_vote_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:spanCount="2"
             android:overScrollMode="never"
             android:nestedScrollingEnabled="false"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:visibility="gone"/>
 
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="258dp"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="#bbb1e5"
-        app:cardCornerRadius="15sp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="258dp"
+            android:layout_height="64dp"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#bbb1e5"
+            app:cardCornerRadius="15sp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="Vote"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
-        </LinearLayout>
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="Vote"
+                    android:textColor="@color/white"
+                    android:textSize="26sp" />
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="11dp"
-        android:layout_gravity="center"
-        android:layout_width="258dp"
-        android:layout_height="46dp"
-        android:backgroundTint="#9bc7f6"
-        app:cardCornerRadius="15sp"
-        >
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="11dp"
             android:layout_gravity="center"
+            android:layout_width="258dp"
+            android:layout_height="46dp"
+            android:backgroundTint="#9bc7f6"
+            app:cardCornerRadius="15sp"
             >
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Statistics"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:fontFamily="sans-serif"
-                />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Statistics"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif"
+                    />
+            </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center"
-        android:layout_width="258dp"
-        android:layout_height="39dp"
-        android:backgroundTint="#f66d6d"
-        app:cardCornerRadius="15sp"
-        android:layout_marginBottom="30dp"
-        >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="8dp"
             android:layout_gravity="center"
+            android:layout_width="258dp"
+            android:layout_height="39dp"
+            android:backgroundTint="#f66d6d"
+            app:cardCornerRadius="15sp"
+            android:layout_marginBottom="30dp"
             >
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete Poll"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif"
-                />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Poll"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    />
+            </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
     </LinearLayout>
+
 
 
 
 
 </androidx.core.widget.NestedScrollView>
 </layout>
+

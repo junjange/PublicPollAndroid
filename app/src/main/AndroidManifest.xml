@@ -14,10 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
+        android:networkSecurityConfig="@xml/network_security_config">
 
-
-        >
         <activity
             android:name=".ui.view.HotPollsActivity"
             android:exported="false" />
