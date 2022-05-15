@@ -2,7 +2,11 @@ package com.junjange.myapplication.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.junjange.myapplication.adapter.CommentsAdapter
 import com.junjange.myapplication.adapter.NormalVoteAdapter
@@ -23,6 +27,8 @@ class VoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // 키보드 설정
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
         // 데이터 바인딩
         binding.viewModel = viewModel
@@ -31,11 +37,21 @@ class VoteActivity : AppCompatActivity() {
         // 입력에 따라 일반투표/사진투표 리사이클러뷰 실행
         normalSetView()
         normalSetObserver()
+//        photoSetView()
+//        photoSetObserver()
+
+        // 투표 유무에 따라 댓글 리사이클러뷰 실행
         commentSetView()
         commentSetObserver()
 
-//        photoSetView()
-//        photoSetObserver()
+        // 검색창 엔터
+        binding.etCommentEnter.setOnClickListener {
+
+            binding.etCommentField.clearFocus()
+            imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
+            binding.etCommentField.text.clear()
+        }
+
     }
 
 
@@ -85,4 +101,8 @@ class VoteActivity : AppCompatActivity() {
             viewModel.retrofitCommentList.value?.let { it1 -> commentsAdapter.setData(it1) }
         })
     }
+
+
+
+
 }
