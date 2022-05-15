@@ -14,6 +14,9 @@
     android:layout_width="147dp"
     android:layout_height="201dp"
     app:cardCornerRadius="15sp"
+    app:strokeColor="#dcdcdc"
+    app:cardElevation ="8dp"
+    app:strokeWidth="1dp"
     android:layout_margin="17dp">
 
     <LinearLayout
