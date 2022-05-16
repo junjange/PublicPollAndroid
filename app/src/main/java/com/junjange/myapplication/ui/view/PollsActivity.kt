@@ -1,5 +1,6 @@
 package com.junjange.myapplication.ui.view
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -24,13 +25,13 @@ class PollsActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        setView()
+        setView(this)
         setObserver()
 
     }
 
-    private fun setView(){
-        retrofitAdapter =  PollsAdapter().apply {
+    private fun setView(context : Context){
+        retrofitAdapter =  PollsAdapter(context).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.rvList.adapter = retrofitAdapter

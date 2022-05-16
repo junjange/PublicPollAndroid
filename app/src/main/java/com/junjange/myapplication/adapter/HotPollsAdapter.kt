@@ -1,14 +1,17 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.databinding.ItemRecyclerHotPollsBinding
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
+import com.junjange.myapplication.ui.view.VoteActivity
 
-class HotPollsAdapter : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
+class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
 
     private var items: ModelBoard = ModelBoard(ArrayList())
 
@@ -26,6 +29,18 @@ class HotPollsAdapter : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerHotPollsBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.hotPollCardView.setOnClickListener {
+                val intent = Intent(context, VoteActivity::class.java) // 원하는 화면 연결
+                // 데이터 전달
+//                intent.putExtra("key", value)
+                context.startActivity(intent) //액티비티 열기
+
+
+
+            }
+        }
 
     }
 
