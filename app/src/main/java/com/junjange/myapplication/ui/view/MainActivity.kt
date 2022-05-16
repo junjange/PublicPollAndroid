@@ -3,6 +3,7 @@ package com.junjange.myapplication.ui.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.junjange.myapplication.adapter.QuickVoteAdapter
 import com.junjange.myapplication.databinding.ActivityMainBinding
@@ -23,61 +24,28 @@ class MainActivity : AppCompatActivity() {
         setView()
         setObserver()
 
-//
-//        // 빠른 투표 1번 항목 클릭시
-//        binding.quickQuestion1Bg.setOnClickListener {
-//            binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-//            binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
-//            binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-//            binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
-//
-//            binding.quickQuestion1Txt.setTextColor(Color.BLACK)
-//            binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
-//
-//            binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
-//            binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
-//            binding.quickQuestion1Turnout.visibility = View.VISIBLE
-//            binding.quickQuestion2Turnout.visibility = View.VISIBLE
-//
-//
-//        }
-//
-//        // 빠른 투표 2번 항목 클릭시
-//        binding.quickQuestion2Bg.setOnClickListener {
-//            binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-//            binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
-//            binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-//            binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
-//
-//            binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
-//            binding.quickQuestion2Txt.setTextColor(Color.BLACK)
-//
-//            binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
-//            binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
-//            binding.quickQuestion1Turnout.visibility = View.VISIBLE
-//            binding.quickQuestion2Turnout.visibility = View.VISIBLE
-//
-//        }
-
-
+        // 투표 검색 페이지로 이동
         binding.searchBtn.setOnClickListener {
             startActivity(Intent(this@MainActivity, SearchActivity::class.java))
 
         }
 
+        // 핫 투표 페이지로 이동
         binding.hotPollsBtn.setOnClickListener {
             startActivity( Intent(this@MainActivity, HotPollsActivity::class.java))
 
         }
 
+        // 모든 투표 페이지로 이동
         binding.allPollsBtn.setOnClickListener {
             startActivity(Intent(this@MainActivity, PollsActivity::class.java))
 
         }
 
+        // 투표 생성 페이지로 이동
         binding.newPollBtn.setOnClickListener {
-            startActivity(Intent(this@MainActivity, VoteActivity::class.java))
-
+            Toast.makeText(this, "투표 생성 페이지로 이동", Toast.LENGTH_SHORT).show()
+//            startActivity(Intent(this@MainActivity, ::class.java))
 
         }
 
