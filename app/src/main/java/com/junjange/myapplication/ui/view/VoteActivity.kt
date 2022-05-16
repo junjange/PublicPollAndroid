@@ -3,6 +3,7 @@ package com.junjange.myapplication.ui.view
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.ColorStateListDrawable
+import android.graphics.drawable.RotateDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.ColorRoles
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.CommentsAdapter
 import com.junjange.myapplication.adapter.ItemAdapter
@@ -124,35 +126,50 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener1 {
 
 
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onItemClickListener1(item: ModelBoardComponent, position: Int) {
-        Log.d("ttt", (binding.normalVoteList[position].background as Color).toString())
+        Log.d("ttt", (binding.normalVoteList[position]).toString())
+
         Log.d("ttt", position.toString())
 
-//        val itemBackground: MaterialCardView =
-//            binding.normalVoteList[position].background as MaterialCardView
-//        if (itemBackground.cardBackgroundColor == getColorStateList( R.color.white)) {
-//            binding.normalVoteList.children.iterator().forEach { item ->
-//                item.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        this,
-//                        R.color.white
-//                    )
-//                )
-//            }
-//            binding.normalVoteList[position].setBackgroundColor(
-//                ContextCompat.getColor(this, R.color.teal_200)
-//            )
-//        } else {
-//            binding.normalVoteList.children.iterator().forEach { item ->
-//                item.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        this,
-//                        R.color.white
-//                    )
-//                )
-//            }
-//        }
+//        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
+//        binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
+//        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+//        binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
+//        binding.quickQuestion1Txt.setTextColor(Color.BLACK)
+//        binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
+//        binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
+//        binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+//        binding.quickQuestion1Turnout.visibility = View.VISIBLE
+//        binding.quickQuestion2Turnout.visibility = View.VISIBLE
+
+        binding.normalVoteList[position].setBackgroundColor(resources.getColor(R.color.white))
+        val itemBackground: ColorDrawable =
+            binding.normalVoteList[position].background as ColorDrawable
+        if (itemBackground.color == ContextCompat.getColor(this, R.color.white)) {
+            binding.normalVoteList.children.iterator().forEach { item ->
+
+                item.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+            }
+            binding.normalVoteList[position].setBackgroundColor(
+                ContextCompat.getColor(this, R.color.teal_200)
+            )
+
+//            binding.normalVoteList[position].
+        } else {
+            binding.normalVoteList.children.iterator().forEach { item ->
+                item.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+            }
+        }
     }
 
 
