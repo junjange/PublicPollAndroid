@@ -1,25 +1,30 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
+import android.app.LauncherActivity
 import android.graphics.Color
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
+import com.junjange.myapplication.R
 import com.junjange.myapplication.data.Item
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.databinding.ItemRecyclerNormalVoteBinding
 
-class NormalVoteAdapter(val onClickListener: ItemClickListener1)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
+class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
 
 
     private var items: ModelBoard = ModelBoard(ArrayList())
+    private var normalCheckBox = -1
 
-    interface ItemClickListener1 {
-        fun onItemClickListener1(item: ModelBoardComponent, position: Int)
+    interface ItemClickListener {
+        fun onNormalVoteClickListener(item: ModelBoardComponent, position: Int)
     }
 
     // 뷰 홀더 만들어서 반환
@@ -35,29 +40,30 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener1)  : RecyclerView
 
         holder.bind(items.board[position], position)
 
+
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerNormalVoteBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
-        init {
-//            binding.normalQuestionCardView.setOnClickListener {
-
-//                binding.normalQuestionCardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
-//                binding.normalQuestionTxt.setTextColor(Color.parseColor("#6d6d6d"))
-//                binding.normalQuestionCardView.setCardBackgroundColor(Color.parseColor("#c4baef"))
-//                binding.normalQuestionTxt.setTextColor(Color.WHITE)
-//                binding.normalQuestionTurnout.setTextColor(Color.WHITE)
-//                binding.normalQuestionTurnout.visibility = View.VISIBLE
-//            }
-        }
-
         fun bind(item: ModelBoardComponent, position: Int) {
 
 
-            binding.root.setOnClickListener {
-                onClickListener.onItemClickListener1(item, position)
+            binding.normalQuestionCardView.setOnClickListener {
+
+                onClickListener.onNormalVoteClickListener(item, position)
+
+//                if (normalCheckBox != position){
+//
+//                    binding.normalQuestionCardView.setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+//                    binding.normalQuestionTxt.setTextColor(Color.WHITE)
+//                    normalCheckBox = position
+//                }else{
+//                    binding.normalQuestionCardView.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+//                    binding.normalQuestionTxt.setTextColor(Color.parseColor("#dcdcdc"))
+//                    normalCheckBox = -1
+//
+//                }
+
             }
         }
 

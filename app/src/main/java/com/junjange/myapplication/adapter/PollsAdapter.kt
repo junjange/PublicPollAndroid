@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
-import com.junjange.myapplication.ui.view.ItemActivity
 import com.junjange.myapplication.ui.view.VoteActivity
 
 class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.ViewHolder>()  {
@@ -32,17 +31,13 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
 
         init {
             binding.pollCardView.setOnClickListener {
-                val intent = Intent(context, ItemActivity::class.java) // 원하는 화면 연결
+                val intent = Intent(context, VoteActivity::class.java) // 원하는 화면 연결
                 // 데이터 전달
 //                intent.putExtra("key", value)
                 context.startActivity(intent) //액티비티 열기
 
-
-
             }
         }
-
-
 
     }
 

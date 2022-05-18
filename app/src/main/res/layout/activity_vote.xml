@@ -66,6 +66,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/normal_vote_list"
+            android:background="@drawable/layout_unselect_normal_poll_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -221,7 +222,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_button_background"
+        android:background="@drawable/layout_select_normal_poll_background"
         app:cardCornerRadius="8dp"
         app:strokeColor="#b3b6e8"
         app:strokeWidth="2dp"

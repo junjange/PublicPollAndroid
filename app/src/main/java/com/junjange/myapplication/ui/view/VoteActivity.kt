@@ -1,42 +1,37 @@
 package com.junjange.myapplication.ui.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.ColorStateListDrawable
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.card.MaterialCardView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.CommentsAdapter
-import com.junjange.myapplication.adapter.ItemAdapter
 import com.junjange.myapplication.adapter.NormalVoteAdapter
 import com.junjange.myapplication.adapter.PhotoVoteAdapter
-import com.junjange.myapplication.data.Item
 import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
-class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener1 {
+class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, PhotoVoteAdapter.ItemClickListener {
 
     private val binding by lazy { ActivityVoteBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, VoteViewModel.Factory(application))[VoteViewModel::class.java] }
     private lateinit var photoVoteAdapter: PhotoVoteAdapter
     private lateinit var normalVoteAdapter: NormalVoteAdapter
     private lateinit var commentsAdapter: CommentsAdapter
+
+    private var photoCheckBox = -1
+    private var normalCheckBox = -1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +45,10 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener1 {
         binding.lifecycleOwner = this
 
         // 입력에 따라 일반투표/사진투표 리사이클러뷰 실행
-        normalSetView()
-        normalSetObserver()
-//        photoSetView()
-//        photoSetObserver()
+//        normalSetView()
+//        normalSetObserver()
+        photoSetView()
+        photoSetObserver()
 
         // 투표 유무에 따라 댓글 리사이클러뷰 실행
         commentSetView()
@@ -92,7 +87,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener1 {
     }
 
     private fun photoSetView(){
-        photoVoteAdapter =  PhotoVoteAdapter().apply {
+        photoVoteAdapter =  PhotoVoteAdapter(this).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.normalVoteList.visibility = View.GONE
@@ -123,36 +118,44 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener1 {
     }
 
 
+    @SuppressLint("WrongConstant")
+    override fun onNormalVoteClickListener(item: ModelBoardComponent, position: Int) {
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onItemClickListener1(item: ModelBoardComponent, position: Int) {
-        Log.d("ttt", (binding.normalVoteList[position].background as Color).toString())
-        Log.d("ttt", position.toString())
+        if (normalCheckBox != position) {
+            binding.normalVoteList.children.iterator().forEach { item ->
 
-//        val itemBackground: MaterialCardView =
-//            binding.normalVoteList[position].background as MaterialCardView
-//        if (itemBackground.cardBackgroundColor == getColorStateList( R.color.white)) {
-//            binding.normalVoteList.children.iterator().forEach { item ->
-//                item.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        this,
-//                        R.color.white
-//                    )
-//                )
-//            }
-//            binding.normalVoteList[position].setBackgroundColor(
-//                ContextCompat.getColor(this, R.color.teal_200)
-//            )
-//        } else {
-//            binding.normalVoteList.children.iterator().forEach { item ->
-//                item.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        this,
-//                        R.color.white
-//                    )
-//                )
-//            }
-//        }
+                item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+            }
+
+            normalCheckBox = position
+            binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+            binding.normalVoteList[position].context.getColor(R.color.white)
+
+
+        } else {
+
+            binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+            normalCheckBox = -1
+        }
+    }
+
+    override fun onPhotoVoteClickListener(item: ModelBoardComponent, position: Int) {
+        if (normalCheckBox != position) {
+            binding.photoVoteList.children.iterator().forEach { item ->
+
+                item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+            }
+
+            normalCheckBox = position
+            binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+            binding.photoVoteList[position].context.getColor(R.color.white)
+
+
+        } else {
+
+            binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+            normalCheckBox = -1
+        }
     }
 
 
