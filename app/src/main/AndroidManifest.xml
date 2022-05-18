@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.view.ItemActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.view.HotPollsActivity"
             android:exported="false" />

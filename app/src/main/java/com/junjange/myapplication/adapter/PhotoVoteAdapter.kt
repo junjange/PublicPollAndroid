@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.databinding.ImteRecyclerPhotoVoteBinding
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
 
-class PhotoVoteAdapter : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
+class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
 
     private var items: ModelBoard = ModelBoard(ArrayList())
 
+    interface ItemClickListener {
+        fun onPhotoVoteClickListener(item: ModelBoardComponent, position: Int)
+    }
 
     // 뷰 홀더 만들어서 반환
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,11 +29,22 @@ class PhotoVoteAdapter : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
+        holder.bind(items.board[position], position)
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ImteRecyclerPhotoVoteBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: ModelBoardComponent, position: Int) {
+
+
+            binding.root.setOnClickListener {
+
+                onClickListener.onPhotoVoteClickListener(item, position)
+
+
+            }
+        }
 
     }
 

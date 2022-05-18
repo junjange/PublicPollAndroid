@@ -71,7 +71,7 @@
             android:id="@+id/quick_question1_bg"
             android:layout_width="230dp"
             android:layout_height="42dp"
-            android:background="@drawable/layout_button_background"
+            android:background="@drawable/layout_select_normal_poll_background"
             app:cardCornerRadius="10sp"
             app:strokeColor="#b3b6e8"
             app:strokeWidth="2dp"
