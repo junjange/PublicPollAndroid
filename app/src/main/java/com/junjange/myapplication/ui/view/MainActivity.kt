@@ -3,8 +3,11 @@ package com.junjange.myapplication.ui.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.QuickVoteAdapter
 import com.junjange.myapplication.databinding.ActivityMainBinding
 import com.junjange.myapplication.ui.viewmodel.MainViewModel
@@ -20,6 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        /**
+         * drawer
+         *
+         * */
+        setSupportActionBar(binding.mainToolbar) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24) // 홈버튼 이미지 변경
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
 
         setView()
         setObserver()
@@ -65,4 +77,17 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home->{ // 메뉴 버튼
+                binding.mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+
 }

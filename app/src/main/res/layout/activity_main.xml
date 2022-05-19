@@ -8,6 +8,11 @@
             name="viewModel"
             type="com.junjange.myapplication.ui.viewmodel.MainViewModel" />
     </data>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -241,4 +246,16 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--자식 레이아웃. Navigation Drawer-->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/main_navigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            app:headerLayout="@layout/drawer_header"
+            app:menu="@menu/drawer_navigation">
+
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
