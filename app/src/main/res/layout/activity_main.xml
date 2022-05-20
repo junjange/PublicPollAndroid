@@ -8,253 +8,257 @@
             name="viewModel"
             type="com.junjange.myapplication.ui.viewmodel.MainViewModel" />
     </data>
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/main_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.view.MainActivity"
-    android:background="@drawable/layout_background"
-    android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.view.MainActivity"
+            android:background="@drawable/layout_background"
+            android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mainToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="57dp"
-            android:layout_height="28dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_pbp_letter" />
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/new_poll_btn"
-        android:layout_width="310dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#bbb1e5"
-        app:cardCornerRadius="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/all_polls_btn">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_edit" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:fontFamily="sans-serif"
-                    android:text="New Poll"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Add your own poll"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/all_polls_btn"
-        app:layout_constraintStart_toStartOf="@+id/all_polls_btn"
-        app:layout_constraintTop_toBottomOf="@+id/rv_list">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/search_btn"
-            android:layout_width="140dp"
-            android:layout_height="110dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/white"
-            android:clipToPadding="true"
-            app:cardCornerRadius="15sp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/mainToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="28dp"
+                    android:layout_width="57dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/icon_search" />
+                    android:src="@drawable/logo_pbp_letter" />
 
-                <TextView
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/new_poll_btn"
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#bbb1e5"
+                app:cardCornerRadius="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/all_polls_btn">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Search"
-                    android:textColor="#aeadad"
-                    android:textSize="12sp" />
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_edit" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
 
-            </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="11dp"
+                            android:fontFamily="sans-serif"
+                            android:text="New Poll"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="11dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Add your own poll"
+                            android:textColor="@color/white"
+                            android:textSize="10sp" />
 
 
-        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/hot_polls_btn"
-            android:layout_width="140dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/white"
-            android:clipToPadding="true"
-            app:cardCornerRadius="15sp">
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
 
             <LinearLayout
+                android:id="@+id/linearLayout6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/all_polls_btn"
+                app:layout_constraintStart_toStartOf="@+id/all_polls_btn"
+                app:layout_constraintTop_toBottomOf="@+id/rv_list">
 
-                <ImageView
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/icon_hot" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_btn"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:backgroundTint="@color/white"
+                    android:clipToPadding="true"
+                    app:cardCornerRadius="15sp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Hot Polls"
-                    android:textColor="#aeadad"
-                    android:textSize="12sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:src="@drawable/icon_search" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Search"
+                            android:textColor="#aeadad"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hot_polls_btn"
+                    android:layout_width="140dp"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:backgroundTint="@color/white"
+                    android:clipToPadding="true"
+                    app:cardCornerRadius="15sp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:src="@drawable/icon_hot" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Hot Polls"
+                            android:textColor="#aeadad"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/all_polls_btn"
-        android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#dcdcdc"
-        app:cardCornerRadius="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/new_poll_btn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/new_poll_btn"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/all_polls_btn"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
                 android:layout_gravity="center"
-                android:src="@drawable/icon_all_polls" />
+                android:backgroundTint="#dcdcdc"
+                app:cardCornerRadius="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/new_poll_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/new_poll_btn"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-            <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="11dp"
-                android:fontFamily="sans-serif"
-                android:text="All Polls"
-                android:textColor="#aeadad"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_all_polls" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
+                        android:fontFamily="sans-serif"
+                        android:text="All Polls"
+                        android:textColor="#aeadad"
+                        android:textSize="16sp" />
 
 
-        </LinearLayout>
+                </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--자식 레이아웃. Navigation Drawer-->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/main_navigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/drawer_background"
             android:layout_gravity="left"
+            android:textSize="20sp"
+            app:itemTextColor="@color/white"
             app:headerLayout="@layout/drawer_header"
-            app:menu="@menu/drawer_navigation">
+            app:menu="@menu/drawer_navigation"
+            >
 
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>

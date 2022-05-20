@@ -1,18 +1,9 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
-import android.app.LauncherActivity
-import android.graphics.Color
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
-import com.junjange.myapplication.R
-import com.junjange.myapplication.data.Item
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.databinding.ItemRecyclerNormalVoteBinding
