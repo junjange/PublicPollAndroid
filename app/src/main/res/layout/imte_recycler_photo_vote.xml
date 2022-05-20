@@ -10,7 +10,7 @@
             type="com.junjange.myapplication.data.ModelBoardComponent" />
     </data>
 
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     android:layout_width="147dp"
     android:layout_height="201dp"
     app:cardCornerRadius="15sp"
@@ -58,7 +58,7 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 
 
 </layout>

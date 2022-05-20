@@ -2,15 +2,20 @@ package com.junjange.myapplication.ui.view
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.navigation.NavigationView
+import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.BoardRecyclerAdapter
 import com.junjange.myapplication.databinding.ActivitySearchBinding
 import com.junjange.myapplication.ui.viewmodel.SearchViewModel
@@ -23,7 +28,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlin.coroutines.CoroutineContext
 
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val binding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, SearchViewModel.Factory(application))[SearchViewModel::class.java] }
     private lateinit var retrofitAdapter: BoardRecyclerAdapter
@@ -36,6 +41,17 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        /**
+         * drawer
+         *
+         * */
+        setSupportActionBar(binding.mainToolbar) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze2_24) // 홈버튼 이미지 변경
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+        binding.mainNavigationView.setNavigationItemSelectedListener(this) //navigation 리스너
+
 
         // 키보드 설정
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
@@ -161,5 +177,52 @@ class SearchActivity : AppCompatActivity() {
         Log.d(TAG, "PhotoCollectionActivity - onDestroy() called")
         myCoroutineContext.cancel()  // MemoryLeak 방지를 위해 myCoroutineContext 해제
         super.onDestroy()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home->{ // 메뉴 버튼
+                binding.mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        binding.mainDrawerLayout.closeDrawers()
+        when(item.itemId){
+            R.id.mainPageDrawer-> {
+                startActivity( Intent(this@SearchActivity, MainActivity::class.java))
+
+            }
+            R.id.allPollsDrawer-> {
+                startActivity( Intent(this@SearchActivity, PollsActivity::class.java))
+
+            }
+            R.id.hotPollsDrawer-> {
+                startActivity( Intent(this@SearchActivity, HotPollsActivity::class.java))
+
+            }
+            R.id.searchDrawer-> {
+                startActivity( Intent(this@SearchActivity, SearchActivity::class.java))
+
+            }
+            R.id.myPageDrawer-> {
+                // My Page 이동
+//                startActivity( Intent(this@PollsActivity, HotPollsActivity::class.java))
+
+            }
+
+        }
+        return false
+    }
+
+    override fun onBackPressed() { //뒤로가기 처리
+        if(binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.mainDrawerLayout.closeDrawers()
+
+        } else{
+            super.onBackPressed()
+        }
     }
 }
