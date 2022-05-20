@@ -21,6 +21,7 @@ import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
+
 class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, PhotoVoteAdapter.ItemClickListener {
 
     private val binding by lazy { ActivityVoteBinding.inflate(layoutInflater) }
@@ -45,10 +46,10 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.lifecycleOwner = this
 
         // 입력에 따라 일반투표/사진투표 리사이클러뷰 실행
-//        normalSetView()
-//        normalSetObserver()
-        photoSetView()
-        photoSetObserver()
+        normalSetView()
+        normalSetObserver()
+//        photoSetView()
+//        photoSetObserver()
 
         // 투표 유무에 따라 댓글 리사이클러뷰 실행
         commentSetView()
@@ -118,6 +119,12 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     }
 
 
+    /***
+     * 투표를 한 후에 background, text 색이 변해야한다.
+     * Activity에서 색 변화를 진행할 경우 background만 변화 가능
+     * Adapter에서 색 변화를 진행할 경우 background, text 색 모두 변화시 킬 수 있지만 다른 item의 색을 변화시킬 수 없어 원래 상태로 바꿀 수 없음.
+     * 어떤식으로 해결해야할지 고민이 필요함..
+     */
     @SuppressLint("WrongConstant")
     override fun onNormalVoteClickListener(item: ModelBoardComponent, position: Int) {
 

@@ -7,12 +7,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.QuickVoteAdapter
 import com.junjange.myapplication.databinding.ActivityMainBinding
 import com.junjange.myapplication.ui.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java] }
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24) // 홈버튼 이미지 변경
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+        binding.mainNavigationView.setNavigationItemSelectedListener(this) //navigation 리스너
 
         setView()
         setObserver()
@@ -86,6 +88,47 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        binding.mainDrawerLayout.closeDrawers()
+        when(item.itemId){
+            R.id.mainPageDrawer-> {
+                startActivity( Intent(this@MainActivity, MainActivity::class.java))
+
+            }
+            R.id.allPollsDrawer-> {
+                startActivity( Intent(this@MainActivity, PollsActivity::class.java))
+
+            }
+            R.id.hotPollsDrawer-> {
+                startActivity( Intent(this@MainActivity, HotPollsActivity::class.java))
+
+            }
+            R.id.searchDrawer-> {
+                startActivity( Intent(this@MainActivity, SearchActivity::class.java))
+
+            }
+            R.id.myPageDrawer-> {
+                // My Page 이동
+//                startActivity( Intent(this@MainActivity, HotPollsActivity::class.java))
+
+            }
+
+        }
+        return false
+    }
+
+
+
+    override fun onBackPressed() { //뒤로가기 처리
+        if(binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.mainDrawerLayout.closeDrawers()
+            // 테스트를 위해 뒤로가기 버튼시 Toast 메시지
+            Toast.makeText(this,"back btn clicked",Toast.LENGTH_SHORT).show()
+        } else{
+            super.onBackPressed()
+        }
     }
 
 
