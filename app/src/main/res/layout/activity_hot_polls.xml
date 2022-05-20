@@ -10,6 +10,12 @@
 
     </data>
 
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -26,20 +32,18 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/mainToolbar"
-                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="28sp"
-                    android:textColor="#bbb1e5"
-                    android:text="Hot Polls"/>
-
-
             </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textColor="#bbb1e5"
+                android:text="Hot Polls"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_list"
@@ -48,7 +52,6 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_marginBottom="30dp"
-                android:layout_marginTop="20dp"
                 />
 
 
@@ -56,5 +59,23 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+    <!--자식 레이아웃. Navigation Drawer-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/main_navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/drawer_background"
+        android:layout_gravity="left"
+        android:textSize="20sp"
+        app:itemTextColor="@color/white"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_navigation"
+        >
 
-</layout>
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+    </layout>

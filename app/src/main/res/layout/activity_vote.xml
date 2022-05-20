@@ -8,6 +8,14 @@
             name="viewModel"
             type="com.junjange.myapplication.ui.viewmodel.VoteViewModel" />
     </data>
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,13 +35,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
+        </androidx.appcompat.widget.Toolbar>
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:layout_marginEnd="21dp"
             android:orientation="horizontal"
             android:layout_gravity="right" >
@@ -92,7 +104,7 @@
 
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="258dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
@@ -115,9 +127,9 @@
                     android:textSize="26sp" />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_marginTop="11dp"
             android:layout_gravity="center"
             android:layout_width="258dp"
@@ -142,10 +154,10 @@
                     />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
             android:layout_width="258dp"
@@ -171,7 +183,7 @@
                     />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -267,5 +279,22 @@
 
 </LinearLayout>
 
-</layout>
+    <!--자식 레이아웃. Navigation Drawer-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/main_navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/drawer_background"
+        android:layout_gravity="left"
+        android:textSize="20sp"
+        app:itemTextColor="@color/white"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_navigation"
+        >
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+    </layout>
 

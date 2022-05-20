@@ -120,14 +120,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
+    // 뒤로가기 2번 눌러야 종료
+    private val finishIntervalTime: Long = 2500
+    private var backPressedTime: Long = 0
+    private var toast: Toast? = null
+    override fun onBackPressed() {
 
-    override fun onBackPressed() { //뒤로가기 처리
+        // drawer 종료
         if(binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.mainDrawerLayout.closeDrawers()
-            // 테스트를 위해 뒤로가기 버튼시 Toast 메시지
-            Toast.makeText(this,"back btn clicked",Toast.LENGTH_SHORT).show()
+
+        // 앱 종료
         } else{
-            super.onBackPressed()
+
+            val tempTime = System.currentTimeMillis()
+            val intervalTime = tempTime - backPressedTime
+
+            // 뒤로 가기 할 경우 홈 화면으로 이동
+            if (intervalTime in 0..finishIntervalTime) {
+                super.onBackPressed()
+                // 앱 종료시 뒤로가기 토스트 종료
+                toast!!.cancel()
+                finish()
+            } else {
+                backPressedTime = tempTime
+                toast =
+                    Toast.makeText(applicationContext, "'뒤로'버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT)
+                toast!!.show()
+            }
         }
     }
 
