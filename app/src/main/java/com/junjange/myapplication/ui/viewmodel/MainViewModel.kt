@@ -6,19 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.repository.QuickVoteRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: QuickVoteRepository) : ViewModel(){
-    private val _retrofitTodoList = MutableLiveData<ModelBoard>()
+    private val _retrofitQuickPolls = MutableLiveData<QuickPolls>()
 
     // LiveData
-    val retrofitTodoList: MutableLiveData<ModelBoard>
-        get() = _retrofitTodoList
+    val retrofitQuickPolls: MutableLiveData<QuickPolls>
+        get() = _retrofitQuickPolls
 
     init { // 초기화 시 서버에서 데이터를 받아옵니다.
         viewModelScope.launch {
-            _retrofitTodoList.value = repository.retrofitSelectAllTodo()
+            _retrofitQuickPolls.value = repository.retrofitQuickPolls()
         }
     }
 

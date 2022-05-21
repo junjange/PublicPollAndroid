@@ -1,9 +1,15 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
+import android.util.Log
+import com.google.gson.JsonObject
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.ViewPolls
+import com.junjange.myapplication.data.ViewPollsItem
 import com.junjange.myapplication.network.BoardObject
-import java.util.ArrayList
+import com.junjange.myapplication.network.PollsObject
+import java.util.*
+import kotlin.collections.ArrayList
 
 class VoteRepository(application : Application) {
 
@@ -13,14 +19,17 @@ class VoteRepository(application : Application) {
 
         fun getInstance(application : Application): VoteRepository? {
             if (instance == null) instance = VoteRepository(application)
+
             return instance
         }
     }
 
     // Use Retrofit
-    suspend fun retrofitSelectAllTodo(): ModelBoard {
-        val response = BoardObject.getRetrofitService.getBoard()
-        return if (response.isSuccessful) response.body() as ModelBoard else ModelBoard(ArrayList())
+    suspend fun retrofitViewPolls(pollId : Int): ViewPolls? {
+        val response = PollsObject.getRetrofitService.getViewPolls(pollId)
+
+
+        return if (response.isSuccessful) response.body() as ViewPolls else null
 
     }
 

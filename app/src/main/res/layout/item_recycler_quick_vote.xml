@@ -9,157 +9,157 @@
             type="com.junjange.myapplication.data.ModelBoardComponent" />
     </data>
 
-<androidx.cardview.widget.CardView
-    android:layout_marginStart="1dp"
-    android:layout_marginEnd="15dp"
-    android:layout_marginBottom="15dp"
-    android:layout_marginTop="15dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="15sp">
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="21dp"
-            android:orientation="horizontal"
-            android:layout_gravity="right" >
-
-
-            <!-- 티어 이미지 -->
-
-            <TextView
-                android:text="Jeniffer"
-                android:textSize="12sp"
-                android:textColor="#9f9f9f"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-
-        </LinearLayout>
-
-
-        <TextView
-            android:fontFamily="sans-serif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="30dp"
-            android:textSize="24sp"
-            android:text="How do you like\ntang shooook?"
-            android:textColor="?android:attr/textColorPrimary"/>
-
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="30dp"
-        android:layout_gravity="center"
+    <androidx.cardview.widget.CardView
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        app:cardCornerRadius="15sp">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/quick_question1_bg"
-            android:layout_width="230dp"
-            android:layout_height="42dp"
-            android:background="@drawable/layout_select_normal_poll_background"
-            app:cardCornerRadius="10sp"
-            app:strokeColor="#b3b6e8"
-            app:strokeWidth="2dp"
-            >
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="21dp"
                 android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                >
+                android:layout_gravity="right" >
+
+
+                <!-- 티어 이미지 -->
+
                 <TextView
-                    android:id="@+id/quick_question1_txt"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
+                    android:text="Jeniffer"
+                    android:textSize="12sp"
+                    android:textColor="#9f9f9f"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_vertical"
-                    android:textColor="#989898"
-                    android:text="Dip un Sauce"
-                    />
-
-                <TextView
-                    android:id="@+id/quick_question1_turnout"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:fontFamily="sans-serif"
-                    android:textColor="#989898"
-                    android:text="0.1%"
-                    android:visibility="gone"
                     />
 
 
             </LinearLayout>
 
 
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/quick_question2_bg"
-            android:layout_width="230dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="10sp"
-            app:strokeColor="#b3b6e8"
-            app:strokeWidth="2dp"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="30dp"
+                android:textSize="24sp"
+                android:text="How do you like\ntang shooook?"
+                android:textColor="?android:attr/textColorPrimary"/>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 >
-                <TextView
-                    android:id="@+id/quick_question2_txt"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center_vertical"
-                    android:textColor="#989898"
-                    android:text="Pour Sauce"
-                    />
 
-                <TextView
-                    android:id="@+id/quick_question2_turnout"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:fontFamily="sans-serif"
-                    android:textColor="#989898"
-                    android:text="99.9%"
-                    android:visibility="gone"
-                    />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/quick_question1_bg"
+                    android:layout_width="230dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/layout_select_normal_poll_background"
+                    app:cardCornerRadius="10sp"
+                    app:strokeColor="#b3b6e8"
+                    app:strokeWidth="2dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical"
+                        >
+                        <TextView
+                            android:id="@+id/quick_question1_txt"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:textColor="#989898"
+                            android:text="Dip un Sauce"
+                            />
+
+                        <TextView
+                            android:id="@+id/quick_question1_turnout"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:fontFamily="sans-serif"
+                            android:textColor="#989898"
+                            android:text="0.1%"
+                            android:visibility="gone"
+                            />
 
 
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/quick_question2_bg"
+                    android:layout_width="230dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10sp"
+                    app:strokeColor="#b3b6e8"
+                    app:strokeWidth="2dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical"
+                        >
+                        <TextView
+                            android:id="@+id/quick_question2_txt"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:textColor="#989898"
+                            android:text="Pour Sauce"
+                            />
+
+                        <TextView
+                            android:id="@+id/quick_question2_turnout"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:fontFamily="sans-serif"
+                            android:textColor="#989898"
+                            android:text="99.9%"
+                            android:visibility="gone"
+                            />
+
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>
 

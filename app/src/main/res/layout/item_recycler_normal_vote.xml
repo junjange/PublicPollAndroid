@@ -9,17 +9,17 @@
             type="com.junjange.myapplication.data.ModelBoardComponent" />
     </data>
 
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/normal_question_card_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/layout_unselect_normal_poll_background"
-    app:cardCornerRadius="10sp"
-    android:layout_margin="8dp"
-    app:strokeColor="#dcdcdc"
-    app:cardElevation ="8dp"
-    android:clickable="true"
-    app:strokeWidth="1dp">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/normal_question_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_unselect_normal_poll_background"
+        app:cardCornerRadius="10sp"
+        android:layout_margin="8dp"
+        app:strokeColor="#dcdcdc"
+        app:cardElevation ="8dp"
+        android:clickable="true"
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,6 +57,6 @@
 
         </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

@@ -1,21 +1,20 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.ItemComponent
 import com.junjange.myapplication.data.ModelBoardComponent
+import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.databinding.ImteRecyclerPhotoVoteBinding
-import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
 
 class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
 
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private lateinit var items: ViewPolls
 
     interface ItemClickListener {
-        fun onPhotoVoteClickListener(item: ModelBoardComponent, position: Int)
+        fun onPhotoVoteClickListener(item: ItemComponent, position: Int)
     }
 
     // 뷰 홀더 만들어서 반환
@@ -29,13 +28,13 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bind(items.board[position], position)
+        holder.bind(items.viewPollsItem.items[position], position)
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ImteRecyclerPhotoVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ModelBoardComponent, position: Int) {
+        fun bind(item: ItemComponent, position: Int) {
 
 
             binding.root.setOnClickListener {
@@ -53,7 +52,7 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: ViewPolls) {
 
         this.items = newItems
         notifyDataSetChanged()
@@ -61,6 +60,6 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.viewPollsItem.items.size
 
 }

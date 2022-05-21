@@ -1,8 +1,8 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
-import com.junjange.myapplication.data.ModelBoard
-import com.junjange.myapplication.network.BoardObject
+import com.junjange.myapplication.data.QuickPolls
+import com.junjange.myapplication.network.PollsObject
 import java.util.ArrayList
 
 class QuickVoteRepository(application : Application) {
@@ -19,9 +19,10 @@ class QuickVoteRepository(application : Application) {
     }
 
     // Use Retrofit
-    suspend fun retrofitSelectAllTodo(): ModelBoard {
-        val response = BoardObject.getRetrofitService.getBoard()
-        return if (response.isSuccessful) response.body() as ModelBoard else ModelBoard(ArrayList())
+    suspend fun retrofitQuickPolls(): QuickPolls {
+        val response = PollsObject.getRetrofitService.getQuickPolls()
+
+        return if (response.isSuccessful) response.body() as QuickPolls else QuickPolls(ArrayList())
 
     }
 }

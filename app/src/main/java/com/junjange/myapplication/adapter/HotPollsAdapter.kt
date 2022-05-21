@@ -3,19 +3,18 @@ package com.junjange.myapplication.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.R
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.databinding.ItemRecyclerHotPollsBinding
-import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
+import com.junjange.myapplication.data.HotPolls
+import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.ui.view.VoteActivity
 
 class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
 
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private var items: HotPolls = HotPolls(ArrayList())
 
 
     // 뷰 홀더 만들어서 반환
@@ -63,14 +62,14 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: HotPolls) {
 
         this.items = newItems
         notifyDataSetChanged()
 
     }
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.hotPollsItem.size
 
 
 

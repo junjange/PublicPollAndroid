@@ -54,9 +54,9 @@ class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun setObserver() {
-        viewModel.retrofitTodoList.observe(this, {
+        viewModel.retrofitAllPolls.observe(this, {
 
-            viewModel.retrofitTodoList.value?.let { it1 -> retrofitAdapter.setData(it1) }
+            viewModel.retrofitAllPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
         })
 
     }

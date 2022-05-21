@@ -2,13 +2,15 @@ package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.databinding.ItemRecyclerCommentBinding
 
 class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private lateinit var items: ViewPolls
 
 
     // 뷰 홀더 만들어서 반환
@@ -32,14 +34,16 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: ViewPolls) {
 
         this.items = newItems
         notifyDataSetChanged()
 
     }
+
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.viewPollsItem.items.size
+
 
 
 }
