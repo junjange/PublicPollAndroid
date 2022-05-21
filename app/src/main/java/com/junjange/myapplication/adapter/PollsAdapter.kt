@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
 import com.junjange.myapplication.ui.view.VoteActivity
 
 class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.ViewHolder>()  {
 
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private var items: Polls = Polls(ArrayList())
 
 
     // 뷰 홀더 만들어서 반환
@@ -46,13 +47,13 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: Polls) {
 
         this.items = newItems
         notifyDataSetChanged()
 
     }
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.pollsItem.size
 
 }

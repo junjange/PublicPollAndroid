@@ -56,9 +56,9 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     private fun setObserver() {
-        viewModel.retrofitTodoList.observe(this, {
+        viewModel.retrofitHotPolls.observe(this, {
 
-            viewModel.retrofitTodoList.value?.let { it1 -> retrofitAdapter.setData(it1) }
+            viewModel.retrofitHotPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
         })
 
     }

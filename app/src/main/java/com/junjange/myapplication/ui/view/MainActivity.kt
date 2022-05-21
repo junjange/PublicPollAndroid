@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setObserver() {
-        viewModel.retrofitTodoList.observe(this, {
+        viewModel.retrofitQuickPolls.observe(this, {
 
-            viewModel.retrofitTodoList.value?.let { it1 -> retrofitAdapter.setData(it1) }
+            viewModel.retrofitQuickPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
         })
 
     }
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.mainDrawerLayout.closeDrawers()
 
-        // 앱 종료
+            // 앱 종료
         } else{
 
             val tempTime = System.currentTimeMillis()

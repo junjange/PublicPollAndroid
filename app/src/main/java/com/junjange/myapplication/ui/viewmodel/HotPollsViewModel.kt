@@ -5,22 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.junjange.myapplication.data.HotPolls
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.repository.HotPollsRepository
-import com.junjange.myapplication.repository.PollsRepository
 import kotlinx.coroutines.launch
 
 class HotPollsViewModel (private val repository: HotPollsRepository) : ViewModel() {
 
-    private val _retrofitTodoList = MutableLiveData<ModelBoard>()
+    private val _retrofitHotPolls = MutableLiveData<HotPolls>()
 
     // LiveData
-    val retrofitTodoList: MutableLiveData<ModelBoard>
-        get() = _retrofitTodoList
+    val retrofitHotPolls: MutableLiveData<HotPolls>
+        get() = _retrofitHotPolls
 
     init { // 초기화 시 서버에서 데이터를 받아옵니다.
         viewModelScope.launch {
-            _retrofitTodoList.value = repository.retrofitSelectAllTodo()
+            _retrofitHotPolls.value = repository.retrofitHotPolls()
         }
     }
 

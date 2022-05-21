@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.ModelBoardComponent
+import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
 
 
 class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
 
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private var items: QuickPolls = QuickPolls(ArrayList())
 
 
     // 뷰 홀더 만들어서 반환
@@ -72,7 +73,7 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: QuickPolls) {
 
         this.items = newItems
         notifyDataSetChanged()
@@ -80,7 +81,7 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.quickPollsItem.size
 
 
 }

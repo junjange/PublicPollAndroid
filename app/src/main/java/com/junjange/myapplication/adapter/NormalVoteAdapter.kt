@@ -1,24 +1,20 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.junjange.myapplication.R
-import com.junjange.myapplication.data.ModelBoard
-import com.junjange.myapplication.data.ModelBoardComponent
+import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerNormalVoteBinding
 
 class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
 
 
-    private var items: ModelBoard = ModelBoard(ArrayList())
+    private var items: ViewPolls? = null
     private var normalCheckBox = -1
 
     interface ItemClickListener {
-        fun onNormalVoteClickListener(item: ModelBoardComponent, position: Int)
+        fun onNormalVoteClickListener(item: ItemComponent, position: Int)
     }
 
     // 뷰 홀더 만들어서 반환
@@ -32,19 +28,15 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bind(items.board[position], position, holder.layoutPosition)
-        Log.d("ttt", "tttt")
-
+        holder.bind(items!!.viewPollsItem.items[position], position)
 
 
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerNormalVoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ModelBoardComponent, position: Int, cnt : Int) {
+        fun bind(item: ItemComponent, position: Int) {
 
-            Log.d("ttt", binding.normalQuestionTxt.toString())
-            Log.d("ttt", cnt.toString())
 
             binding.normalQuestionCardView.setOnClickListener {
 
@@ -52,7 +44,6 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
 
                 onClickListener.onNormalVoteClickListener(item, position)
 
-                Log.d("ttt", binding.normalQuestionTxt.toString())
 
 //                if (normalCheckBox != position){
 //
@@ -79,7 +70,7 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: ViewPolls) {
 
         this.items = newItems
         notifyDataSetChanged()
@@ -87,5 +78,5 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items!!.viewPollsItem.items.size
 }

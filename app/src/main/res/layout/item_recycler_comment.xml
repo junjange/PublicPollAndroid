@@ -12,45 +12,45 @@
     </data>
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginTop="8dp">
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="8dp">
 
-        <!-- 티어 이미지 -->
-
-        <TextView
-            android:text="Jeniffer"
-            android:textSize="12sp"
-            android:textColor="#9f9f9f"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:orientation="horizontal" >
 
+            <!-- 티어 이미지 -->
+
+            <TextView
+                android:text="Jeniffer"
+                android:textSize="12sp"
+                android:textColor="#9f9f9f"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="um.... soo hardddd"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/divider_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#dedede" />
 
     </LinearLayout>
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="um.... soo hardddd"
-        android:textSize="14sp" />
-
-    <View
-        android:id="@+id/divider_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="#dedede" />
-
-</LinearLayout>
 </layout>
