@@ -18,21 +18,19 @@ import com.junjange.myapplication.adapter.CommentsAdapter
 import com.junjange.myapplication.adapter.NormalVoteAdapter
 import com.junjange.myapplication.adapter.PhotoVoteAdapter
 import com.junjange.myapplication.data.ItemComponent
-import com.junjange.myapplication.data.ModelBoardComponent
-import com.junjange.myapplication.data.PollItem
 import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
 
 class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, PhotoVoteAdapter.ItemClickListener,
     NavigationView.OnNavigationItemSelectedListener {
+//    val storeItem: Int = intent.getParcelableExtra("key")!!
 
     private val binding by lazy { ActivityVoteBinding.inflate(layoutInflater) }
-    private val viewModel by lazy { ViewModelProvider(this, VoteViewModel.Factory(application, 136))[VoteViewModel::class.java] }
+    private val viewModel by lazy { ViewModelProvider(this, VoteViewModel.Factory(application))[VoteViewModel::class.java] }
     private lateinit var photoVoteAdapter: PhotoVoteAdapter
     private lateinit var normalVoteAdapter: NormalVoteAdapter
     private lateinit var commentsAdapter: CommentsAdapter
-
     private var photoCheckBox = -1
     private var normalCheckBox = -1
 
@@ -40,6 +38,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
 
         /**
          * drawer
@@ -58,13 +57,21 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+
+        val data = intent.getSerializableExtra("key") as Int
+        viewModel.getViewPollsRetrofit(data)
+        viewModel.getCommentsRetrofit(data)
+
+
+
         // 입력에 따라 일반투표/사진투표 리사이클러뷰 실행
         normalSetView()
         normalSetObserver()
+
 //        photoSetView()
 //        photoSetObserver()
 
-        // 투표 유무에 따라 댓글 리사이클러뷰 실행
+//        투표 유무에 따라 댓글 리사이클러뷰 실행
         commentSetView()
         commentSetObserver()
 
@@ -80,6 +87,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
 
     private fun normalSetView(){
+
         normalVoteAdapter =  NormalVoteAdapter(this).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
@@ -88,12 +96,14 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             LinearLayoutManager.VERTICAL,
             false
         )
+
         binding.normalVoteList.visibility = View.VISIBLE
         binding.photoVoteList.visibility = View.GONE
         binding.normalVoteList.adapter = normalVoteAdapter
     }
 
     private fun normalSetObserver() {
+
         viewModel.retrofitViewPolls.observe(this, {
 
             viewModel.retrofitViewPolls.value?.let { it1 -> normalVoteAdapter.setData(it1) }
@@ -109,25 +119,38 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.photoVoteList.adapter = photoVoteAdapter
     }
 
-    private fun photoSetObserver() {
-        viewModel.retrofitViewPolls.observe(this, {
-
-            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1) }
-        })
-    }
+//    private fun photoSetObserver() {
+//        viewModel.retrofitViewPolls.observe(this, {
+//
+//            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1) }
+//        })
+//    }
 
     private fun commentSetView(){
+
         commentsAdapter =  CommentsAdapter().apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.commentList.adapter = commentsAdapter
+
+
 
     }
 
     private fun commentSetObserver() {
         viewModel.retrofitViewPolls.observe(this, {
 
-            viewModel.retrofitViewPolls.value?.let { it1 -> commentsAdapter.setData(it1) }
+            viewModel.retrofitCommentList.value?.let { it1 -> commentsAdapter.setData(it1) }
+
+            val commentCnt = commentsAdapter.itemCount
+            binding.commentCnt.text = commentCnt.toString()
+            if (commentCnt == 0){
+                binding.commentList.visibility = View.GONE
+                binding.noCommentTxt.visibility = View.VISIBLE
+            }else{
+                binding.commentList.visibility = View.VISIBLE
+                binding.noCommentTxt.visibility = View.GONE
+            }
         })
     }
 

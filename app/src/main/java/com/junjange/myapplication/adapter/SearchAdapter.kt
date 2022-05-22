@@ -1,12 +1,14 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerBoardBinding
-import com.junjange.myapplication.data.ModelBoard
-import com.junjange.myapplication.data.ModelBoardComponent
+import com.junjange.myapplication.ui.view.HashtagActivity
 
 /**
 리사이클러 뷰를 데이터 바인딩으로 구현 : onCreateViewHolder()
@@ -21,8 +23,8 @@ getItemViewType() =>  RecyclerView 재사용 item 오류/ positon 오류 해결 
  **/
 
 
-class BoardRecyclerAdapter : RecyclerView.Adapter<BoardRecyclerAdapter.ViewHolder>() {
-    private var items: ModelBoard = ModelBoard(ArrayList())
+class SearchAdapter(val context: Context) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+    private var items: HashtagName = HashtagName(ArrayList())
 
 
     // 뷰 홀더 만들어서 반환
@@ -33,17 +35,33 @@ class BoardRecyclerAdapter : RecyclerView.Adapter<BoardRecyclerAdapter.ViewHolde
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setItem(items.board[position])
+        holder.setItem(items.hashtagNameItem[position])
+        holder.clickItem(items.hashtagNameItem[position])
+
+
 
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerBoardBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setItem(item: ModelBoardComponent){
-            binding.tvTitle.text =  item.title
-            binding.tvContents.text =  item.contents
+        fun setItem(item: HashtagNameItem){
+            binding.tvTitle.text =  "#"+item.name
         }
+
+        fun clickItem(item: HashtagNameItem){
+            binding.linearLayout.setOnClickListener {
+                val intent = Intent(context, HashtagActivity::class.java) // 원하는 화면 연결
+                // 데이터 전달
+//                intent.putExtra("key", value)
+                context.startActivity(intent) //액티비티 열기
+
+            }
+
+        }
+
+
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -51,14 +69,14 @@ class BoardRecyclerAdapter : RecyclerView.Adapter<BoardRecyclerAdapter.ViewHolde
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ModelBoard) {
+    internal fun setData(newItems: HashtagName) {
         this.items = newItems
         notifyDataSetChanged()
 
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.board.size
+    override fun getItemCount() = items.hashtagNameItem.size
 
 
 }

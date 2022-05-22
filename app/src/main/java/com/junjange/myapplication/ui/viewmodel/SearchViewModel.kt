@@ -1,31 +1,31 @@
 package com.junjange.myapplication.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.junjange.myapplication.repository.BoardRepository
-import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.HashtagName
+import com.junjange.myapplication.repository.SearchRepository
+import com.junjange.myapplication.network.PollsObject
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
-class SearchViewModel(private val repository: BoardRepository) : ViewModel(){
-    private val _retrofitTodoList = MutableLiveData<ModelBoard>()
+class SearchViewModel(private val repository: SearchRepository) : ViewModel(){
+    private val _retrofitSearchList = MutableLiveData<HashtagName>()
 
     // LiveData
-    val retrofitTodoList: MutableLiveData<ModelBoard>
-        get() = _retrofitTodoList
+    val retrofitSearchList: MutableLiveData<HashtagName>
+        get() = _retrofitSearchList
 
-    init { // 초기화 시 서버에서 데이터를 받아옵니다.
-        viewModelScope.launch {
-            _retrofitTodoList.value = repository.retrofitSelectAllTodo()
-        }
+    fun insertRetrofit(keyword : String) = viewModelScope.launch {
+        retrofitSearchList.value = repository.retrofitSearch(keyword)
     }
 
-
-    class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
+    class Factory(private val application: Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SearchViewModel(BoardRepository.getInstance(application)!!) as T
+            return SearchViewModel(SearchRepository.getInstance(application)!!) as T
         }
     }
 

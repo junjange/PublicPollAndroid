@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ItemComponent
-import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.databinding.ImteRecyclerPhotoVoteBinding
 
 class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
 
     private lateinit var items: ViewPolls
+
 
     interface ItemClickListener {
         fun onPhotoVoteClickListener(item: ItemComponent, position: Int)
@@ -28,7 +28,7 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bind(items.viewPollsItem.items[position], position)
+//        holder.bind(items.viewPollsItem.items[position], position)
     }
 
     // 뷰 홀더 설정
@@ -60,6 +60,6 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.viewPollsItem.items.size
+    override fun getItemCount() = 2
 
 }

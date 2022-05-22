@@ -80,7 +80,7 @@
             android:id="@+id/normal_vote_list"
             android:background="@drawable/layout_unselect_normal_poll_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:nestedScrollingEnabled="false"
@@ -92,7 +92,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photo_vote_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="20dp"
             android:orientation="vertical"
@@ -199,6 +199,7 @@
                 android:src="@drawable/icon_comment"/>
 
             <TextView
+                android:id="@+id/comment_cnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#929292"
@@ -215,7 +216,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comment_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="30dp"
@@ -225,7 +226,15 @@
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+        <TextView
+            android:id="@+id/no_comment_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="댓글이 없습니다.">
 
+        </TextView>
 
     </LinearLayout>
 

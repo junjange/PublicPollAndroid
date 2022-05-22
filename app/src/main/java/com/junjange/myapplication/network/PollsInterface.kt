@@ -16,7 +16,7 @@ interface PollsInterface {
 
     // 핫 투표 조회
     @GET(API.GET_HOT_POLLS)
-    suspend fun getHotPolls(): Response<HotPolls>
+    suspend fun getHotPolls(): Response<JsonObject>
 
     // 투표 보기
     @GET("poll/{pollId}")
@@ -39,6 +39,15 @@ interface PollsInterface {
     suspend fun getHashtag(
         @Path("hashtagId") hashtagId : Int
     ): Response<Hashtag>
+
+    // 댓글 검색
+    @GET("comment/id/{pollId}")
+    suspend fun getComments(
+        @Path("pollId") pollId : Int
+    ): Response<Comment>
+
+
+
 
 
 
