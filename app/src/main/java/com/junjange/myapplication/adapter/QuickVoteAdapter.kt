@@ -2,7 +2,6 @@ package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.data.QuickPolls
+import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
 
 
@@ -26,6 +26,8 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.setItem(items.quickPollsItem[position])
+
 
     }
 
@@ -62,6 +64,13 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
                 binding.quickQuestion2Turnout.visibility = View.VISIBLE
             }
 
+        }
+
+        fun setItem(item: QuickPollsItem){
+            binding.title.text =  item.contents
+            binding.nick.text = item.user.nick
+            binding.quickQuestion1Txt.text = item.items[0].contents
+            binding.quickQuestion2Txt.text = item.items[0].contents
         }
 
 

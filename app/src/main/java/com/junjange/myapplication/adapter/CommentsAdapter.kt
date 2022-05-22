@@ -2,15 +2,14 @@ package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.junjange.myapplication.data.ModelBoard
-import com.junjange.myapplication.data.ViewPolls
+import com.junjange.myapplication.data.Comment
+import com.junjange.myapplication.data.CommentItem
 import com.junjange.myapplication.databinding.ItemRecyclerCommentBinding
 
 class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
-    private lateinit var items: ViewPolls
+    private var items: Comment = Comment(ArrayList())
 
 
     // 뷰 홀더 만들어서 반환
@@ -21,11 +20,18 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.setItem(items.commentItem[position])
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerCommentBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun setItem(item: CommentItem){
+            binding.comment.text =  item.contents
+            binding.nick.text = item.user.nick
+
+            // 이미지!
+        }
 
     }
 
@@ -34,7 +40,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(newItems: ViewPolls) {
+    internal fun setData(newItems: Comment) {
 
         this.items = newItems
         notifyDataSetChanged()
@@ -42,7 +48,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items.viewPollsItem.items.size
+    override fun getItemCount(): Int = items.commentItem.size
 
 
 

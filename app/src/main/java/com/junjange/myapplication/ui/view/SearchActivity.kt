@@ -3,6 +3,7 @@ package com.junjange.myapplication.ui.view
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +15,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
-import com.junjange.myapplication.adapter.BoardRecyclerAdapter
+import com.junjange.myapplication.adapter.SearchAdapter
 import com.junjange.myapplication.databinding.ActivitySearchBinding
 import com.junjange.myapplication.ui.viewmodel.SearchViewModel
 import com.junjange.myapplication.utils.textChangesToFlow
@@ -30,13 +32,14 @@ import kotlin.coroutines.CoroutineContext
 
 class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val binding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
-    private val viewModel by lazy { ViewModelProvider(this, SearchViewModel.Factory(application))[SearchViewModel::class.java] }
-    private lateinit var retrofitAdapter: BoardRecyclerAdapter
-
-
     private var myCoroutineJob : Job = Job()
     private val myCoroutineContext: CoroutineContext
         get() = Dispatchers.IO + myCoroutineJob
+    private val viewModel by lazy { ViewModelProvider(this, SearchViewModel.Factory(application))[SearchViewModel::class.java] }
+    private lateinit var retrofitAdapter: SearchAdapter
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,8 +77,12 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             // EditText 에 포커스가 갔을 때 ClearButton 활성화
             this.setOnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) {
+                    Log.d("tttt", "ㅎㅎㅎ")
+
                     binding.textClearButton.visibility = View.VISIBLE
                 } else {
+                    Log.d("tttt", "ㅋㅋㅋㅋㅋㅋ")
+
                     binding.textClearButton.visibility = View.GONE
 
 
@@ -83,21 +90,47 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
 
-            GlobalScope.launch(context = myCoroutineContext){
+            lifecycleScope.launch(context = myCoroutineContext){
 
                 // editText 가 변경되었을때
                 val editTextFlow = binding.etSearchField.textChangesToFlow()
 
                 editTextFlow
                     // 연산자들
-                    // 입려되고 나서 0.8초 뒤에 받는다
-                    .debounce(800)
-                    .filter {
-                        it?.length!! > 0
-                    }
+                    // 입려되고 나서 0.3초 뒤에 받는다
+                    .debounce(300)
+//                    .filter {
+//                        it?.length!! > 0
+//                    }
                     .onEach {
-                        Log.d(ContentValues.TAG, "flow로 받는다 $it")
+                        Log.d(ContentValues.TAG, "flow로 받는다 $it 11")
+
+                        lifecycleScope.launch {
+
+
+                            if (!it.isNullOrBlank()){
+                                viewModel.insertRetrofit(it.toString())
+
+                            }else{
+                                binding.rvList.visibility = View.GONE
+                                binding.noResultCard.visibility = View.VISIBLE
+                                binding.textClearButton.visibility = View.GONE
+
+
+
+                            }
+                        }
+
+
+
+//                        binding.noResultCard.visibility = View.VISIBLE
+
+
                         // 해당 검색어로 api 호출
+
+
+
+
 
                     }
                     .launchIn(this)
@@ -106,7 +139,6 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
         }
-
 
         // 검색창 엔터
         binding.etSearchField.setOnKeyListener { _, keyCode, event ->
@@ -127,23 +159,34 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // ClearButton 눌렀을 때 쿼리 Clear
         binding.textClearButton.setOnClickListener {
             binding.etSearchField.text.clear()
-            imm.showSoftInput(binding.etSearchField,0)
+//            imm.showSoftInput(binding.etSearchField,0)
 
         }
     }
 
 
     private fun setView(){
-        retrofitAdapter =  BoardRecyclerAdapter().apply {
+        retrofitAdapter =  SearchAdapter(this).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.rvList.adapter = retrofitAdapter
     }
 
     private fun setObserver() {
-        viewModel.retrofitTodoList.observe(this, {
+        viewModel.retrofitSearchList.observe(this, {
 
-            viewModel.retrofitTodoList.value?.let { it1 -> retrofitAdapter.setData(it1) }
+            viewModel.retrofitSearchList.value?.let { it1 -> retrofitAdapter.setData(it1)
+
+                if (it1.hashtagNameItem.size == 0){
+                    binding.rvList.visibility = View.GONE
+                    binding.noResultCard.visibility = View.VISIBLE
+                }else{
+                    binding.rvList.visibility = View.VISIBLE
+                    binding.noResultCard.visibility = View.GONE
+                    binding.textClearButton.visibility = View.VISIBLE
+                }
+            }
+
         })
 
     }

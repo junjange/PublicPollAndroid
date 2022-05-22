@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.junjange.myapplication.data.ModelBoardComponent" />
+            type="com.junjange.myapplication.data.ItemComponent" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
-                android:textColor="@drawable/vote_text_color"
+                android:textColor="@color/black"
                 android:text="Dip un Sauce"
                 />
 

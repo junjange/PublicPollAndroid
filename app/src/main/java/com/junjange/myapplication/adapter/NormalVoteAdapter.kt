@@ -27,23 +27,23 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.bind(items!!.viewPollsItem.items[position], position)
-
-
+        holder.setItem(items!!.viewPollsItem.items[position])
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerNormalVoteBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun setItem(item: ItemComponent){
+            binding.normalQuestionTxt.text =  item.contents
+
+            // 이미지!
+        }
+
         fun bind(item: ItemComponent, position: Int) {
 
-
             binding.normalQuestionCardView.setOnClickListener {
-
-
-
                 onClickListener.onNormalVoteClickListener(item, position)
-
 
 //                if (normalCheckBox != position){
 //
@@ -59,6 +59,7 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
 //                }
 
             }
+
         }
 
 
@@ -71,12 +72,14 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
 
     @SuppressLint("NotifyDataSetChanged")
     internal fun setData(newItems: ViewPolls) {
-
         this.items = newItems
         notifyDataSetChanged()
 
     }
 
     // 아이템 갯수
-    override fun getItemCount() = items!!.viewPollsItem.items.size
+    override fun getItemCount(): Int{
+        return if(items == null) 0 else items!!.viewPollsItem.items.size
+
+    }
 }

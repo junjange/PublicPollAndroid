@@ -29,6 +29,7 @@
             <!-- 티어 이미지 -->
 
             <TextView
+                android:id="@+id/nick"
                 android:text="Jeniffer"
                 android:textSize="12sp"
                 android:textColor="#9f9f9f"
@@ -39,6 +40,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/comment"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

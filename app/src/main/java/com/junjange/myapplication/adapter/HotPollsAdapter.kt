@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.R
+import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerHotPollsBinding
-import com.junjange.myapplication.data.HotPolls
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.ui.view.VoteActivity
 
 class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
@@ -28,7 +27,7 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
         holder.rankNumber(position)
 
 
-
+        holder.setItem(items.hotPollsItem[0].polls[position])
     }
 
     // 뷰 홀더 설정
@@ -42,6 +41,12 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
                 context.startActivity(intent) //액티비티 열기
             }
 
+        }
+
+        fun setItem(item: HotPollsComponent){
+            binding.title.text =  item.contents
+
+            // 이미지!
         }
 
         @SuppressLint("SetTextI18n")

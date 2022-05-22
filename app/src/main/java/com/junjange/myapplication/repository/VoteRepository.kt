@@ -2,14 +2,11 @@ package com.junjange.myapplication.repository
 
 import android.app.Application
 import android.util.Log
-import com.google.gson.JsonObject
-import com.junjange.myapplication.data.ModelBoard
+import com.junjange.myapplication.data.Comment
+import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.data.ViewPolls
-import com.junjange.myapplication.data.ViewPollsItem
-import com.junjange.myapplication.network.BoardObject
 import com.junjange.myapplication.network.PollsObject
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.ArrayList
 
 class VoteRepository(application : Application) {
 
@@ -25,11 +22,22 @@ class VoteRepository(application : Application) {
     }
 
     // Use Retrofit
-    suspend fun retrofitViewPolls(pollId : Int): ViewPolls? {
+    suspend fun retrofitViewPolls(pollId : Int): ViewPolls {
         val response = PollsObject.getRetrofitService.getViewPolls(pollId)
 
 
-        return if (response.isSuccessful) response.body() as ViewPolls else null
+        Log.d("Ttt", response.body().toString())
+
+        return response.body() as ViewPolls
+
+    }
+
+
+    suspend fun retrofitComments(pollId : Int): Comment {
+        val response = PollsObject.getRetrofitService.getComments(pollId)
+        Log.d("Ttt2", response.body().toString())
+
+        return if (response.isSuccessful) response.body() as Comment else Comment(ArrayList())
 
     }
 

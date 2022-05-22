@@ -1,6 +1,7 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
+import android.util.Log
 import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.network.PollsObject
 import java.util.ArrayList

@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object PollsObject {
 
 
-    var token: String = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjY5N2Q3ZmI1ZGNkZThjZDA0OGQzYzkxNThiNjIwYjY5MTA1MjJiNGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHVibGljLXBvbGwtNjcwMmEiLCJhdWQiOiJwdWJsaWMtcG9sbC02NzAyYSIsImF1dGhfdGltZSI6MTY1MzE0MDE2MiwidXNlcl9pZCI6IldhN3ZIQ281d2tORDQyQjJpTldkdWlnREtTeTIiLCJzdWIiOiJXYTd2SENvNXdrTkQ0MkIyaU5XZHVpZ0RLU3kyIiwiaWF0IjoxNjUzMTQwMTYyLCJleHAiOjE2NTMxNDM3NjIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0ZXN0QHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.nkDKZNYncvMS-z7NSdXYd4pN8LG5R8m1grWQ5oSGhm8fQngoeUN8bHCih_5M4zwbbcnVTdxa_J1xZrzJJR8Dcbq-49LOPD1Qvg3l4md4zNmTkv9LxnWaC-fOQ-wPybH9dXHDZHR0t6pbJBzFxv3FCva8ZS9Di3lz0ULUIDc2_HJuMlQdcjNvcOj9D-ToLzGSkk-QmFOyngu3xjeVn2K5FCDDgUhhR-RQpUpVfSJkFV9yvwWd_5uFkduahQ8Hsw01Z_2IC0qOvPNPqsmXu67OQdVtJY0O-Cji65Kf9yWg9qNJpenhrGL-MLzf2WVC2QUdoWaQ8bXbBUo9aJta7uHnaQ"
+    var token: String = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjY5N2Q3ZmI1ZGNkZThjZDA0OGQzYzkxNThiNjIwYjY5MTA1MjJiNGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHVibGljLXBvbGwtNjcwMmEiLCJhdWQiOiJwdWJsaWMtcG9sbC02NzAyYSIsImF1dGhfdGltZSI6MTY1MzIzNTMxNCwidXNlcl9pZCI6IldhN3ZIQ281d2tORDQyQjJpTldkdWlnREtTeTIiLCJzdWIiOiJXYTd2SENvNXdrTkQ0MkIyaU5XZHVpZ0RLU3kyIiwiaWF0IjoxNjUzMjM1MzE0LCJleHAiOjE2NTMyMzg5MTQsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0ZXN0QHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.qkRVBcbRFnUytXwLkoOuKWTeICnJUE0SKC2oDjw2zzEtr78OfIJRUD6LJi07cqLewk5SFZFNzVZTFqkH1x3ny9bP3KKDnqZrzzZnLTIFl5Ks3NSIle1STqz7JsagPvJepHNdynatgmouSCa6D7APfpeMuj4-h0LJ_xW2biwO15Ao1OwQkX41q1RP-c_hGjFs7RX_CZnasEUtoF_hLVI2YGddtNLFWIVNbn2DFYIcUAKuRs55KLDfEfg7_e6Srq3gFidlb0hlZwU50AYqqB1Ppf3bkkFeTqkrD8Vi_X4RapbpSpur5dOll56plcwPQzN8XGeYHWGZ-qCLJHFRfovRoA"
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.NONE
@@ -18,7 +18,7 @@ object PollsObject {
             // Request
             val request = it.request()
                 .newBuilder()
-                .addHeader("Authorization", "$token")
+                .addHeader("Authorization", token)
                 .build()
 
             // Response
