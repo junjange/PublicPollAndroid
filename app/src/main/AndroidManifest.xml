@@ -15,6 +15,15 @@
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.view.MyBallotActivity"
+            android:exported="true" />
+        <activity
+            android:name=".adapter.MyPollsAdapter"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.MyPollsActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.view.HashtagActivity"
             android:exported="false" />
         <activity
@@ -26,7 +35,7 @@
         <activity
             android:name=".ui.view.VoteActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".ui.view.SearchActivity"
             android:exported="false"
