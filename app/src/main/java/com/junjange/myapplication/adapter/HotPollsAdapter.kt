@@ -26,19 +26,27 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.rankNumber(position)
 
-
+        holder.clickItem(items.hotPollsItem[0].polls[position])
         holder.setItem(items.hotPollsItem[0].polls[position])
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerHotPollsBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        init {
+
+        fun clickItem(item: HotPollsComponent){
             binding.hotPollCardView.setOnClickListener {
-                val intent = Intent(context, VoteActivity::class.java) // 원하는 화면 연결
-                // 데이터 전달
-//                intent.putExtra("key", value)
-                context.startActivity(intent) //액티비티 열기
+
+                // 원하는 화면 연결
+                Intent(context, VoteActivity::class.java).apply {
+                    // 데이터 전달
+                    putExtra("id", item.id)
+                    putExtra("presentImagePath", item.presentImagePath)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run {
+                    //액티비티 열기
+                    context.startActivity(this)
+                }
             }
 
         }
@@ -74,7 +82,12 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
 
     }
     // 아이템 갯수
-    override fun getItemCount() = items.hotPollsItem.size
+    override fun getItemCount(): Int {
+        return if (items.hotPollsItem.isEmpty()){
+            0
+        }else
+            items.hotPollsItem[0].polls.size
+    }
 
 
 

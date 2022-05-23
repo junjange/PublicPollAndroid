@@ -11,13 +11,13 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="147dp"
-        android:layout_height="201dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="15sp"
         app:strokeColor="#dcdcdc"
         app:cardElevation ="8dp"
         app:strokeWidth="1dp"
-        android:layout_margin="17dp">
+        android:layout_margin="10sp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -27,24 +27,27 @@
 
             <!-- 이미지 -->
             <ImageView
+                android:id="@+id/poll_image"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="18sp"
                 android:layout_marginTop="18sp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="8dp"
-                android:layout_width="116dp"
-                android:layout_height="116dp"
-                android:layout_gravity="center"
-                android:src="@drawable/image_default"/>
+                android:src="@drawable/image_default" />
 
 
 
             <TextView
+                android:id="@+id/photo_question_txt"
                 android:layout_gravity="center"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                android:layout_marginBottom="20sp"
                 android:maxLines = "3"
                 android:ellipsize="end"
                 android:text="Dip in sauceDip in sauceDip in sauceDip in sauce"

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerBoardBinding
 import com.junjange.myapplication.ui.view.HashtagActivity
+import com.junjange.myapplication.ui.view.VoteActivity
 
 /**
 리사이클러 뷰를 데이터 바인딩으로 구현 : onCreateViewHolder()
@@ -51,11 +52,18 @@ class SearchAdapter(val context: Context) : RecyclerView.Adapter<SearchAdapter.V
 
         fun clickItem(item: HashtagNameItem){
             binding.linearLayout.setOnClickListener {
-                val intent = Intent(context, HashtagActivity::class.java) // 원하는 화면 연결
-                // 데이터 전달
-//                intent.putExtra("key", value)
-                context.startActivity(intent) //액티비티 열기
 
+                // 원하는 화면 연결
+                Intent(context, HashtagActivity::class.java).apply {
+                    // 데이터 전달
+                    putExtra("id", item.id)
+                    putExtra("name", item.name)
+
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run {
+                    //액티비티 열기
+                    context.startActivity(this)
+                }
             }
 
         }

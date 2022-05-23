@@ -6,6 +6,6 @@ data class HashtagName(@SerializedName("data") val hashtagNameItem: ArrayList<Ha
 
 data class HashtagNameItem(
     @SerializedName("name") val name: String,
-    @SerializedName("id") val id: String,
+    @SerializedName("id") val id: Int,
 
     )

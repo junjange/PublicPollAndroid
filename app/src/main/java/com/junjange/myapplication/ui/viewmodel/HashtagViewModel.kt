@@ -10,23 +10,24 @@ import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.repository.HashtagRepository
 import kotlinx.coroutines.launch
 
-class HashtagViewModel(private val repository: HashtagRepository, private val id: Int) : ViewModel(){
+class HashtagViewModel(private val repository: HashtagRepository) : ViewModel(){
     private val _retrofitHashtagList= MutableLiveData<Hashtag>()
 
     // LiveData
     val retrofitHashtagList: MutableLiveData<Hashtag>
         get() = _retrofitHashtagList
 
-    init { // 초기화 시 서버에서 데이터를 받아옵니다.
-        viewModelScope.launch {
-            _retrofitHashtagList.value = repository.retrofitHashtag(id)
-        }
+
+    fun getHashtagListRetrofit(pollId : Int) = viewModelScope.launch {
+        retrofitHashtagList.value = repository.retrofitHashtag(pollId)
     }
 
 
-    class Factory(private val application : Application, private val  id: Int) : ViewModelProvider.Factory { // factory pattern
+
+
+    class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HashtagViewModel(HashtagRepository.getInstance(application)!!, id) as T
+            return HashtagViewModel(HashtagRepository.getInstance(application)!!) as T
         }
     }
 

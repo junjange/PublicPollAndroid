@@ -24,7 +24,6 @@ import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
 class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, PhotoVoteAdapter.ItemClickListener,
     NavigationView.OnNavigationItemSelectedListener {
-//    val storeItem: Int = intent.getParcelableExtra("key")!!
 
     private val binding by lazy { ActivityVoteBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, VoteViewModel.Factory(application))[VoteViewModel::class.java] }
@@ -58,25 +57,33 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.lifecycleOwner = this
 
 
-        val data = intent.getSerializableExtra("key") as Int
-        viewModel.getViewPollsRetrofit(data)
-        viewModel.getCommentsRetrofit(data)
+        val id = intent.getSerializableExtra("id") as Int
+        val presentImagePath = intent.getSerializableExtra("presentImagePath")
 
 
-
-        // 입력에 따라 일반투표/사진투표 리사이클러뷰 실행
-        normalSetView()
-        normalSetObserver()
-
-//        photoSetView()
-//        photoSetObserver()
-
-//        투표 유무에 따라 댓글 리사이클러뷰 실행
+        viewModel.getViewPollsRetrofit(id)
+        viewModel.getCommentsRetrofit(id)
         commentSetView()
         commentSetObserver()
 
+        // 사진유무에 따라 일반투표/사진투표 리사이클러뷰 실행
+        if (presentImagePath == null){
+            normalSetView()
+            normalSetObserver()
+
+        }else{
+            photoSetView()
+            photoSetObserver()
+
+        }
+
+
+
+
+
         // 검색창 엔터
         binding.etCommentEnter.setOnClickListener {
+            viewModel.postCommentRetrofit(id, binding.etCommentField.text.toString())
 
             binding.etCommentField.clearFocus()
             imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
@@ -119,12 +126,12 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.photoVoteList.adapter = photoVoteAdapter
     }
 
-//    private fun photoSetObserver() {
-//        viewModel.retrofitViewPolls.observe(this, {
-//
-//            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1) }
-//        })
-//    }
+    private fun photoSetObserver() {
+        viewModel.retrofitViewPolls.observe(this, {
+
+            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1) }
+        })
+    }
 
     private fun commentSetView(){
 
@@ -144,13 +151,13 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
             val commentCnt = commentsAdapter.itemCount
             binding.commentCnt.text = commentCnt.toString()
-            if (commentCnt == 0){
-                binding.commentList.visibility = View.GONE
-                binding.noCommentTxt.visibility = View.VISIBLE
-            }else{
-                binding.commentList.visibility = View.VISIBLE
-                binding.noCommentTxt.visibility = View.GONE
-            }
+//            if (commentCnt == 0){
+//                binding.commentList.visibility = View.GONE
+//                binding.noCommentTxt.visibility = View.VISIBLE
+//            }else{
+//                binding.commentList.visibility = View.VISIBLE
+//                binding.noCommentTxt.visibility = View.GONE
+//            }
         })
     }
 
