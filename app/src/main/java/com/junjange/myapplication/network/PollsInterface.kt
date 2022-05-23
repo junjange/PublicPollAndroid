@@ -47,7 +47,7 @@ interface PollsInterface {
         @Path("pollId") pollId : Int
     ): Response<Comment>
 
-    // 투표하기
+    // 댓글하기
     @POST("comment/add")
     @FormUrlEncoded
     suspend fun postComment(
@@ -66,6 +66,13 @@ interface PollsInterface {
 
     ): Response<Ballot>
 
+    // My Polls
+    @GET("poll/my")
+    suspend fun getMyPolls(): Response<MyPolls>
+
+    // My Ballot
+    @GET("ballot/my")
+    suspend fun getMyBallot(): Response<MyBallot>
 
 
 
