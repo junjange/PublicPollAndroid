@@ -23,6 +23,12 @@ class MainViewModel(private val repository: QuickVoteRepository) : ViewModel(){
         }
     }
 
+//    fun insertRetrofit(keyword : String) = viewModelScope.launch {
+//        retrofitSearchList.value = repository.retrofitSearch(keyword)
+//    }
+
+
+
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

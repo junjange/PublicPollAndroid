@@ -22,6 +22,8 @@ class PollsRepository(application : Application) {
     suspend fun retrofitAllPolls(): Polls {
         val response = PollsObject.getRetrofitService.getAllPolls()
 
+        Log.d("ttt", response.body().toString())
+
         return if (response.isSuccessful) response.body() as Polls else Polls(ArrayList())
 
     }

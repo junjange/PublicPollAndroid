@@ -5,12 +5,18 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
 import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.data.PollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
+import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.VoteActivity
 
 class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.ViewHolder>()  {
@@ -40,24 +46,40 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
         fun clickItem(item: PollsItem){
             binding.pollCardView.setOnClickListener {
 
+                // 원하는 화면 연결
                 Intent(context, VoteActivity::class.java).apply {
-                    putExtra("key", item.id)
+                    // 데이터 전달
+                    putExtra("id", item.id)
+                    putExtra("presentImagePath", item.presentImagePath)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run { context.startActivity(this) }
-
-
-//                val intent = Intent(context, VoteActivity::class.java) // 원하는 화면 연결
-//                // 데이터 전달
-//                intent.putExtra("key", item.id)
-//                Log.d("ttt", item.id.toString())
-//                context.startActivity(intent) //액티비티 열기
-
+                }.run {
+                    //액티비티 열기
+                    context.startActivity(this)
+                }
             }
 
         }
 
         fun setItem(item: PollsItem){
             binding.title.text =  item.contents
+
+
+
+            if(item.presentImagePath != null){
+
+                val token = PollsObject.token
+                val url = item.presentImagePath
+                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "$token"))}
+                Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
+                binding.pollImage.visibility = View.VISIBLE
+                binding.title.setTextSize(Dimension.SP, 20F)
+
+
+            }else{
+                binding.pollImage.visibility = View.GONE
+                binding.title.setTextSize(Dimension.SP, 16F)
+
+            }
 
             // 이미지!
         }

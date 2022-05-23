@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +20,7 @@ class HashtagActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSel
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            HashtagViewModel.Factory(application, 133)
+            HashtagViewModel.Factory(application)
         )[HashtagViewModel::class.java]
     }
     private lateinit var retrofitAdapter: HashtagAdapter
@@ -30,6 +31,12 @@ class HashtagActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setContentView(binding.root)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        val id = intent.getSerializableExtra("id") as Int
+        val name = intent.getSerializableExtra("name") as String
+        Log.d("tt", id.toString())
+        viewModel.getHashtagListRetrofit(id)
+        binding.realTitle.text = "#$name"
 
 
         /**

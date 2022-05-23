@@ -16,7 +16,7 @@ data class PollsItem(
     @SerializedName("canComment") val canComment: Boolean,
     @SerializedName("isSingleVote") val isSingleVote: Boolean,
     @SerializedName("createdAt") val createdAt: String,
-    @SerializedName("presentImagePath") val presentImagePath: String,
+    @SerializedName("presentImagePath") val presentImagePath: String?,
     @SerializedName("hashTag") val hashTags: ArrayList<HashTagsItem>,
 )
 

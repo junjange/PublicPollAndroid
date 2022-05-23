@@ -1,12 +1,13 @@
 package com.junjange.myapplication.network
 
 import com.google.gson.JsonObject
+import com.google.gson.JsonPrimitive
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.utils.API
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 interface PollsInterface {
 
@@ -16,7 +17,7 @@ interface PollsInterface {
 
     // 핫 투표 조회
     @GET(API.GET_HOT_POLLS)
-    suspend fun getHotPolls(): Response<JsonObject>
+    suspend fun getHotPolls(): Response<HotPolls>
 
     // 투표 보기
     @GET("poll/{pollId}")
@@ -46,7 +47,24 @@ interface PollsInterface {
         @Path("pollId") pollId : Int
     ): Response<Comment>
 
+    // 투표하기
+    @POST("comment/add")
+    @FormUrlEncoded
+    suspend fun postComment(
+        @Field("pollId") pollId: Int,
+        @Field("contents") contents: String
 
+    ): Response<JsonObject>
+
+
+    // 투표하기
+    @FormUrlEncoded
+    @POST("ballot/add")
+    suspend fun ballot(
+        @Field("pollId") pollId: Int,
+        @Field("contents") contents: ArrayList<Int>
+
+    ): Response<Ballot>
 
 
 

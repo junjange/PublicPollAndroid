@@ -37,7 +37,6 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
         fun setItem(item: ItemComponent){
             binding.normalQuestionTxt.text =  item.contents
 
-            // 이미지!
         }
 
         fun bind(item: ItemComponent, position: Int) {

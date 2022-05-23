@@ -27,25 +27,31 @@ class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     val retrofitCommentList: MutableLiveData<Comment>
         get() = _retrofitCommentList
 
-//    init { // 초기화 시 서버에서 데이터를 받아옵니다.
-//        viewModelScope.launch {
-//            _retrofitViewPolls.value = repository.retrofitViewPolls()
-//        }
 
-//        viewModelScope.launch {
-//            _retrofitCommentList.value = repository.retrofitSelectAllTodo()
-//        }
-//    }
 
-    // 일반 투표
+    // 투표 보기
     fun getViewPollsRetrofit(pollId : Int) = viewModelScope.launch {
-        retrofitViewPolls.value = repository.retrofitViewPolls(pollId)
+        _retrofitViewPolls.value = repository.retrofitViewPolls(pollId)
     }
 
-    // 댓글
+    // 댓글 보기
     fun getCommentsRetrofit(pollId : Int) = viewModelScope.launch {
-        retrofitCommentList.value = repository.retrofitComments(pollId)
+        _retrofitCommentList.value = repository.retrofitComments(pollId)
     }
+
+
+
+
+    fun postCommentRetrofit(pollId : Int, contents : String) = viewModelScope.launch {
+        val a =  repository.retrofitPostComments(pollId, contents)
+        Log.d("ttt1", pollId.toString())
+        Log.d("ttt2", contents.toString())
+
+        Log.d("ttt3", a.toString())
+    }
+
+
+
 
 
 

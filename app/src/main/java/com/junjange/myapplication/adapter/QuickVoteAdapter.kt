@@ -27,6 +27,7 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setItem(items.quickPollsItem[position])
+        holder.checkItem(items.quickPollsItem[position])
 
 
     }
@@ -35,6 +36,7 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemRecyclerQuickVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
+
 
             // 빠른 투표 1번 항목 클릭시
             binding.quickQuestion1Bg.setOnClickListener {
@@ -67,6 +69,16 @@ class QuickVoteAdapter : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
         }
 
         fun setItem(item: QuickPollsItem){
+            binding.title.text =  item.contents
+            binding.nick.text = item.user.nick
+            binding.quickQuestion1Txt.text = item.items[0].contents
+            binding.quickQuestion2Txt.text = item.items[0].contents
+        }
+
+        fun checkItem(item: QuickPollsItem){
+//            if (item.items[0].poll.user.email == "test@test.com"){
+//
+//            }
             binding.title.text =  item.contents
             binding.nick.text = item.user.nick
             binding.quickQuestion1Txt.text = item.items[0].contents
