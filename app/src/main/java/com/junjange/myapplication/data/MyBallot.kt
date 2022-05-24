@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class MyBallot(@SerializedName("data") val pollsItem: ArrayList<MyBallotItem>)
 
 data class MyBallotItem(
-    @SerializedName("poll") val poll: ArrayList<MyPollsComponent>,
+    @SerializedName("poll") val poll: MyPollsComponent,
 
 )
 
@@ -15,7 +15,7 @@ data class MyPollsComponent(
     @SerializedName("endTime") val endTime: String,
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("hasImage") val hasImage: Boolean,
-    @SerializedName("presentImagePath") val presentImagePath: Boolean?,
+    @SerializedName("presentImagePath") val presentImagePath: String?,
     @SerializedName("hashTags") val hashTags: ArrayList<HashTagsItem>,
     @SerializedName("isPublic") val isPublic: Boolean,
     @SerializedName("showNick") val showNick: Boolean,

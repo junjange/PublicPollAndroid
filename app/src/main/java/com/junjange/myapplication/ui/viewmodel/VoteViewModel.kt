@@ -7,13 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.junjange.myapplication.data.Comment
-import com.junjange.myapplication.data.HashtagName
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.ViewPolls
-import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.repository.VoteRepository
 import kotlinx.coroutines.launch
-import java.util.ArrayList
 
 class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     private val _retrofitViewPolls = MutableLiveData<ViewPolls>()

@@ -37,20 +37,28 @@
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/drawable/layout_rank4.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/drawable/layout_select_normal_poll_background.xml" value="0.1375" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/drawable/layout_unselect_normal_poll_background.xml" value="0.125" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_hashtag.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_hot_polls.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_item.xml" value="0.12135416666666667" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_main.xml" value="0.182518115942029" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_my_ballot.xml" value="0.11510416666666666" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_my_page.xml" value="0.1" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_my_polls.xml" value="0.11510416666666666" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_my_polls_adapter.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_polls.xml" value="0.2" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_search.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/activity_vote.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/drawer_header.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/imte_recycler_photo_vote.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler.xml" value="0.12135416666666667" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_board.xml" value="0.1296875" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_comment.xml" value="0.1296875" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_hashtag.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_hot_polls.xml" value="0.4" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_normal_vote.xml" value="0.4" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_polls.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_quick_vote.xml" value="0.1296875" />
+        <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/layout/item_recycler_search.xml" value="0.1296875" />
         <entry key="..\:/Users/cho/Documents/GitHub/UI-Practice/app/src/main/res/menu/drawer_navigation.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/cho/UIPractice/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/cho/UIPractice/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.38229166666666664" />

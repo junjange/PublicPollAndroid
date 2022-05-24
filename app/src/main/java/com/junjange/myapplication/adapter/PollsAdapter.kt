@@ -3,16 +3,13 @@ package com.junjange.myapplication.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.data.PollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding

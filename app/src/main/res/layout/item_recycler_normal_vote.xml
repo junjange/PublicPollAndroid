@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.junjange.myapplication.data.ItemComponent" />
+            type="com.junjange.myapplication.data.ViewPolls" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

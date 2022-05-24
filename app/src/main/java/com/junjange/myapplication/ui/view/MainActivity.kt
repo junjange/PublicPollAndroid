@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myPageDrawer-> {
                 // My Page 이동
-                startActivity( Intent(this@MainActivity, MyPollsActivity::class.java))
+                startActivity( Intent(this@MainActivity, MyBallotActivity::class.java))
 
             }
 

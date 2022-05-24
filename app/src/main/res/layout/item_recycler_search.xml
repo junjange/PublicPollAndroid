@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.junjange.myapplication.data.ModelBoardComponent" />
+            type="com.junjange.myapplication.data.HashtagName" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

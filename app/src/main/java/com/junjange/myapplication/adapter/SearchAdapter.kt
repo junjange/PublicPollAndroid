@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.*
-import com.junjange.myapplication.databinding.ItemRecyclerBoardBinding
+import com.junjange.myapplication.databinding.ItemRecyclerSearchBinding
 import com.junjange.myapplication.ui.view.HashtagActivity
 import com.junjange.myapplication.ui.view.VoteActivity
 
@@ -30,7 +30,7 @@ class SearchAdapter(val context: Context) : RecyclerView.Adapter<SearchAdapter.V
 
     // 뷰 홀더 만들어서 반환
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemRecyclerBoardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRecyclerSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -44,7 +44,7 @@ class SearchAdapter(val context: Context) : RecyclerView.Adapter<SearchAdapter.V
     }
 
     // 뷰 홀더 설정
-    inner class ViewHolder(private val binding: ItemRecyclerBoardBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemRecyclerSearchBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun setItem(item: HashtagNameItem){
             binding.tvTitle.text =  "#"+item.name
