@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.junjange.myapplication.data.HotPolls
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.repository.HotPollsRepository
 import kotlinx.coroutines.launch
 

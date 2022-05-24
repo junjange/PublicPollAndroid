@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.junjange.myapplication.data.ModelBoard
 import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.repository.PollsRepository
 import kotlinx.coroutines.launch

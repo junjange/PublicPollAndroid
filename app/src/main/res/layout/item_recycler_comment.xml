@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.junjange.myapplication.data.ModelBoardComponent" />
+            type="com.junjange.myapplication.data.Comment" />
     </data>
 
 

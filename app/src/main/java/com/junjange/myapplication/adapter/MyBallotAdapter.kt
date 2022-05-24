@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.junjange.myapplication.data.MyBallot
-import com.junjange.myapplication.data.MyBallotItem
-import com.junjange.myapplication.data.MyPolls
+import com.junjange.myapplication.data.MyPollsComponent
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
 import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.VoteActivity
@@ -31,8 +30,8 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.setItem(items.pollsItem[position])
-        holder.clickItem(items.pollsItem[position])
+        holder.setItem(items.pollsItem[position].poll)
+        holder.clickItem(items.pollsItem[position].poll)
 
 
     }
@@ -41,14 +40,14 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
     inner class ViewHolder(private val binding: ItemRecyclerPollsBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun clickItem(item: MyBallotItem){
+        fun clickItem(item: MyPollsComponent){
             binding.pollCardView.setOnClickListener {
 
                 // 원하는 화면 연결
                 Intent(context, VoteActivity::class.java).apply {
                     // 데이터 전달
-                    putExtra("id", item.poll.id)
-                    putExtra("presentImagePath", item.poll[po])
+                    putExtra("id", item.id)
+                    putExtra("presentImagePath", item.presentImagePath)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }.run {
                     //액티비티 열기
@@ -58,7 +57,7 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
 
         }
 
-        fun setItem(item: MyBallotItem){
+        fun setItem(item: MyPollsComponent){
             binding.title.text =  item.contents
 
 
@@ -89,13 +88,13 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    internal fun setData(MyBallot: MyPolls) {
+    internal fun setData(newItems: MyBallot) {
 
         this.items = newItems
         notifyDataSetChanged()
 
     }
     // 아이템 갯수
-    override fun getItemCount() = items.pollsItem.size
+    override fun getItemCount(): Int = items.pollsItem.size
 
 }
