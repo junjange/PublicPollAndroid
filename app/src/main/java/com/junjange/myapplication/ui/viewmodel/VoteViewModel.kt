@@ -1,12 +1,12 @@
 package com.junjange.myapplication.ui.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.junjange.myapplication.data.Comment
+import com.junjange.myapplication.data.PostCommentItem
 import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.repository.VoteRepository
 import kotlinx.coroutines.launch
@@ -35,20 +35,10 @@ class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
         _retrofitCommentList.value = repository.retrofitComments(pollId)
     }
 
-
-
-
+    // 댓글 하기
     fun postCommentRetrofit(pollId : Int, contents : String) = viewModelScope.launch {
-        val a =  repository.retrofitPostComments(pollId, contents)
-        Log.d("ttt1", pollId.toString())
-        Log.d("ttt2", contents.toString())
-
-        Log.d("ttt3", a.toString())
+        repository.retrofitPostComments(PostCommentItem(pollId, contents))
     }
-
-
-
-
 
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern

@@ -39,26 +39,22 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ImteRecyclerPhotoVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
+
+        // 사진 호출
         fun setItem(item: ItemComponent){
             binding.photoQuestionTxt.text =  item.contents
             val token = PollsObject.token
             val url =" ${API.BASE_URL1}images/images/3/3"
-            val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "$token"))}
+            val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
             Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
         }
 
+        // 투표 클릭 이벤트
         fun bind(item: ItemComponent, position: Int) {
-
-
             binding.root.setOnClickListener {
-
                 onClickListener.onPhotoVoteClickListener(item, position)
-
-
             }
         }
-
-
 
     }
 
@@ -73,7 +69,7 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
     }
 
-    // 아이템 갯수
+    // 아이템 개수
     override fun getItemCount(): Int{
         return if(items == null) 0 else items!!.viewPollsItem.items.size
 

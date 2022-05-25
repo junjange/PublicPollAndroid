@@ -18,9 +18,6 @@
             android:name=".ui.view.MyBallotActivity"
             android:exported="true" />
         <activity
-            android:name=".adapter.MyPollsAdapter"
-            android:exported="true" />
-        <activity
             android:name=".ui.view.MyPollsActivity"
             android:exported="true" />
         <activity

@@ -53,10 +53,10 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
 
         fun setItem(item: HotPollsComponent){
             binding.title.text =  item.contents
-
-            // 이미지!
         }
 
+
+        // 랭킹에 따라 이미지 변경
         @SuppressLint("SetTextI18n")
         fun rankNumber(position: Int){
             binding.rank.text = "${position + 1}"
@@ -81,14 +81,10 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
         notifyDataSetChanged()
 
     }
-    // 아이템 갯수
+    // 아이템 개수
     override fun getItemCount(): Int {
-        return if (items.hotPollsItem.isEmpty()){
-            0
-        }else
-            items.hotPollsItem[0].polls.size
+        return if (items.hotPollsItem.isEmpty()) 0 else items.hotPollsItem[0].polls.size
     }
-
 
 
 }

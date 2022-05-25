@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -37,7 +38,6 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
 
         /**
          * drawer
@@ -77,17 +77,29 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         }
 
+        // 검색창 엔터
+        binding.etCommentEnter.setOnKeyListener { _, keyCode, event ->
 
+            if ((event.action== KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                // 엔터가 눌릴 때 하고 싶은 일
 
+                viewModel.postCommentRetrofit(id, binding.etCommentField.text.toString())
+                binding.etCommentField.clearFocus()
+                imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
+                true
 
+            } else {
+
+                false
+
+            }
+        }
 
         // 검색창 엔터
         binding.etCommentEnter.setOnClickListener {
             viewModel.postCommentRetrofit(id, binding.etCommentField.text.toString())
-
             binding.etCommentField.clearFocus()
             imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
-            binding.etCommentField.text.clear()
         }
 
     }
@@ -179,9 +191,6 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             normalCheckBox = position
             binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
             binding.normalVoteList[position].context.getColor(R.color.white)
-            Log.d("Ttt", item.toString())
-
-
 
         } else {
 

@@ -57,7 +57,7 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
             binding.title.text =  item.contents
 
 
-
+            // 이미지 여부에 따라 사진 투표 호출
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
@@ -65,16 +65,14 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
                 val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "Bearer $token"))}
                 Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
-                binding.title.setTextSize(Dimension.SP, 20F)
+                binding.title.setTextSize(Dimension.SP, 20F) // 글씨 20
 
 
             }else{
                 binding.pollImage.visibility = View.GONE
-                binding.title.setTextSize(Dimension.SP, 16F)
+                binding.title.setTextSize(Dimension.SP, 16F) // 글씨 16
 
             }
-
-            // 이미지!
         }
 
     }
@@ -91,7 +89,7 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
 
     }
 
-    // 아이템 갯수
+    // 아이템 개수
     override fun getItemCount(): Int{
         return if(items == null) 0 else items!!.hashtagItem.polls.size
 

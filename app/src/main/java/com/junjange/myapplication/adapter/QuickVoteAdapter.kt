@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.junjange.myapplication.data.ModelBoardComponent
 import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding

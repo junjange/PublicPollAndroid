@@ -29,7 +29,7 @@ class QuickVoteRepository(application : Application) {
 
     }
 
-    // Use Retrofit
+
     suspend fun retrofitBallot(pollId : Int, itemNum : ArrayList<Int>): Ballot {
         val response = PollsObject.getRetrofitService.ballot(pollId, itemNum)
 

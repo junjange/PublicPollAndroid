@@ -3,7 +3,6 @@ package com.junjange.myapplication.repository
 import android.app.Application
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.network.PollsObject
-import java.util.ArrayList
 
 class HashtagRepository (application : Application) {
 

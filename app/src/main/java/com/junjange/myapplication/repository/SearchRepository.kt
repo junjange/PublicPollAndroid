@@ -3,7 +3,6 @@ package com.junjange.myapplication.repository
 import android.app.Application
 import com.junjange.myapplication.data.HashtagName
 import com.junjange.myapplication.network.PollsObject
-import retrofit2.Response
 import java.util.ArrayList
 
 
