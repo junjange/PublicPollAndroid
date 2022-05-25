@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.junjange.myapplication.data.Hashtag
-import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.repository.HashtagRepository
 import kotlinx.coroutines.launch
 

@@ -40,8 +40,6 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
         binding.mainNavigationView.setNavigationItemSelectedListener(this) //navigation 리스너
 
-
-
         setView(this)
         setObserver()
 
@@ -83,10 +81,10 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity( Intent(this@HotPollsActivity, PollsActivity::class.java))
 
             }
-            R.id.hotPollsDrawer-> {
-                startActivity( Intent(this@HotPollsActivity, HotPollsActivity::class.java))
-
-            }
+//            R.id.hotPollsDrawer-> {
+//                startActivity( Intent(this@HotPollsActivity, HotPollsActivity::class.java))
+//
+//            }
             R.id.searchDrawer-> {
                 startActivity( Intent(this@HotPollsActivity, SearchActivity::class.java))
 

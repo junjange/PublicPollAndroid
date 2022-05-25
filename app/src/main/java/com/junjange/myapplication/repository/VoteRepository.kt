@@ -1,10 +1,9 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
-import android.util.Log
 import com.google.gson.JsonObject
 import com.junjange.myapplication.data.Comment
-import com.junjange.myapplication.data.QuickPolls
+import com.junjange.myapplication.data.PostCommentItem
 import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.network.PollsObject
 import retrofit2.Response
@@ -38,11 +37,10 @@ class VoteRepository(application : Application) {
 
     }
 
-    suspend fun retrofitPostComments(pollId : Int, contents : String): Response<JsonObject> {
+    // Post
+    suspend fun retrofitPostComments(postCommentItem: PostCommentItem) : Response<JsonObject> {
 
-        return PollsObject.getRetrofitService.postComment(pollId, contents)
-
+        return PollsObject.getRetrofitService.postComment(postCommentItem.id, postCommentItem.contents)
     }
-
 
 }

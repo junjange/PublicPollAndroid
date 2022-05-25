@@ -29,8 +29,6 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
         fun setItem(item: CommentItem){
             binding.comment.text =  item.contents
             binding.nick.text = item.user.nick
-
-            // 이미지!
         }
 
     }
@@ -47,7 +45,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.ViewHolder>()    {
 
     }
 
-    // 아이템 갯수
+    // 아이템 개수
     override fun getItemCount(): Int = items.commentItem.size
 
 

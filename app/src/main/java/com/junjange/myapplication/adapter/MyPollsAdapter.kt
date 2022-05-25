@@ -61,12 +61,12 @@ class MyPollsAdapter(val context: Context) : RecyclerView.Adapter<MyPollsAdapter
             binding.title.text =  item.contents
 
 
-
+            // 이미지 여부에 따라 사진 투표 호출
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
                 val url = item.presentImagePath
-                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "$token"))}
+                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
                 Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
                 binding.title.setTextSize(Dimension.SP, 20F)

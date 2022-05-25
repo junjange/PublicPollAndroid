@@ -1,7 +1,6 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
-import android.util.Log
 import com.junjange.myapplication.data.Polls
 import com.junjange.myapplication.network.PollsObject
 import java.util.ArrayList
@@ -21,8 +20,6 @@ class PollsRepository(application : Application) {
     // Use Retrofit
     suspend fun retrofitAllPolls(): Polls {
         val response = PollsObject.getRetrofitService.getAllPolls()
-
-        Log.d("ttt", response.body().toString())
 
         return if (response.isSuccessful) response.body() as Polls else Polls(ArrayList())
 

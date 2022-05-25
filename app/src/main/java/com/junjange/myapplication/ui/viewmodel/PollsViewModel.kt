@@ -22,7 +22,6 @@ class PollsViewModel (private val repository: PollsRepository) : ViewModel(){
         }
     }
 
-
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return PollsViewModel(PollsRepository.getInstance(application)!!) as T

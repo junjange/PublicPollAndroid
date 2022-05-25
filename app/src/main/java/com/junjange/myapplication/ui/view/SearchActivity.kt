@@ -38,9 +38,6 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val viewModel by lazy { ViewModelProvider(this, SearchViewModel.Factory(application))[SearchViewModel::class.java] }
     private lateinit var retrofitAdapter: SearchAdapter
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -77,11 +74,9 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             // EditText 에 포커스가 갔을 때 ClearButton 활성화
             this.setOnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) {
-                    Log.d("tttt", "ㅎㅎㅎ")
 
                     binding.textClearButton.visibility = View.VISIBLE
                 } else {
-                    Log.d("tttt", "ㅋㅋㅋㅋㅋㅋ")
 
                     binding.textClearButton.visibility = View.GONE
 
@@ -99,6 +94,7 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     // 연산자들
                     // 입려되고 나서 0.3초 뒤에 받는다
                     .debounce(300)
+                        // 필터
 //                    .filter {
 //                        it?.length!! > 0
 //                    }
@@ -109,7 +105,7 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
                             if (!it.isNullOrBlank()){
-                                viewModel.insertRetrofit(it.toString())
+                                viewModel.searchRetrofit(it.toString())
 
                             }else{
                                 binding.rvList.visibility = View.GONE
@@ -120,18 +116,6 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
                             }
                         }
-
-
-
-//                        binding.noResultCard.visibility = View.VISIBLE
-
-
-                        // 해당 검색어로 api 호출
-
-
-
-
-
                     }
                     .launchIn(this)
 
@@ -191,6 +175,45 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home->{ // 메뉴 버튼
+                binding.mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        binding.mainDrawerLayout.closeDrawers()
+        when(item.itemId){
+            R.id.mainPageDrawer-> {
+                startActivity( Intent(this@SearchActivity, MainActivity::class.java))
+
+            }
+            R.id.allPollsDrawer-> {
+                startActivity( Intent(this@SearchActivity, PollsActivity::class.java))
+
+            }
+            R.id.hotPollsDrawer-> {
+                startActivity( Intent(this@SearchActivity, HotPollsActivity::class.java))
+
+            }
+//            R.id.searchDrawer-> {
+//                startActivity( Intent(this@SearchActivity, SearchActivity::class.java))
+//
+//            }
+            R.id.myPageDrawer-> {
+                // My Page 이동
+//                startActivity( Intent(this@PollsActivity, HotPollsActivity::class.java))
+
+            }
+
+        }
+        return false
+    }
+
     /**
      * 키보드 이외의 영역을 터치했을 때, 키보드를 숨기는 동작
      */
@@ -220,44 +243,6 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d(TAG, "PhotoCollectionActivity - onDestroy() called")
         myCoroutineContext.cancel()  // MemoryLeak 방지를 위해 myCoroutineContext 해제
         super.onDestroy()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            android.R.id.home->{ // 메뉴 버튼
-                binding.mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        binding.mainDrawerLayout.closeDrawers()
-        when(item.itemId){
-            R.id.mainPageDrawer-> {
-                startActivity( Intent(this@SearchActivity, MainActivity::class.java))
-
-            }
-            R.id.allPollsDrawer-> {
-                startActivity( Intent(this@SearchActivity, PollsActivity::class.java))
-
-            }
-            R.id.hotPollsDrawer-> {
-                startActivity( Intent(this@SearchActivity, HotPollsActivity::class.java))
-
-            }
-            R.id.searchDrawer-> {
-                startActivity( Intent(this@SearchActivity, SearchActivity::class.java))
-
-            }
-            R.id.myPageDrawer-> {
-                // My Page 이동
-//                startActivity( Intent(this@PollsActivity, HotPollsActivity::class.java))
-
-            }
-
-        }
-        return false
     }
 
     override fun onBackPressed() { //뒤로가기 처리

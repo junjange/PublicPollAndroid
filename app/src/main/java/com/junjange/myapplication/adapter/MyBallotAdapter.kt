@@ -61,24 +61,22 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
             binding.title.text =  item.contents
 
 
-
+            // 이미지 여부에 따라 사진 투표 호출
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
                 val url = item.presentImagePath
-                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "$token"))}
+                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
                 Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
-                binding.title.setTextSize(Dimension.SP, 20F)
+                binding.title.setTextSize(Dimension.SP, 20F) // 글씨 20
 
 
             }else{
                 binding.pollImage.visibility = View.GONE
-                binding.title.setTextSize(Dimension.SP, 16F)
+                binding.title.setTextSize(Dimension.SP, 16F) // 글씨 16
 
             }
-
-            // 이미지!
         }
 
     }
@@ -94,7 +92,7 @@ class MyBallotAdapter (val context: Context) : RecyclerView.Adapter<MyBallotAdap
         notifyDataSetChanged()
 
     }
-    // 아이템 갯수
+    // 아이템 개수
     override fun getItemCount(): Int = items.pollsItem.size
 
 }

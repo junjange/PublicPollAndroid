@@ -93,10 +93,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
-            R.id.mainPageDrawer-> {
-                startActivity( Intent(this@MainActivity, MainActivity::class.java))
-
-            }
+//            R.id.mainPageDrawer-> {
+//                startActivity( Intent(this@MainActivity, MainActivity::class.java))
+//
+//            }
             R.id.allPollsDrawer-> {
                 startActivity( Intent(this@MainActivity, PollsActivity::class.java))
 

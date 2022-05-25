@@ -103,6 +103,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/vote_btn"
             android:layout_width="258dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
@@ -208,7 +209,6 @@
             </TextView>
 
         </LinearLayout>
-
 
 
         <androidx.recyclerview.widget.RecyclerView

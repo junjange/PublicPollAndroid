@@ -78,10 +78,10 @@ class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity( Intent(this@PollsActivity, MainActivity::class.java))
 
             }
-            R.id.allPollsDrawer-> {
-                startActivity( Intent(this@PollsActivity, PollsActivity::class.java))
-
-            }
+//            R.id.allPollsDrawer-> {
+//                startActivity( Intent(this@PollsActivity, PollsActivity::class.java))
+//
+//            }
             R.id.hotPollsDrawer-> {
                 startActivity( Intent(this@PollsActivity, HotPollsActivity::class.java))
 
