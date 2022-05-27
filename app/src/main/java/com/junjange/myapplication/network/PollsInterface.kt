@@ -3,9 +3,16 @@ package com.junjange.myapplication.network
 import com.google.gson.JsonObject
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.utils.API
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 import kotlin.collections.ArrayList
+import retrofit2.http.Body
+
+import retrofit2.http.POST
+
+
+
 
 interface PollsInterface {
 
@@ -18,7 +25,7 @@ interface PollsInterface {
     suspend fun getHotPolls(): Response<HotPolls>
 
     // 투표 보기
-    @GET("poll/{pollId}")
+    @GET("/poll/{pollId}")
     suspend fun getViewPolls(
         @Path("pollId") pollId : Int
     ): Response<ViewPolls>
@@ -28,48 +35,43 @@ interface PollsInterface {
     suspend fun getQuickPolls(): Response<QuickPolls>
 
     // 해시태그 이름 검색
-    @GET("hashtag/name/{keyword}")
+    @GET("/hashtag/name/{keyword}")
     suspend fun getHashtagName(
         @Path("keyword") keyword : String
     ): Response<HashtagName>
 
     // 해시태그 검색
-    @GET("hashtag/id/{hashtagId}")
+    @GET("/hashtag/id/{hashtagId}")
     suspend fun getHashtag(
         @Path("hashtagId") hashtagId : Int
     ): Response<Hashtag>
 
     // 댓글 검색
-    @GET("comment/id/{pollId}")
+    @GET("/comment/id/{pollId}")
     suspend fun getComments(
         @Path("pollId") pollId : Int
     ): Response<Comment>
 
     // 댓글 하기
-    @FormUrlEncoded
-    @POST("comment/add")
+    @POST("/comment/add")
     suspend fun postComment(
-        @Field("pollId") pollId: Int,
-        @Field("contents") contents: String
-
+        @Body postCommentItem: PostCommentItem
     ): Response<JsonObject>
 
 
     // 투표 하기
-    @FormUrlEncoded
-    @POST("ballot/add")
+    @POST("/ballot/add")
     suspend fun ballot(
-        @Field("pollId") pollId: Int,
-        @Field("contents") contents: ArrayList<Int>
+        @Body postBallotItem: PostBallotItem
 
     ): Response<Ballot>
 
     // My Polls
-    @GET("poll/my")
+    @GET("/poll/my")
     suspend fun getMyPolls(): Response<MyPolls>
 
     // My Ballot
-    @GET("ballot/my")
+    @GET("/ballot/my")
     suspend fun getMyBallot(): Response<MyBallot>
 
 

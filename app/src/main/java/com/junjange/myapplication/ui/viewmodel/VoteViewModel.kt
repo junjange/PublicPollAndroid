@@ -1,6 +1,7 @@
 package com.junjange.myapplication.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -37,7 +38,8 @@ class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
 
     // 댓글 하기
     fun postCommentRetrofit(pollId : Int, contents : String) = viewModelScope.launch {
-        repository.retrofitPostComments(PostCommentItem(pollId, contents))
+        val response = repository.retrofitPostComments(PostCommentItem(pollId, contents))
+        if (response.isSuccessful) _retrofitCommentList.value = repository.retrofitComments(pollId)
     }
 
 

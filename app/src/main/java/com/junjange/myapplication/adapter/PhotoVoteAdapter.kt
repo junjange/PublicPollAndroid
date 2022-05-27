@@ -4,14 +4,19 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.junjange.myapplication.data.ItemComponent
 import com.junjange.myapplication.data.ViewPolls
 import com.junjange.myapplication.databinding.ImteRecyclerPhotoVoteBinding
 import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.utils.API
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
 
@@ -39,14 +44,15 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ImteRecyclerPhotoVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
-
         // 사진 호출
         fun setItem(item: ItemComponent){
             binding.photoQuestionTxt.text =  item.contents
+
             val token = PollsObject.token
-            val url =" ${API.BASE_URL1}images/images/3/3"
+            val url ="${API.BASE_URL1}/images/images/${item.pollId}/${item.itemNum}"
             val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
-            Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
+            Glide.with(binding.pollImage.context).load(glideUrl).into(binding.pollImage)
+
         }
 
         // 투표 클릭 이벤트

@@ -24,8 +24,10 @@ data class QuickPollsItem(
 data class ItemsComponent(
     @SerializedName("id") val id: Int,
     @SerializedName("poll") val poll: PollComponent,
+    @SerializedName("itemNum") val itemNum: Int,
     @SerializedName("contents") val contents: String,
     @SerializedName("hasImage") val hasImage: Boolean,
+
 
     )
 

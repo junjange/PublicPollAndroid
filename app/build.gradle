@@ -79,7 +79,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
 
     // url 주소로 이미지 바로 불러오기
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
 

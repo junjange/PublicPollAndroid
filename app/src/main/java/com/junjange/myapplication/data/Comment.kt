@@ -14,6 +14,6 @@ data class CommentItem(
     )
 
 data class PostCommentItem(
-    @SerializedName("id") val  id: Int, // 제목
+    @SerializedName("pollId") val  pollId: Int, // 제목
     @SerializedName("contents") val  contents: String // 설명
 )
