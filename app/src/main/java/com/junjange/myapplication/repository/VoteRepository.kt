@@ -1,6 +1,7 @@
 package com.junjange.myapplication.repository
 
 import android.app.Application
+import android.util.Log
 import com.google.gson.JsonObject
 import com.junjange.myapplication.data.Comment
 import com.junjange.myapplication.data.PostCommentItem
@@ -30,6 +31,7 @@ class VoteRepository(application : Application) {
 
     }
 
+
     suspend fun retrofitComments(pollId : Int): Comment {
         val response = PollsObject.getRetrofitService.getComments(pollId)
 
@@ -39,8 +41,7 @@ class VoteRepository(application : Application) {
 
     // Post
     suspend fun retrofitPostComments(postCommentItem: PostCommentItem) : Response<JsonObject> {
-
-        return PollsObject.getRetrofitService.postComment(postCommentItem.id, postCommentItem.contents)
+        return PollsObject.getRetrofitService.postComment(postCommentItem)
     }
 
 }

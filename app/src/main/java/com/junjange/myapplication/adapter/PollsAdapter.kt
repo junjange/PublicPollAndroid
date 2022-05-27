@@ -3,6 +3,7 @@ package com.junjange.myapplication.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.junjange.myapplication.data.PollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerPollsBinding
 import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.VoteActivity
+import com.junjange.myapplication.utils.API
 
 class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.ViewHolder>()  {
 
@@ -64,9 +66,9 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
-                val url = item.presentImagePath
+                val url = "${API.BASE_URL1}${item.presentImagePath}"
                 val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
-                Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
+                Glide.with(binding.pollImage.context).load(glideUrl).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
                 binding.title.setTextSize(Dimension.SP, 20F)
 

@@ -3,13 +3,20 @@ package com.junjange.myapplication.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
 import com.junjange.myapplication.R
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerHotPollsBinding
+import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.VoteActivity
+import com.junjange.myapplication.utils.API
 
 class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapter.ViewHolder>()   {
 
@@ -53,6 +60,23 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
 
         fun setItem(item: HotPollsComponent){
             binding.title.text =  item.contents
+
+            // 이미지 여부에 따라 사진 투표 호출
+            if(item.presentImagePath != null){
+
+                val token = PollsObject.token
+                val url = "${API.BASE_URL1}${item.presentImagePath}"
+                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
+                Glide.with(binding.pollImage.context).load(glideUrl).into(binding.pollImage)
+                binding.pollImage.visibility = View.VISIBLE
+                binding.title.setTextSize(Dimension.SP, 20F)
+
+
+            }else{
+                binding.pollImage.visibility = View.GONE
+                binding.title.setTextSize(Dimension.SP, 16F)
+
+            }
         }
 
 

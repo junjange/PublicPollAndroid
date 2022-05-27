@@ -3,17 +3,25 @@ package com.junjange.myapplication.ui.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.QuickVoteAdapter
+import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ActivityMainBinding
 import com.junjange.myapplication.ui.viewmodel.MainViewModel
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import okhttp3.Dispatcher
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener ,QuickVoteAdapter.ItemClickListener{
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java] }
@@ -66,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setView(){
-        retrofitAdapter =  QuickVoteAdapter().apply {
+        retrofitAdapter =  QuickVoteAdapter(this).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.rvList.adapter = retrofitAdapter
@@ -77,6 +85,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             viewModel.retrofitQuickPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
         })
+
+    }
+
+    // 투표 하기
+    override fun onQuickVoteClickListener(item: QuickPollsItem, itemNum: ArrayList<Int>) {
+//        viewModel.postBallotRetrofit(item.id, itemNum)
+        Log.d("ttt", item.id.toString())
+        Log.d("ttt", itemNum.toString())
+
+        viewModel.retrofitBallotPolls.observe(this, { it ->
+            Log.d("ttt666",viewModel.retrofitBallotPolls.value.toString() )
+
+
+
+
+        })
+
+
+
 
     }
 
@@ -150,6 +177,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
 
 
 

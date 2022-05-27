@@ -15,6 +15,7 @@ import com.junjange.myapplication.data.PollsComponent
 import com.junjange.myapplication.databinding.ItemRecyclerHashtagBinding
 import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.VoteActivity
+import com.junjange.myapplication.utils.API
 
 class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapter.ViewHolder>()  {
 
@@ -61,16 +62,16 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
-                val url = item.presentImagePath
-                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", "Bearer $token"))}
-                Glide.with(binding.pollImage).load(glideUrl).into(binding.pollImage)
+                val url = "${API.BASE_URL1}${item.presentImagePath}"
+                val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
+                Glide.with(binding.pollImage.context).load(glideUrl).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
-                binding.title.setTextSize(Dimension.SP, 20F) // 글씨 20
+                binding.title.setTextSize(Dimension.SP, 20F)
 
 
             }else{
                 binding.pollImage.visibility = View.GONE
-                binding.title.setTextSize(Dimension.SP, 16F) // 글씨 16
+                binding.title.setTextSize(Dimension.SP, 16F)
 
             }
         }

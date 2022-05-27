@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -55,8 +56,8 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     private fun setObserver() {
         viewModel.retrofitHotPolls.observe(this, {
-
             viewModel.retrofitHotPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
+
         })
 
     }

@@ -8,9 +8,9 @@ object API{
 
     //    http://3.34.66.129:8080/
 //    http://13.209.119.116:8080/
-    const val BASE_URL1 : String = "http://13.209.119.116:8080/" // 서버 주소
-    const val GET_ALL_POLLS : String = "poll/all"
-    const val GET_HOT_POLLS : String =  "poll/hot"
-    const val GET_QUICK_POLLS : String = "poll/speed"
+    const val BASE_URL1 : String = "http://13.209.119.116:8080" // 서버 주소
+    const val GET_ALL_POLLS : String = "/poll/all"
+    const val GET_HOT_POLLS : String =  "/poll/hot"
+    const val GET_QUICK_POLLS : String = "/poll/speed"
 
 }

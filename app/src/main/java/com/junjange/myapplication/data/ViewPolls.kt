@@ -26,8 +26,8 @@ data class ViewPollsItem(
 
 data class ItemComponent(
     @SerializedName("id") val id: Int,
-//    @SerializedName("poll") val poll: PollItem,
-    @SerializedName("itemNum") val itemNum: Int,
+    @SerializedName("poll_id") val pollId: Int,
+    @SerializedName("item_num") val itemNum: Int,
     @SerializedName("contents") val contents: String,
     @SerializedName("hasImage") val hasImage: Boolean,
 
