@@ -24,7 +24,7 @@ fun EditText.textChangesToFlow(): Flow<CharSequence?> {
             override fun afterTextChanged(p0: Editable?) = Unit
 
             override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d(TAG, "onTextChanged() / textChangesToFlow() 에 달려있는 텍스트 와쳐 / text : $text")
+//                Log.d(TAG, "onTextChanged() / textChangesToFlow() 에 달려있는 텍스트 와쳐 / text : $text")
                 // 값 내보내기
                 offer(text)
             }
@@ -34,12 +34,12 @@ fun EditText.textChangesToFlow(): Flow<CharSequence?> {
 
         // 콜백이 사라질때 실행됨
         awaitClose {
-            Log.d(TAG, "textChangesToFlow() awaitClose 실행")
+//            Log.d(TAG, "textChangesToFlow() awaitClose 실행")
             removeTextChangedListener(listener)
         }
 
     }.onStart {
-        Log.d(TAG, "textChangesToFlow() / onStart 발동")
+//        Log.d(TAG, "textChangesToFlow() / onStart 발동")
         // Rx 에서 onNext 와 동일
         // emit 으로 이벤트를 전달
         emit(text)

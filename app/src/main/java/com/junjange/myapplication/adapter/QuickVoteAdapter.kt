@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.junjange.myapplication.R
+import com.junjange.myapplication.data.MyBallot
 import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
+import kotlin.math.round
 
 
 class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
@@ -42,41 +45,91 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     inner class ViewHolder(private val binding: ItemRecyclerQuickVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: QuickPollsItem, position: Int) {
-            Log.d("ttt11", position.toString())
-
-            // 빠른 투표 1번 항목 클릭시
-            binding.quickQuestion1Bg.setOnClickListener {
-                onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum))
+            Log.d("ttt11", item.id.toString())
+            Log.d("ttt22", item.myBallots.toString())
 
 
-                binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-                binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
-                binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-                binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
-                binding.quickQuestion1Txt.setTextColor(Color.BLACK)
-                binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
-                binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
-                binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+            if (item.myBallots == null){
+                // 빠른 투표 1번 항목 클릭시
+                binding.quickQuestion1Bg.setOnClickListener {
+                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum))
+                    notifyDataSetChanged()
+
+
+//                    binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
+//                    binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
+//                    binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+//                    binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
+//                    binding.quickQuestion1Txt.setTextColor(Color.BLACK)
+//                    binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
+//                    binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
+//                    binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+//                    binding.quickQuestion1Turnout.visibility = View.VISIBLE
+//                    binding.quickQuestion2Turnout.visibility = View.VISIBLE
+                }
+
+                // 빠른 투표 2번 항목 클릭시
+                binding.quickQuestion2Bg.setOnClickListener {
+                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum))
+                    notifyDataSetChanged()
+
+//                    binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+//                    binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
+//                    binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
+//                    binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
+//                    binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
+//                    binding.quickQuestion2Txt.setTextColor(Color.BLACK)
+//                    binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
+//                    binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
+//                    binding.quickQuestion1Turnout.visibility = View.VISIBLE
+//                    binding.quickQuestion2Turnout.visibility = View.VISIBLE
+                }
+            }else{
+                 if (items.quickPollsItem[position].myBallots!![0] == 1){
+                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
+                        binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
+                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+                        binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
+
+
+                    }else{
+                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+                        binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
+                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
+                        binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
+
+
+                    }
+
+                if (!items.quickPollsItem[position].stats!![0].isBest){
+                    binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
+                    binding.quickQuestion2Txt.setTextColor(Color.BLACK)
+                    binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
+                    binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
+
+
+                }else{
+                    binding.quickQuestion1Txt.setTextColor(Color.BLACK)
+                    binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
+                    binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
+                    binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+
+                }
+
+                binding.quickQuestion1Turnout.text = "${round(items.quickPollsItem[position].stats!![0].percent*100)/100}%"
+                binding.quickQuestion2Turnout.text = "${round(items.quickPollsItem[position].stats!![1].percent*100)/100}%"
+
                 binding.quickQuestion1Turnout.visibility = View.VISIBLE
                 binding.quickQuestion2Turnout.visibility = View.VISIBLE
+
+
+
             }
 
-            // 빠른 투표 2번 항목 클릭시
-            binding.quickQuestion2Bg.setOnClickListener {
-                onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum))
 
-                binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-                binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
-                binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-                binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
-                binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
-                binding.quickQuestion2Txt.setTextColor(Color.BLACK)
-                binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
-                binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
-                binding.quickQuestion1Turnout.visibility = View.VISIBLE
-                binding.quickQuestion2Turnout.visibility = View.VISIBLE
-            }
+
 
 
         }
@@ -84,21 +137,10 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
         fun setItem(item: QuickPollsItem){
 
             binding.title.text =  item.contents
-            binding.nick.text = item.user.nick
+            binding.nick.text = item.nick
             binding.quickQuestion1Txt.text = item.items[0].contents
             binding.quickQuestion2Txt.text = item.items[1].contents
         }
-
-        fun checkItem(item: QuickPollsItem){
-//            if (item.items[0].poll.user.email == "test@test.com"){
-//
-//            }
-            binding.title.text =  item.contents
-            binding.nick.text = item.user.nick
-            binding.quickQuestion1Txt.text = item.items[0].contents
-            binding.quickQuestion2Txt.text = item.items[1].contents
-        }
-
 
 
     }

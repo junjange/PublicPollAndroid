@@ -17,7 +17,7 @@ import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.utils.API
 import kotlin.math.round
 
-class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
+class PhotoVoteAdapter(val onClickListener: ItemClickListener, var voteState : Boolean) : RecyclerView.Adapter<PhotoVoteAdapter.ViewHolder>(){
 
     private var items: ViewPolls? = null
 
@@ -54,12 +54,12 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
             binding.photoQuestionTxt.text =  item.contents
 
             val token = PollsObject.token
-            val url ="${API.BASE_URL1}/images/images/${item.pollId}/${item.itemNum}"
+            val url ="${API.BASE_URL}/images/images/${item.pollId}/${item.itemNum}"
             val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
             Glide.with(binding.pollImage.context).load(glideUrl).error(R.drawable.image_default).into(binding.pollImage)
 
             // 투표한 것이라면
-            if (viewPollsItem.myBallots != null){
+            if (viewPollsItem.myBallots != null && !voteState){
 
                 binding.pollImage.alpha = 0.5F
 

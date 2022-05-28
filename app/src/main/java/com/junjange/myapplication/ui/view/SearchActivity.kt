@@ -99,7 +99,7 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 //                        it?.length!! > 0
 //                    }
                     .onEach {
-                        Log.d(ContentValues.TAG, "flow로 받는다 $it 11")
+//                        Log.d(ContentValues.TAG, "flow로 받는다 $it 11")
 
                         lifecycleScope.launch {
 

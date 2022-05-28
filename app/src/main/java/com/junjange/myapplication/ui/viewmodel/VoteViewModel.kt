@@ -13,17 +13,11 @@ import kotlinx.coroutines.launch
 class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     private val _retrofitViewPolls = MutableLiveData<ViewPolls>()
     private val _retrofitCommentList = MutableLiveData<Comment>()
-    private val _retrofitBallotPolls = MutableLiveData<Ballot>()
 
 
     // LiveData
     val retrofitViewPolls: MutableLiveData<ViewPolls>
         get() = _retrofitViewPolls
-
-    // LiveData
-    val retrofitBallotPolls: MutableLiveData<Ballot>
-        get() = _retrofitBallotPolls
-
 
     val retrofitCommentList: MutableLiveData<Comment>
         get() = _retrofitCommentList
@@ -37,11 +31,15 @@ class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
 
     // 투표 하기
     fun postBallotRetrofit(pollId : Int, itemNum : ArrayList<Int>) = viewModelScope.launch {
-
-        val response = repository.retrofitPostBallot(PostBallotItem(pollId, itemNum))
-        if (response.isSuccessful) _retrofitBallotPolls.value = response.body()
-        Log.d("ttt2222", response.body().toString())
+        repository.retrofitPostBallot(PostBallotItem(pollId, itemNum))
     }
+
+    // 재투표 하기
+    fun postReVoteRetrofit(pollId : Int, itemNum : ArrayList<Int>) = viewModelScope.launch {
+
+        repository.retrofitPostReVote(PostBallotItem(pollId, itemNum))
+    }
+
 
     // 댓글 보기
     fun getCommentsRetrofit(pollId : Int) = viewModelScope.launch {

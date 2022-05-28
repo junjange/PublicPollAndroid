@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object PollsObject {
 
 
-    var token: String = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmOGUxY2IxNTY0MTQ2M2M2ZGYwZjMzMzk0YjAzYzkyZmNjODg5YWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHVibGljLXBvbGwtNjcwMmEiLCJhdWQiOiJwdWJsaWMtcG9sbC02NzAyYSIsImF1dGhfdGltZSI6MTY1MzcxNzU0OCwidXNlcl9pZCI6IldhN3ZIQ281d2tORDQyQjJpTldkdWlnREtTeTIiLCJzdWIiOiJXYTd2SENvNXdrTkQ0MkIyaU5XZHVpZ0RLU3kyIiwiaWF0IjoxNjUzNzE3NTQ4LCJleHAiOjE2NTM3MjExNDgsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0ZXN0QHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.s3eN_5a8ystnNk_1yQn0PFw5MGgJc_VDkcvbM6b1_d5MPzkqWEaKhW_BAJs61KF7mBHqcy3e5E5dKdM6XxL2rGnU4G8apcEl-oUvNbv76g9HP_6CwInWGqLJUrEotpbWzrQPL_L6Llqsxhhb75GicGpJm66C1zPvUnK2J-joYydqfT_VmgMEnh-3R-6yfGfq8yqsxsTnKYVq1Lxx22R9mjlJ76GsZCx6IdGEFjCklzx_SzhKtvPpic6iTXQ-P0lV6pVIRMzzYEkVh4zSjZljI20DN6vz7Eyu-7-kpW2WnLc4fDqlqz3f7wv8xq4YUCIVPOvR1rhGUk8UGg6I9m9Evw"
+    var token: String = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmOGUxY2IxNTY0MTQ2M2M2ZGYwZjMzMzk0YjAzYzkyZmNjODg5YWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHVibGljLXBvbGwtNjcwMmEiLCJhdWQiOiJwdWJsaWMtcG9sbC02NzAyYSIsImF1dGhfdGltZSI6MTY1MzczNDMwNSwidXNlcl9pZCI6IldhN3ZIQ281d2tORDQyQjJpTldkdWlnREtTeTIiLCJzdWIiOiJXYTd2SENvNXdrTkQ0MkIyaU5XZHVpZ0RLU3kyIiwiaWF0IjoxNjUzNzM0MzA1LCJleHAiOjE2NTM3Mzc5MDUsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0ZXN0QHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.tZoqzIDFAb8hTD5Ptid4hbOUXtqUWNLQMoa35e0zSGOQdWWAqbLW_mRU95EEtsXSGYvNlywprNLjpcxdQ0yPRMUvV3laj9Jp-_fW2GaiQpdpAE5UTnLL2oU414q8auDO_L4dsfNGcWXbjJ5qozBwWilDl71BtYJ_t8XN6UwnQQZ9Up_a23_8lq83C9_8XYc1kupWytNKTuRsa7lfi-SGUXUUk30LOHzufkkbyBh49lT_DIg6cz2Dh_VM5eBzmmakzZrzDZ3GsCjebQNz2y1sGndEql494mChOa2vZq9v3unVmzHyoDlkZWLmNU_WDPDUWoXXmck-rCYTbrJED7Rsyw"
+
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.NONE
@@ -29,7 +30,7 @@ object PollsObject {
 
     private val getRetrofit by lazy{
         Retrofit.Builder()
-            .baseUrl(API.BASE_URL1)
+            .baseUrl(API.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

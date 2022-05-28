@@ -25,20 +25,16 @@ class QuickVoteRepository(application : Application) {
     suspend fun retrofitQuickPolls(): QuickPolls {
         val response = PollsObject.getRetrofitService.getQuickPolls()
 
-        Log.d("tt1", response.body().toString())
-
         return if (response.isSuccessful) response.body() as QuickPolls else QuickPolls(ArrayList())
 
     }
 
+
     // post
     suspend fun retrofitPostBallot(postBallotItem: PostBallotItem): Response<Ballot> {
 
-        var a = PollsObject.getRetrofitService.ballot(postBallotItem)
-        Log.d("ttt", a.toString())
-        return a
+        return PollsObject.getRetrofitService.ballot(postBallotItem)
 
     }
-
 
 }
