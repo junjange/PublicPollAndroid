@@ -67,7 +67,7 @@ class HotPollsAdapter(val context: Context) : RecyclerView.Adapter<HotPollsAdapt
                 val token = PollsObject.token
                 val url = "${API.BASE_URL1}${item.presentImagePath}"
                 val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
-                Glide.with(binding.pollImage.context).load(glideUrl).into(binding.pollImage)
+                Glide.with(binding.pollImage.context).load(glideUrl).error(R.drawable.image_default).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE
                 binding.title.setTextSize(Dimension.SP, 20F)
 

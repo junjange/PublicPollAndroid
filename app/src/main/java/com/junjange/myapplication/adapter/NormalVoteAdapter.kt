@@ -1,11 +1,15 @@
 package com.junjange.myapplication.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.junjange.myapplication.R
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerNormalVoteBinding
+import kotlin.math.round
 
 class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
 
@@ -14,7 +18,7 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
     private var normalCheckBox = -1
 
     interface ItemClickListener {
-        fun onNormalVoteClickListener(item: ItemComponent, position: Int)
+        fun onNormalVoteClickListener(item: ItemComponent, position: Int, isSingleVote: Boolean, myBallots: ArrayList<Int>?)
     }
 
     // 뷰 홀더 만들어서 반환
@@ -27,41 +31,49 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items!!.viewPollsItem.items[position], position)
-        holder.setItem(items!!.viewPollsItem.items[position])
+        holder.setItem(items!!.viewPollsItem.items[position], items!!.viewPollsItem, position )
+
+        holder.bind(items!!.viewPollsItem.items[position], position, items!!.viewPollsItem.isSingleVote, items!!.viewPollsItem.myBallots)
+
     }
 
     // 뷰 홀더 설정
     inner class ViewHolder(private val binding: ItemRecyclerNormalVoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setItem(item: ItemComponent){
+        @SuppressLint("SetTextI18n")
+        fun setItem(item: ItemComponent, viewPollsItem: ViewPollsItem, position: Int){
             binding.normalQuestionTxt.text =  item.contents
 
-        }
+            // 투표 한 것이라면
+            if (viewPollsItem.myBallots != null){
 
-        fun bind(item: ItemComponent, position: Int) {
+                // 1등 투표 확인
+                if(items!!.viewPollsItem.stats!![position].isBest)binding.normalQuestionTxt.setTextColor(Color.parseColor("#f5dc00"))
+                else binding.normalQuestionTxt.setTextColor(Color.parseColor("#929292"))
 
-            binding.normalQuestionCardView.setOnClickListener {
-                onClickListener.onNormalVoteClickListener(item, position)
+                binding.normalQuestionTurnout.setTextColor(Color.parseColor("#929292"))
+                binding.normalQuestionTurnout.visibility = View.VISIBLE
+                binding.normalQuestionTurnout.text = "${round(viewPollsItem.stats!![position].percent*100)/100}%"
 
-//                if (normalCheckBox != position){
-//
-//                    binding.normalQuestionCardView.setBackgroundResource(R.drawable.layout_select_normal_poll_background)
-//                    binding.normalQuestionTxt.setTextColor(Color.WHITE)
-//                    normalCheckBox = position
-//
-//                }else{
-//                    binding.normalQuestionCardView.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
-//                    binding.normalQuestionTxt.setTextColor(Color.parseColor("#dcdcdc"))
-//                    normalCheckBox = -1
-//
-//                }
+                // 나의 투표 확인
+                if (items!!.viewPollsItem.myBallots!!.find { it == item.itemNum } != null){
+                    binding.normalQuestionCardView.setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+                    binding.normalQuestionTxt.setTextColor(Color.parseColor("#ffffff"))
+                    binding.normalQuestionTurnout.setTextColor(Color.parseColor("#ffffff"))
+
+                }
 
             }
 
         }
 
+        fun bind(item: ItemComponent, position: Int, isSingleVote: Boolean, myBallots: ArrayList<Int>?) {
 
+            binding.normalQuestionCardView.setOnClickListener {
+                onClickListener.onNormalVoteClickListener(item, position, isSingleVote, myBallots)
+            }
+
+        }
 
     }
 

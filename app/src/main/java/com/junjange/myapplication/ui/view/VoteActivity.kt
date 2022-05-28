@@ -8,6 +8,7 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.core.view.children
 import androidx.core.view.get
@@ -19,6 +20,7 @@ import com.junjange.myapplication.adapter.CommentsAdapter
 import com.junjange.myapplication.adapter.NormalVoteAdapter
 import com.junjange.myapplication.adapter.PhotoVoteAdapter
 import com.junjange.myapplication.data.ItemComponent
+import com.junjange.myapplication.data.StatsItem
 import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
@@ -31,8 +33,12 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     private lateinit var photoVoteAdapter: PhotoVoteAdapter
     private lateinit var normalVoteAdapter: NormalVoteAdapter
     private lateinit var commentsAdapter: CommentsAdapter
-    private var photoCheckBox = -1
-    private var normalCheckBox = -1
+    private var checkVote = arrayListOf<Int>()
+    private var canReVote = false
+    private var canComment = true
+    private var myBallots : ArrayList<Int>? = null
+    private var stats : ArrayList<StatsItem>? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +66,9 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         val id = intent.getSerializableExtra("id") as Int
         val presentImagePath = intent.getSerializableExtra("presentImagePath")
 
-
-        viewModel.getViewPollsRetrofit(id)
         viewModel.getCommentsRetrofit(id)
+        viewModel.getViewPollsRetrofit(id)
+
         commentSetView()
         commentSetObserver()
 
@@ -77,6 +83,27 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         }
 
+        binding.voteBtn.setOnClickListener {
+            if(checkVote.size > 0){
+                Log.d("ttt1", checkVote.toString())
+//                viewModel.postBallotRetrofit(id, checkVote)
+
+                // 원하는 화면 연결
+                val intent: Intent =  Intent(this@VoteActivity, VoteActivity::class.java).apply {
+                    // 데이터 전달
+                    putExtra("id", id)
+                    putExtra("presentImagePath", presentImagePath)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                }
+                this.startActivity(intent)
+
+//                finish()
+            }else{
+                Toast.makeText(this,"항목을 선택해주세요.",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
         // 검색창 엔터
         binding.etCommentEnter.setOnKeyListener { _, keyCode, event ->
 
@@ -85,6 +112,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
                 viewModel.postCommentRetrofit(id, binding.etCommentField.text.toString())
                 binding.etCommentField.clearFocus()
+                binding.etCommentField.text.clear()
                 imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
                 true
 
@@ -99,6 +127,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.etCommentEnter.setOnClickListener {
             viewModel.postCommentRetrofit(id, binding.etCommentField.text.toString())
             binding.etCommentField.clearFocus()
+            binding.etCommentField.text.clear()
             imm.hideSoftInputFromWindow(binding.etCommentField.windowToken, 0)
         }
 
@@ -125,7 +154,40 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         viewModel.retrofitViewPolls.observe(this, {
 
-            viewModel.retrofitViewPolls.value?.let { it1 -> normalVoteAdapter.setData(it1) }
+            viewModel.retrofitViewPolls.value?.let { it1 -> normalVoteAdapter.setData(it1)
+                binding.title.text = it1.viewPollsItem.contents
+                canReVote = it1.viewPollsItem.canRevote
+                canComment = it1.viewPollsItem.canComment
+                // 익명
+                if(it1.viewPollsItem.showNick) binding.nick.text = it1.viewPollsItem.nick else binding.nick.text = "anonymous"
+
+
+                // 투표유무
+                if (it1.viewPollsItem.myBallots == null) {
+                    binding.voteTxt.text = "Vote"
+                    binding.statisticsBtn.visibility = View.GONE
+                    binding.commentList.visibility = View.GONE
+                    binding.commentCnt.visibility = View.GONE
+                    binding.commentIcon.visibility = View.GONE
+
+                } else{
+                    binding.voteTxt.text = "Revote"
+                    binding.statisticsBtn.visibility = View.VISIBLE
+
+                    // 댓글
+                    if (it1.viewPollsItem.canComment){
+                        if(it1.viewPollsItem.canRevote) binding.statisticsBtn.visibility = View.VISIBLE
+
+
+                        binding.commentList.visibility = View.VISIBLE
+                        binding.commentCnt.visibility = View.VISIBLE
+                        binding.commentIcon.visibility = View.VISIBLE
+                    }
+
+
+                }
+
+            }
         })
     }
 
@@ -141,7 +203,40 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     private fun photoSetObserver() {
         viewModel.retrofitViewPolls.observe(this, {
 
-            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1) }
+            viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1)
+
+                binding.title.text = it1.viewPollsItem.contents
+                canReVote = it1.viewPollsItem.canRevote
+                canComment = it1.viewPollsItem.canComment
+                // 익명
+                if(it1.viewPollsItem.showNick) binding.nick.text = it1.viewPollsItem.nick else binding.nick.text = "anonymous"
+
+
+                // 투표유무
+                if (it1.viewPollsItem.myBallots == null) {
+                    binding.voteTxt.text = "Vote"
+                    binding.statisticsBtn.visibility = View.GONE
+                    binding.commentList.visibility = View.GONE
+                    binding.commentCnt.visibility = View.GONE
+                    binding.commentIcon.visibility = View.GONE
+
+                } else{
+                    binding.voteTxt.text = "Revote"
+
+                    if(it1.viewPollsItem.canRevote) binding.statisticsBtn.visibility = View.VISIBLE
+
+                    // 댓글
+                    if (it1.viewPollsItem.canComment){
+                        binding.commentList.visibility = View.VISIBLE
+                        binding.commentCnt.visibility = View.VISIBLE
+                        binding.commentIcon.visibility = View.VISIBLE
+                    }
+
+
+                }
+
+
+            }
         })
     }
 
@@ -157,19 +252,11 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     }
 
     private fun commentSetObserver() {
-        viewModel.retrofitViewPolls.observe(this, {
+        viewModel.retrofitCommentList.observe(this, {
 
-            viewModel.retrofitCommentList.value?.let { it1 -> commentsAdapter.setData(it1) }
-
-            val commentCnt = commentsAdapter.itemCount
-            binding.commentCnt.text = commentCnt.toString()
-//            if (commentCnt == 0){
-//                binding.commentList.visibility = View.GONE
-//                binding.noCommentTxt.visibility = View.VISIBLE
-//            }else{
-//                binding.commentList.visibility = View.VISIBLE
-//                binding.noCommentTxt.visibility = View.GONE
-//            }
+            viewModel.retrofitCommentList.value?.let { it1 -> commentsAdapter.setData(it1)
+                binding.commentCnt.text = it1.commentItem.size.toString()
+            }
         })
     }
 
@@ -180,41 +267,102 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
      * Adapter에서 색 변화를 진행할 경우 background, text 색 모두 변화시 킬 수 있지만 다른 item의 색을 변화시킬 수 없어 원래 상태로 바꿀 수 없음.
      * 어떤식으로 해결해야할지 고민이 필요함..
      */
-    override fun onNormalVoteClickListener(item: ItemComponent, position: Int) {
+    override fun onNormalVoteClickListener(
+        item: ItemComponent,
+        position: Int,
+        isSingleVote: Boolean,
+        myBallots: ArrayList<Int>?
+    ) {
 
-        if (normalCheckBox != position) {
-            binding.normalVoteList.children.iterator().forEach { item ->
+        if (myBallots == null){
+            // 단일 투표
+            if (isSingleVote){
+                // 투표하지 않았다면
+                if (checkVote.find { it == item.itemNum } == null) {
+                    binding.normalVoteList.children.iterator().forEach { item ->
 
-                item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                        item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    }
+                    checkVote.clear()
+                    checkVote.add(item.itemNum)
+                    binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+
+                } else {
+
+                    binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    checkVote.remove(item.itemNum)
+                }
+                // 중복 투표
+            }else{
+                // 투표를 안한 것이라면
+                if (checkVote.find { it == item.itemNum } == null) {
+                    binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+                    checkVote.add(item.itemNum)
+
+                    // 투표한 것이라면
+                } else {
+
+                    binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    checkVote.remove(item.itemNum)
+
+                }
             }
+        }else{
 
-            normalCheckBox = position
-            binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
-            binding.normalVoteList[position].context.getColor(R.color.white)
 
-        } else {
-
-            binding.normalVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
-            normalCheckBox = -1
         }
+
+
     }
 
-    override fun onPhotoVoteClickListener(item: ItemComponent, position: Int) {
-        if (normalCheckBox != position) {
-            binding.photoVoteList.children.iterator().forEach { item ->
+    override fun onPhotoVoteClickListener(
+        item: ItemComponent,
+        position: Int,
+        isSingleVote: Boolean,
+        myBallots: ArrayList<Int>?
+    ) {
 
-                item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+        if (myBallots == null){
+            // 단일 투표
+            if (isSingleVote){
+                // 투표하지 않았다면
+                if (checkVote.find { it == item.itemNum } == null) {
+                    binding.photoVoteList.children.iterator().forEach { item ->
+
+                        item.setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    }
+
+                    checkVote.clear()
+                    checkVote.add(item.itemNum)
+                    binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+
+
+                } else {
+
+                    binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    checkVote.remove(item.itemNum)
+                }
+
+                // 중복 투표
+            }else{
+
+                // 투표를 안한 것이라면
+                if (checkVote.find { it == item.itemNum } == null) {
+                    checkVote.add(item.itemNum)
+                    binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
+
+                    // 투표한 것이라면
+                } else {
+
+                    binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
+                    checkVote.remove(item.itemNum)
+                }
+
+
             }
-
-            normalCheckBox = position
-            binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_select_normal_poll_background)
-
-
-        } else {
-
-            binding.photoVoteList[position].setBackgroundResource(R.drawable.layout_unselect_normal_poll_background)
-            normalCheckBox = -1
         }
+
+
     }
 
 
