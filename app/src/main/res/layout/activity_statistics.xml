@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="926dp"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="292dp"
+            android:layout_marginTop="93dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/login_pbp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="Jeniffer"
+                android:textColor="#9f9f9f"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:text="How do you\nthink about this?"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif"
+            android:text="Statistics of  20s Man ..."
+            android:textColor="#8f8f8f"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="213dp"
+            android:layout_height="213dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp" />
+
+        <LinearLayout
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="58dp"
+            android:background="@drawable/round_corner"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Age"
+                android:textColor="#bbb1e5"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/age_firstLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton5"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/age_secondLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton6"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton8"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton7"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Gender"
+                android:textColor="#bbb1e5"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="Man"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="Man"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="Man"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="Tier"
+                android:textColor="#bbb1e5"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/tier1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton11"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton12"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton13"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/tier2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton14"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton15"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton16"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:buttonTint="#bbb1e5"
+                        android:fontFamily="sans-serif"
+                        android:text="Man"
+                        android:textColor="#a1a1a1"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
