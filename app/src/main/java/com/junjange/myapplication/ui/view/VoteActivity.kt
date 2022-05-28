@@ -38,6 +38,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     private var canComment = true
     private var myBallots : ArrayList<Int>? = null
     private var stats : ArrayList<StatsItem>? = null
+    private var voteState: Boolean = false
 
 
 
@@ -65,6 +66,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         val id = intent.getSerializableExtra("id") as Int
         val presentImagePath = intent.getSerializableExtra("presentImagePath")
+        voteState = intent.getBooleanExtra("voteState", false)
 
         viewModel.getCommentsRetrofit(id)
         viewModel.getViewPollsRetrofit(id)
@@ -74,7 +76,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         // 사진유무에 따라 일반투표/사진투표 리사이클러뷰 실행
         if (presentImagePath == null){
-            normalSetView()
+            normalSetView(voteState)
             normalSetObserver()
 
         }else{
@@ -85,8 +87,15 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         binding.voteBtn.setOnClickListener {
             if(checkVote.size > 0){
+
+                if (voteState){
+                    viewModel.postReVoteRetrofit(id, checkVote)
+
+                }else{
+                      viewModel.postBallotRetrofit(id, checkVote)
+
+                }
                 Log.d("ttt1", checkVote.toString())
-//                viewModel.postBallotRetrofit(id, checkVote)
 
                 // 원하는 화면 연결
                 val intent: Intent =  Intent(this@VoteActivity, VoteActivity::class.java).apply {
@@ -96,13 +105,24 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 }
                 this.startActivity(intent)
-
-//                finish()
             }else{
                 Toast.makeText(this,"항목을 선택해주세요.",Toast.LENGTH_SHORT).show()
             }
         }
 
+        binding.reVoteBtn.setOnClickListener {
+
+            // 원하는 화면 연결
+            val intent: Intent = Intent(this@VoteActivity, VoteActivity::class.java).apply {
+                // 데이터 전달
+                putExtra("id", id)
+                putExtra("presentImagePath", presentImagePath)
+                putExtra("voteState", true)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            }
+            this.startActivity(intent)
+        }
 
         // 검색창 엔터
         binding.etCommentEnter.setOnKeyListener { _, keyCode, event ->
@@ -134,9 +154,9 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     }
 
 
-    private fun normalSetView(){
+    private fun normalSetView(voteState : Boolean){
 
-        normalVoteAdapter =  NormalVoteAdapter(this).apply {
+        normalVoteAdapter =  NormalVoteAdapter(this, voteState).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.normalVoteList.layoutManager = LinearLayoutManager(
@@ -163,15 +183,18 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
 
                 // 투표유무
-                if (it1.viewPollsItem.myBallots == null) {
-                    binding.voteTxt.text = "Vote"
+                if (it1.viewPollsItem.myBallots == null || voteState) {
+                    binding.voteBtn.visibility = View.VISIBLE
+                    binding.reVoteBtn.visibility = View.GONE
                     binding.statisticsBtn.visibility = View.GONE
                     binding.commentList.visibility = View.GONE
                     binding.commentCnt.visibility = View.GONE
                     binding.commentIcon.visibility = View.GONE
 
                 } else{
-                    binding.voteTxt.text = "Revote"
+
+                    binding.voteBtn.visibility = View.GONE
+                    binding.reVoteBtn.visibility = View.VISIBLE
                     binding.statisticsBtn.visibility = View.VISIBLE
 
                     // 댓글
@@ -192,7 +215,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     }
 
     private fun photoSetView(){
-        photoVoteAdapter =  PhotoVoteAdapter(this).apply {
+        photoVoteAdapter =  PhotoVoteAdapter(this, voteState).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.normalVoteList.visibility = View.GONE
@@ -213,15 +236,17 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
 
                 // 투표유무
-                if (it1.viewPollsItem.myBallots == null) {
-                    binding.voteTxt.text = "Vote"
+                if (it1.viewPollsItem.myBallots == null || voteState) {
+                    binding.voteBtn.visibility = View.VISIBLE
+                    binding.reVoteBtn.visibility = View.GONE
                     binding.statisticsBtn.visibility = View.GONE
                     binding.commentList.visibility = View.GONE
                     binding.commentCnt.visibility = View.GONE
                     binding.commentIcon.visibility = View.GONE
 
                 } else{
-                    binding.voteTxt.text = "Revote"
+                    binding.voteBtn.visibility = View.GONE
+                    binding.reVoteBtn.visibility = View.VISIBLE
 
                     if(it1.viewPollsItem.canRevote) binding.statisticsBtn.visibility = View.VISIBLE
 
@@ -273,8 +298,8 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         isSingleVote: Boolean,
         myBallots: ArrayList<Int>?
     ) {
-
-        if (myBallots == null){
+        // 투표를 하지 않았던가, 재투표를 해야한다면
+        if (myBallots == null || voteState){
             // 단일 투표
             if (isSingleVote){
                 // 투표하지 않았다면
@@ -307,11 +332,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
                 }
             }
-        }else{
-
-
         }
-
 
     }
 
@@ -322,7 +343,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         myBallots: ArrayList<Int>?
     ) {
 
-        if (myBallots == null){
+        if (myBallots == null || voteState){
             // 단일 투표
             if (isSingleVote){
                 // 투표하지 않았다면

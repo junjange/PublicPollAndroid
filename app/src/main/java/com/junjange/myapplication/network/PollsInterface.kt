@@ -25,7 +25,7 @@ interface PollsInterface {
     suspend fun getHotPolls(): Response<HotPolls>
 
     // 투표 보기
-    @GET("/poll/{pollId}")
+    @GET(API.GET_VIEW_POLLS)
     suspend fun getViewPolls(
         @Path("pollId") pollId : Int
     ): Response<ViewPolls>
@@ -35,43 +35,55 @@ interface PollsInterface {
     suspend fun getQuickPolls(): Response<QuickPolls>
 
     // 해시태그 이름 검색
-    @GET("/hashtag/name/{keyword}")
+    @GET(API.GET_HASHTAG_NAME)
     suspend fun getHashtagName(
         @Path("keyword") keyword : String
     ): Response<HashtagName>
 
     // 해시태그 검색
-    @GET("/hashtag/id/{hashtagId}")
+    @GET(API.GET_HASHTAG)
     suspend fun getHashtag(
         @Path("hashtagId") hashtagId : Int
     ): Response<Hashtag>
 
     // 댓글 검색
-    @GET("/comment/id/{pollId}")
+    @GET(API.GET_COMMENT)
     suspend fun getComments(
         @Path("pollId") pollId : Int
     ): Response<Comment>
 
     // 댓글 하기
-    @POST("/comment/add")
+    @POST(API.POST_COMMENT)
     suspend fun postComment(
         @Body postCommentItem: PostCommentItem
     ): Response<JsonObject>
 
 
     // 투표 하기
-    @POST("/ballot/add")
+    @POST(API.POST_BALLOT)
     suspend fun ballot(
         @Body postBallotItem: PostBallotItem
 
     ): Response<Ballot>
 
+    // 재투표 하기
+    @POST(API.POST_REVOTE)
+    suspend fun reVote(
+        @Body postBallotItem: PostBallotItem
+
+    ): Response<Ballot>
+
+    // 투표 삭제하기
+    @DELETE(API.DELETE_POLLS)
+    suspend fun pollDelete(): Response<JsonObject>
+
+
     // My Polls
-    @GET("/poll/my")
+    @GET(API.MY_POLLS)
     suspend fun getMyPolls(): Response<MyPolls>
 
     // My Ballot
-    @GET("/ballot/my")
+    @GET(API.MY_BALLOT)
     suspend fun getMyBallot(): Response<MyBallot>
 
 

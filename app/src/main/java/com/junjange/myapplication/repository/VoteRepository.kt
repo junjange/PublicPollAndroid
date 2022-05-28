@@ -32,11 +32,17 @@ class VoteRepository(application : Application) {
     // post
     suspend fun retrofitPostBallot(postBallotItem: PostBallotItem): Response<Ballot> {
 
-        var a = PollsObject.getRetrofitService.ballot(postBallotItem)
-        Log.d("ttt111", a.toString())
-        return a
+        return PollsObject.getRetrofitService.ballot(postBallotItem)
 
     }
+
+    // reVote
+    suspend fun retrofitPostReVote(postBallotItem: PostBallotItem): Response<Ballot> {
+        return PollsObject.getRetrofitService.reVote(postBallotItem)
+
+    }
+
+
 
 
     suspend fun retrofitComments(pollId : Int): Comment {

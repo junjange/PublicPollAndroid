@@ -63,7 +63,7 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
             if(item.presentImagePath != null){
 
                 val token = PollsObject.token
-                val url = "${API.BASE_URL1}${item.presentImagePath}"
+                val url = "${API.BASE_URL}${item.presentImagePath}"
                 val glideUrl = GlideUrl(url) { mapOf(Pair("Authorization", token))}
                 Glide.with(binding.pollImage.context).load(glideUrl).error(R.drawable.image_default).into(binding.pollImage)
                 binding.pollImage.visibility = View.VISIBLE

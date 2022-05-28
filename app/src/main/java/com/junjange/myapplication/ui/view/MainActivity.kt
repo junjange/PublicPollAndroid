@@ -7,10 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
-import androidx.core.view.children
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.QuickVoteAdapter
@@ -18,8 +15,6 @@ import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ActivityMainBinding
 import com.junjange.myapplication.ui.viewmodel.MainViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
-import okhttp3.Dispatcher
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener ,QuickVoteAdapter.ItemClickListener{
 
@@ -43,8 +38,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
         binding.mainNavigationView.setNavigationItemSelectedListener(this) //navigation 리스너
 
+
         setView()
         setObserver()
+
 
         // 투표 검색 페이지로 이동
         binding.searchBtn.setOnClickListener {
@@ -81,29 +78,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setObserver() {
+
         viewModel.retrofitQuickPolls.observe(this, {
 
-            viewModel.retrofitQuickPolls.value?.let { it1 -> retrofitAdapter.setData(it1) }
+            viewModel.retrofitQuickPolls.value?.let { it1 -> retrofitAdapter.setData(it1)
+            }
         })
 
     }
 
     // 투표 하기
     override fun onQuickVoteClickListener(item: QuickPollsItem, itemNum: ArrayList<Int>) {
-//        viewModel.postBallotRetrofit(item.id, itemNum)
-        Log.d("ttt", item.id.toString())
-        Log.d("ttt", itemNum.toString())
-
-        viewModel.retrofitBallotPolls.observe(this, { it ->
-            Log.d("ttt666",viewModel.retrofitBallotPolls.value.toString() )
-
-
-
-
-        })
-
-
-
+        viewModel.postBallotRetrofit(item.id, itemNum)
 
     }
 

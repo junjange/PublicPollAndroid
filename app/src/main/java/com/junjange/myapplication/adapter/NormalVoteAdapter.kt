@@ -11,11 +11,10 @@ import com.junjange.myapplication.data.*
 import com.junjange.myapplication.databinding.ItemRecyclerNormalVoteBinding
 import kotlin.math.round
 
-class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
+class NormalVoteAdapter(val onClickListener: ItemClickListener, var voteState : Boolean)  : RecyclerView.Adapter<NormalVoteAdapter.ViewHolder>() {
 
 
     private var items: ViewPolls? = null
-    private var normalCheckBox = -1
 
     interface ItemClickListener {
         fun onNormalVoteClickListener(item: ItemComponent, position: Int, isSingleVote: Boolean, myBallots: ArrayList<Int>?)
@@ -44,8 +43,8 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener)  : RecyclerView.
         fun setItem(item: ItemComponent, viewPollsItem: ViewPollsItem, position: Int){
             binding.normalQuestionTxt.text =  item.contents
 
-            // 투표 한 것이라면
-            if (viewPollsItem.myBallots != null){
+            // 투표를 했고 재투표를 안한다면
+            if (viewPollsItem.myBallots != null && !voteState){
 
                 // 1등 투표 확인
                 if(items!!.viewPollsItem.stats!![position].isBest)binding.normalQuestionTxt.setTextColor(Color.parseColor("#f5dc00"))

@@ -7,7 +7,8 @@ data class QuickPolls(@SerializedName("data") val quickPollsItem: ArrayList<Quic
 
 data class QuickPollsItem(
     @SerializedName("id") val id: Int,
-    @SerializedName("user") val user: UserItem,
+    @SerializedName("nick") val nick: String,
+    @SerializedName("tier") val tier: Int,
     @SerializedName("contents") val contents: String,
     @SerializedName("hashTags") val hashTags: ArrayList<HashTagsItem>,
     @SerializedName("endTime") val endTime: String,
@@ -19,12 +20,14 @@ data class QuickPollsItem(
     @SerializedName("isSingleVote") val isSingleVote: Boolean,
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("items") val items: ArrayList<ItemsComponent>,
+    @SerializedName("myBallots") val myBallots: ArrayList<Int>?,
+    @SerializedName("stats") val stats: ArrayList<StatsItem>?,
 )
 
 data class ItemsComponent(
     @SerializedName("id") val id: Int,
     @SerializedName("poll") val poll: PollComponent,
-    @SerializedName("itemNum") val itemNum: Int,
+    @SerializedName("item_num") val itemNum: Int,
     @SerializedName("contents") val contents: String,
     @SerializedName("hasImage") val hasImage: Boolean,
 
