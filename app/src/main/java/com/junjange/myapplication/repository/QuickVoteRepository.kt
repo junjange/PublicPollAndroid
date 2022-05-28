@@ -37,4 +37,10 @@ class QuickVoteRepository(application : Application) {
 
     }
 
+    // reVote
+    suspend fun retrofitPostReVote(postBallotItem: PostBallotItem): Response<Ballot> {
+        return PollsObject.getRetrofitService.reVote(postBallotItem)
+
+    }
+
 }

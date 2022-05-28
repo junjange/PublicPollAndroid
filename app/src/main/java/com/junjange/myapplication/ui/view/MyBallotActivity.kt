@@ -10,11 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.MyBallotAdapter
-import com.junjange.myapplication.adapter.PollsAdapter
 import com.junjange.myapplication.databinding.ActivityMyBallotBinding
-import com.junjange.myapplication.databinding.ActivityPollsBinding
 import com.junjange.myapplication.ui.viewmodel.MyBallotViewModel
-import com.junjange.myapplication.ui.viewmodel.PollsViewModel
 
 class MyBallotActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,7 +71,7 @@ class MyBallotActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@MyBallotActivity, MainActivity::class.java))
+                startActivity( Intent(this@MyBallotActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer-> {

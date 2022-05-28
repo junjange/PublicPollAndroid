@@ -83,7 +83,7 @@ class HashtagActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSel
         binding.mainDrawerLayout.closeDrawers()
         when (item.itemId) {
             R.id.mainPageDrawer -> {
-                startActivity(Intent(this@HashtagActivity, MainActivity::class.java))
+                startActivity(Intent(this@HashtagActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer -> {

@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.MyPollsAdapter
-import com.junjange.myapplication.adapter.PollsAdapter
 import com.junjange.myapplication.databinding.ActivityMyPollsBinding
 import com.junjange.myapplication.ui.viewmodel.MyPollsViewModel
 
@@ -72,7 +71,7 @@ class MyPollsActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSel
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@MyPollsActivity, MainActivity::class.java))
+                startActivity( Intent(this@MyPollsActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer-> {

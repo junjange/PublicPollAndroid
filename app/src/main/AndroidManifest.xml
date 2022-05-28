@@ -15,6 +15,12 @@
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.view.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+
+            />
+        <activity
             android:name=".ui.view.MyBallotActivity"
             android:exported="true" />
         <activity
@@ -39,8 +45,7 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".ui.view.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

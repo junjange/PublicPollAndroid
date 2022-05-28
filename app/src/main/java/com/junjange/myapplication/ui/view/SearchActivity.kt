@@ -1,9 +1,7 @@
 package com.junjange.myapplication.ui.view
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +22,6 @@ import com.junjange.myapplication.ui.viewmodel.SearchViewModel
 import com.junjange.myapplication.utils.textChangesToFlow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlin.coroutines.CoroutineContext
@@ -189,7 +186,7 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@SearchActivity, MainActivity::class.java))
+                startActivity( Intent(this@SearchActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer-> {

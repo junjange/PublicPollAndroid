@@ -10,7 +10,7 @@ import com.junjange.myapplication.data.*
 import com.junjange.myapplication.repository.QuickVoteRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: QuickVoteRepository) : ViewModel(){
+class HomeViewModel(private val repository: QuickVoteRepository) : ViewModel(){
     private val _retrofitQuickPolls = MutableLiveData<QuickPolls>()
 
     // LiveData
@@ -34,10 +34,17 @@ class MainViewModel(private val repository: QuickVoteRepository) : ViewModel(){
         Log.d("ttt", response.body().toString())
     }
 
+    // 재투표 하기
+    fun postReVoteRetrofit(pollId : Int, itemNum : ArrayList<Int>) = viewModelScope.launch {
+
+        val response = repository.retrofitPostReVote(PostBallotItem(pollId, itemNum))
+        if(response.isSuccessful) _retrofitQuickPolls.value = repository.retrofitQuickPolls()
+    }
+
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel(QuickVoteRepository.getInstance(application)!!) as T
+            return HomeViewModel(QuickVoteRepository.getInstance(application)!!) as T
         }
     }
 

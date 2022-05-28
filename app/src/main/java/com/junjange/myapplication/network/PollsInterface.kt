@@ -78,6 +78,7 @@ interface PollsInterface {
     suspend fun pollDelete(): Response<JsonObject>
 
 
+
     // My Polls
     @GET(API.MY_POLLS)
     suspend fun getMyPolls(): Response<MyPolls>
