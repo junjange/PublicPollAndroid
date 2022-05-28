@@ -1,0 +1,142 @@
+{
+  "project_info": {
+    "project_number": "370829546500",
+    "project_id": "public-poll-6702a",
+    "storage_bucket": "public-poll-6702a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370829546500:android:0dc33bd8b2aa2422cb5151",
+        "android_client_info": {
+          "package_name": "com.example.login_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370829546500-5je2l3n29h6u87mgcc00c1ldo0nauti6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_ui",
+            "certificate_hash": "be08731fd08077064e72910e716ef9a80fbbabc5"
+          }
+        },
+        {
+          "client_id": "370829546500-cs7gjhfsp98jf2fqkj677bjcklch3fn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_ui",
+            "certificate_hash": "f6cde3ce91f5056b0f246db5bca42d28224075f3"
+          }
+        },
+        {
+          "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOxEUhKB-bxrKfrYCGmsbxiByga1HGmac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "370829546500-0lnen3n3fjtes8pjuof5go2mr1kb3c9v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "test.PublicPoll"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370829546500:android:732d7c42a5e1a47ecb5151",
+        "android_client_info": {
+          "package_name": "com.example.publicpollproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370829546500-4pboh72tdgjnibl5vpk5ksut325hfk9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.publicpollproject",
+            "certificate_hash": "1a7bf65cc40b54cc93740d691c85ee9ae154d501"
+          }
+        },
+        {
+          "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOxEUhKB-bxrKfrYCGmsbxiByga1HGmac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "370829546500-0lnen3n3fjtes8pjuof5go2mr1kb3c9v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "test.PublicPoll"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370829546500:android:b0cabbb64387e30ecb5151",
+        "android_client_info": {
+          "package_name": "com.junjange.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOxEUhKB-bxrKfrYCGmsbxiByga1HGmac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "370829546500-0lnen3n3fjtes8pjuof5go2mr1kb3c9v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "test.PublicPoll"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

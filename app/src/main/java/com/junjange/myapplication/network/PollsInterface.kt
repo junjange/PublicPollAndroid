@@ -6,7 +6,6 @@ import com.junjange.myapplication.utils.API
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-import kotlin.collections.ArrayList
 import retrofit2.http.Body
 
 import retrofit2.http.POST
@@ -15,6 +14,22 @@ import retrofit2.http.POST
 
 
 interface PollsInterface {
+    @POST(API.POST_SIGN_UP)  //연산 지정(post,get 등등)
+    fun postSignUp( //body로 들어갈 필드 지정
+        @Header("Authorization") idToken: String,
+        @Body signUpData: SignUp
+    ): Call<SignUpReponse>
+
+    @GET(API.GET_POST_MYPAGE)
+    fun getMyPageGet (
+        @Header("Authorization") idToken: String
+    ): Call<MyPage>
+
+    @POST(API.GET_POST_MYPAGE)
+    fun postMyPageEdit (
+        @Header("Authorization") idToken: String,
+        @Body myPageEditData: MyPageEdit
+    ): Call<SignUpReponse>
 
     // 전체 투표 조회
     @GET(API.GET_ALL_POLLS)
@@ -76,8 +91,6 @@ interface PollsInterface {
     // 투표 삭제하기
     @DELETE(API.DELETE_POLLS)
     suspend fun pollDelete(): Response<JsonObject>
-
-
 
     // My Polls
     @GET(API.MY_POLLS)

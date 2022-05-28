@@ -15,11 +15,30 @@
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.view.ContactUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.AppInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.EditInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.LocalSignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.SignUpSecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.LocalSignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.HomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-
-            />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".ui.view.MyBallotActivity"
             android:exported="true" />
@@ -45,7 +64,8 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".ui.view.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
