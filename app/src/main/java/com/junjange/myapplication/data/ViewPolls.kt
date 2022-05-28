@@ -19,8 +19,8 @@ data class ViewPollsItem(
     @SerializedName("isSingleVote") val isSingleVote: Boolean,
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("items") val items: ArrayList<ItemComponent>,
-    @SerializedName("myBallots") val myBallots: ArrayList<Int>,
-    @SerializedName("stats") val stats: ArrayList<StatsItem>,
+    @SerializedName("myBallots") val myBallots: ArrayList<Int>?,
+    @SerializedName("stats") val stats: ArrayList<StatsItem>?,
 
     )
 

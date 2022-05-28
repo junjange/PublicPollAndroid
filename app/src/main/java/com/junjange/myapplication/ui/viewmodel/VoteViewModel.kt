@@ -6,19 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.junjange.myapplication.data.Comment
-import com.junjange.myapplication.data.PostCommentItem
-import com.junjange.myapplication.data.ViewPolls
+import com.junjange.myapplication.data.*
 import com.junjange.myapplication.repository.VoteRepository
 import kotlinx.coroutines.launch
 
 class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     private val _retrofitViewPolls = MutableLiveData<ViewPolls>()
     private val _retrofitCommentList = MutableLiveData<Comment>()
+    private val _retrofitBallotPolls = MutableLiveData<Ballot>()
+
 
     // LiveData
     val retrofitViewPolls: MutableLiveData<ViewPolls>
         get() = _retrofitViewPolls
+
+    // LiveData
+    val retrofitBallotPolls: MutableLiveData<Ballot>
+        get() = _retrofitBallotPolls
 
 
     val retrofitCommentList: MutableLiveData<Comment>
@@ -29,6 +33,14 @@ class VoteViewModel(private val repository: VoteRepository) : ViewModel(){
     // 투표 보기
     fun getViewPollsRetrofit(pollId : Int) = viewModelScope.launch {
         _retrofitViewPolls.value = repository.retrofitViewPolls(pollId)
+    }
+
+    // 투표 하기
+    fun postBallotRetrofit(pollId : Int, itemNum : ArrayList<Int>) = viewModelScope.launch {
+
+        val response = repository.retrofitPostBallot(PostBallotItem(pollId, itemNum))
+        if (response.isSuccessful) _retrofitBallotPolls.value = response.body()
+        Log.d("ttt2222", response.body().toString())
     }
 
     // 댓글 보기

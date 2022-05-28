@@ -3,9 +3,7 @@ package com.junjange.myapplication.repository
 import android.app.Application
 import android.util.Log
 import com.google.gson.JsonObject
-import com.junjange.myapplication.data.Comment
-import com.junjange.myapplication.data.PostCommentItem
-import com.junjange.myapplication.data.ViewPolls
+import com.junjange.myapplication.data.*
 import com.junjange.myapplication.network.PollsObject
 import retrofit2.Response
 import java.util.ArrayList
@@ -31,9 +29,19 @@ class VoteRepository(application : Application) {
 
     }
 
+    // post
+    suspend fun retrofitPostBallot(postBallotItem: PostBallotItem): Response<Ballot> {
+
+        var a = PollsObject.getRetrofitService.ballot(postBallotItem)
+        Log.d("ttt111", a.toString())
+        return a
+
+    }
+
 
     suspend fun retrofitComments(pollId : Int): Comment {
         val response = PollsObject.getRetrofitService.getComments(pollId)
+        Log.d("ttt", "tttt")
 
         return if (response.isSuccessful) response.body() as Comment else Comment(ArrayList())
 
