@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="1149dp"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="64dp"
+            android:fontFamily="sans-serif"
+            android:text="New Poll"
+            android:textColor="#bbb1e5"
+            android:textSize="28sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="71dp"
+            android:fontFamily="sans-serif"
+            android:text="Contents"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="315dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner"
+            android:textCursorDrawable="@color/black" />
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="left"
+            android:text="Options"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/new_poll_round_corner"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:layout_width="271dp"
+                        android:layout_height="46dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round_corner"
+                        android:textCursorDrawable="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/image1"
+                        android:layout_width="30dip"
+                        android:layout_height="30dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dip"
+                        android:background="@drawable/icon_add_img" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="7dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="sans-serif"
+                    android:text="2"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="271dp"
+                        android:layout_height="46dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round_corner"
+                        android:textCursorDrawable="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/image2"
+                        android:layout_width="30dip"
+                        android:layout_height="30dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dip"
+                        android:background="@drawable/icon_add_img" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/new_poll_item_add_round">
+
+            </View>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="left"
+            android:text="Tags"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="315dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner"
+            android:textCursorDrawable="@color/black" />
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="left"
+            android:text="Deadline"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="68dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="58dp"
+                android:background="@drawable/round_corner"
+                android:textCursorDrawable="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="sans-serif"
+                android:text="/"
+                android:textColor="#a1a1a1"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:layout_width="44dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/round_corner"
+                android:textCursorDrawable="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="sans-serif"
+                android:text="/"
+                android:textColor="#a1a1a1"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:layout_width="44dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/round_corner"
+                android:textCursorDrawable="@color/black" />
+
+            <EditText
+                android:layout_width="44dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="34dp"
+                android:background="@drawable/round_corner"
+                android:textCursorDrawable="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="sans-serif"
+                android:text=":"
+                android:textColor="#a1a1a1"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:layout_width="44dp"
+                android:layout_height="29dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/round_corner"
+                android:textCursorDrawable="@color/black" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="left"
+            android:text="Properties"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="public"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="private"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </RadioGroup>
+        <View
+            android:layout_width="322dp"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginLeft="57dp">
+        </View>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="7.5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="public"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="private"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </RadioGroup>
+        <View
+            android:layout_width="322dp"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginLeft="57dp">
+        </View>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="7.5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton5"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="public"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <RadioButton
+                android:id="@+id/radioButton6"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="private"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </RadioGroup>
+        <View
+            android:layout_width="322dp"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginLeft="57dp">
+        </View>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="7.5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton7"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="public"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <RadioButton
+                android:id="@+id/radioButton8"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="private"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </RadioGroup>
+        <View
+            android:layout_width="322dp"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginLeft="57dp">
+        </View>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="7.5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton9"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="public"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <RadioButton
+                android:id="@+id/radioButton10"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:text="private"
+                android:textColor="#a1a1a1"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/done_bt"
+            android:layout_width="258dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="47.5dp"
+            android:layout_marginBottom="66dp"
+            android:background="@drawable/new_poll_done_round"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="26sp"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:text="Done" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
