@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+  <TextView
+      android:layout_width="132dp"
+      android:layout_height="37dp"
+      android:layout_marginLeft="148dp"
+      android:layout_marginTop="64dp"
+      android:layout_marginRight="148dp"
+      android:fontFamily="sans-serif"
+      android:gravity="center_horizontal"
+      android:textColor="#bbb1e5"
+      android:textSize="28sp"
+      android:textStyle="normal"
+      android:text="Sign Up" />
+
+  <TextView
+      android:layout_width="132dp"
+      android:layout_height="21dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="71dp"
+      android:fontFamily="sans-serif"
+      android:textColor="#a1a1a1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      android:text="E-mail" />
+
+  <EditText
+      android:id="@+id/emailStr"
+      android:layout_width="315dp"
+      android:layout_height="46dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/round_corner" />
+
+  <TextView
+      android:layout_width="132dp"
+      android:layout_height="21dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="32dp"
+      android:fontFamily="sans-serif"
+      android:textColor="#a1a1a1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      android:text="Pass Word" />
+
+  <EditText
+      android:id="@+id/passwordStr"
+      android:layout_width="315dp"
+      android:layout_height="46dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/round_corner" />
+
+  <TextView
+      android:layout_width="132dp"
+      android:layout_height="21dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="32dp"
+      android:fontFamily="sans-serif"
+      android:textColor="#a1a1a1"
+      android:textSize="16sp"
+      android:textStyle="normal"
+      android:text="Check Pass Word" />
+
+  <EditText
+      android:id="@+id/checkPasswordStr"
+      android:layout_width="315dp"
+      android:layout_height="46dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/round_corner" />
+
+  <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/next_bt"
+      android:layout_width="258dp"
+      android:layout_height="64dp"
+      android:layout_gravity="center"
+      android:layout_marginTop="180dp"
+      android:background="@drawable/sign_up_btn"
+      android:fontFamily="sans-serif"
+      android:gravity="center"
+      android:text="Next"
+      android:textAllCaps="false"
+      android:textColor="#ffffff"
+      android:textSize="26sp"
+      android:textStyle="normal" />
+</LinearLayout>

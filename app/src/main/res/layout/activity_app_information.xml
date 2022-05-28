@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="132dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:text="My Page"
+        android:textColor="#bbb1e5"
+        android:textSize="28sp"
+        android:textStyle="normal" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="293dp"
+        android:layout_height="293dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/information_img" />
+
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="29dp"
+        android:fontFamily="sans-serif"
+        android:text="helldodo amtya namemt ankhsd fndnflka j A A djflksdkjdkj realy nhappby to dodo dj thailsldjlks thnaak pringkafgk pring arraylistr hashtag is the goooooggggggg"
+        android:textColor="#a1a1a1"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+</LinearLayout>

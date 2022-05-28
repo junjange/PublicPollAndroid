@@ -89,6 +89,25 @@
         <entry key="..\:/Users/cho/UIPractice/app/src/main/res/layout/main_layout.xml" value="0.2046875" />
         <entry key="..\:/Users/cho/UIPractice/app/src/main/res/layout/main_toolbar.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/cho/UIPractice/app/src/main/res/menu/main_drawer_navigation.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/background_color_chip.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/edit_disabled_round.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/round_corner.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/round_join_button.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/sign_up_btn.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/splash.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/text_color_chip.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable/layout_rank1.xml" value="0.1085" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable/sign_up_btn.xml" value="0.1085" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_app_information.xml" value="0.14513677811550152" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_contact_us.xml" value="0.14513677811550152" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_edit_information.xml" value="0.1522289766970618" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_hashtag.xml" value="0.1522289766970618" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_home.xml" value="0.1522289766970618" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_local_sign_in.xml" value="0.1522289766970618" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_local_sign_up.xml" value="0.2674772036474164" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_main.xml" value="0.17907801418439717" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_my_page.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_sign_up_second.xml" value="0.1522289766970618" />
       </map>
     </option>
   </component>

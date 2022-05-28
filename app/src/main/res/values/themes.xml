@@ -15,11 +15,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
     <style name="Theme.UIPractice.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.UIPractice.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.UIPractice.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
+    <style name="CustomChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@drawable/background_color_chip</item>
+        <item name="android:textColor">@drawable/text_color_chip</item>
+    </style>
 </resources>

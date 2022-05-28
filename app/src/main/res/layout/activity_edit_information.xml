@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="1149dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="216dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="Edit Information"
+            android:textColor="#bbb1e5"
+            android:textSize="28sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="71dp"
+            android:fontFamily="sans-serif"
+            android:text="E-mail"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+        <EditText
+            android:id="@+id/emailEdit"
+            android:layout_width="315dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="8dp"
+            android:editable="false"
+            android:background="@drawable/edit_disabled_round" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:text="Pass Word"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="315dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:text="Check Pass Word"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+        <EditText
+            android:layout_width="315dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:text="Nickname"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+        <EditText
+            android:id="@+id/nicknameEdit"
+            android:layout_width="315dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corner" />
+        <TextView
+            android:layout_width="132dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="60dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#a1a1a1"
+            android:text="Gender"/>
+
+        <RadioGroup
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="12dp">
+
+            <RadioButton
+                android:id="@+id/radioMan"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#bbb1e5"
+                android:layout_marginRight="15dp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="#a1a1a1"
+                android:text="Man"  />
+
+            <RadioButton
+                android:id="@+id/radioWoman"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="#bbb1e5"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="#a1a1a1"
+                android:text="Woman" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:text="Age"
+            android:textColor="#a1a1a1"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/ageFirstLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/age10s"
+                    android:layout_width="89dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="~10s"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/age20s"
+                    android:layout_width="89dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="20s"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/age30s"
+                    android:layout_width="89dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="30s"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/ageSecondLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/age40s"
+                    android:layout_width="89dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="40s"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/age50s"
+                    android:layout_width="89dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:buttonTint="#bbb1e5"
+                    android:fontFamily="sans-serif"
+                    android:text="50s~"
+                    android:textColor="#a1a1a1"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:fontFamily="sans-serif"
+                android:text="Interest Tags"
+                android:textColor="#a1a1a1"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif"
+                android:text="choose 3 tags"
+                android:textColor="#c1c1c1"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="250dp"
+            android:layout_height="142dp"
+            android:layout_marginLeft="60dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#bread"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip6"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#sports"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip7"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#TV"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip8"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#TV"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip9"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#basketball"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip10"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#bread"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip11"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#developing"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip12"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#developing"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip13"
+                style="@style/CustomChip"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="#TV"
+                android:textSize="12sp"
+                app:chipStrokeColor="#bbb1e5"
+                app:chipStrokeWidth="1dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/done_bt"
+            android:layout_width="258dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="82dp"
+            android:layout_marginBottom="75dp"
+            android:background="@drawable/round_join_button"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+</ScrollView>
