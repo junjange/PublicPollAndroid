@@ -4,19 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.HotPollsAdapter
-import com.junjange.myapplication.adapter.PollsAdapter
 import com.junjange.myapplication.databinding.ActivityHotPollsBinding
-import com.junjange.myapplication.databinding.ActivityPollsBinding
-import com.junjange.myapplication.repository.HotPollsRepository
 import com.junjange.myapplication.ui.viewmodel.HotPollsViewModel
-import com.junjange.myapplication.ui.viewmodel.PollsViewModel
 
 class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -75,7 +70,7 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@HotPollsActivity, MainActivity::class.java))
+                startActivity( Intent(this@HotPollsActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer-> {

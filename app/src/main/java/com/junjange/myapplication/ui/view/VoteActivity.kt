@@ -400,7 +400,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@VoteActivity, MainActivity::class.java))
+                startActivity( Intent(this@VoteActivity, HomeActivity::class.java))
 
             }
             R.id.allPollsDrawer-> {

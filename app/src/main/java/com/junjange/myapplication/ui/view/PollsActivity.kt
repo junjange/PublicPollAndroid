@@ -5,16 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.PollsAdapter
-import com.junjange.myapplication.adapter.QuickVoteAdapter
-import com.junjange.myapplication.databinding.ActivityMainBinding
 import com.junjange.myapplication.databinding.ActivityPollsBinding
-import com.junjange.myapplication.ui.viewmodel.MainViewModel
 import com.junjange.myapplication.ui.viewmodel.PollsViewModel
 
 class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -75,7 +71,7 @@ class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         binding.mainDrawerLayout.closeDrawers()
         when(item.itemId){
             R.id.mainPageDrawer-> {
-                startActivity( Intent(this@PollsActivity, MainActivity::class.java))
+                startActivity( Intent(this@PollsActivity, HomeActivity::class.java))
 
             }
 //            R.id.allPollsDrawer-> {
