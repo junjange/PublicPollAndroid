@@ -30,6 +30,11 @@ interface PollsInterface {
         @Body myPageEditData: MyPageEdit
     ): Call<SignUpReponse>
 
+    @POST(API.POST_POLL_ADD)
+    fun postAddPoll (
+        @Body NewPollData : NewPoll
+    ): Call<JsonObject>
+
     // 전체 투표 조회
     @GET(API.GET_ALL_POLLS)
     suspend fun getAllPolls(): Response<Polls>

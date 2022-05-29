@@ -63,8 +63,8 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/new_poll_round_corner"
             android:orientation="vertical">
-
             <LinearLayout
+                android:id="@+id/item1"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
@@ -85,6 +85,7 @@
                     >
 
                     <EditText
+                        android:id="@+id/item1Text"
                         android:layout_width="271dp"
                         android:layout_height="46dp"
                         android:layout_marginLeft="12dp"
@@ -107,6 +108,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/item2"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
@@ -125,6 +127,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
+                        android:id="@+id/item2Text"
                         android:layout_width="271dp"
                         android:layout_height="46dp"
                         android:layout_marginLeft="12dp"
@@ -141,19 +144,29 @@
                         android:layout_marginRight="20dip"
                         android:background="@drawable/icon_add_img" />
                 </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pollBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
             </LinearLayout>
 
-            <View
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/addItemBt"
                 android:layout_width="300dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:src="@drawable/plus"
                 android:background="@drawable/new_poll_item_add_round">
 
-            </View>
+            </androidx.appcompat.widget.AppCompatImageButton>
 
         </LinearLayout>
 
@@ -170,13 +183,26 @@
             android:textStyle="normal" />
 
         <EditText
+            android:id="@+id/hashtagEdit"
             android:layout_width="315dp"
-            android:layout_height="86dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_corner"
             android:textCursorDrawable="@color/black" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/HashTagBoard"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            app:flexWrap="wrap"
+            app:alignContent="stretch">
+
+        </com.google.android.flexbox.FlexboxLayout>
 
         <TextView
             android:layout_width="132dp"
@@ -300,7 +326,7 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="20dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
                 android:text="private"
@@ -331,7 +357,7 @@
                 android:layout_marginRight="15dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="public"
+                android:text="show nickname"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -340,10 +366,10 @@
                 android:id="@+id/radioButton4"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="20dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="private"
+                android:text="hide nickname"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -371,7 +397,7 @@
                 android:layout_marginRight="15dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="public"
+                android:text="revote available"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -380,10 +406,10 @@
                 android:id="@+id/radioButton6"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="20dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="private"
+                android:text="revote unavailable"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -411,7 +437,7 @@
                 android:layout_marginRight="15dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="public"
+                android:text="comment available"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -420,10 +446,10 @@
                 android:id="@+id/radioButton8"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="20dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="private"
+                android:text="comment unavailable"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -451,7 +477,7 @@
                 android:layout_marginRight="15dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="public"
+                android:text="single vote"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
@@ -460,10 +486,10 @@
                 android:id="@+id/radioButton10"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="20dp"
                 android:buttonTint="#bbb1e5"
                 android:fontFamily="sans-serif"
-                android:text="private"
+                android:text="multiple vote"
                 android:textColor="#a1a1a1"
                 android:textSize="12sp"
                 android:textStyle="normal" />
