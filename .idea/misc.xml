@@ -8,19 +8,11 @@
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_button_background.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_rank1.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_rank2.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_tier1.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_tier2.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_tier3.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_tier4.xml" value="0.203125" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/drawable/layout_tier5.xml" value="0.203125" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_hashtag.xml" value="0.2015625" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_home.xml" value="0.3179347826086957" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_hot_polls.xml" value="0.3061594202898551" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_item.xml" value="0.19375" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_main.xml" value="0.3061594202898551" />
-        <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_my_page.xml" value="0.18697916666666667" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_polls.xml" value="0.31023550724637683" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_search.xml" value="0.13087248322147652" />
         <entry key="..\:/Users/cho/Desktop/JunJangE/github/UI-Practice/app/src/main/res/layout/activity_statistics.xml" value="0.3061594202898551" />
@@ -108,6 +100,7 @@
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/sign_up_btn.xml" value="0.1" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/splash.xml" value="0.1" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable-v24/text_color_chip.xml" value="0.1" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable/hashtag.xml" value="0.1" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable/layout_rank1.xml" value="0.1085" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/drawable/sign_up_btn.xml" value="0.1085" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_app_information.xml" value="0.14513677811550152" />
@@ -119,9 +112,14 @@
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_local_sign_up.xml" value="0.2674772036474164" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_main.xml" value="0.17907801418439717" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_my_page.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_new_poll.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_new_poll.xml" value="0.22" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_poll_item.xml" value="0.19072948328267478" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_polls.xml" value="0.16995947315096252" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_sign_up_second.xml" value="0.1522289766970618" />
         <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/activity_statistics.xml" value="0.14944275582573455" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/hashtag_item.xml" value="0.29635416666666664" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/poll_item.xml" value="0.2193515704154002" />
+        <entry key="..\:/Users/jiiiiiyoon/Documents/UI-Practice/app/src/main/res/layout/sub.xml" value="0.189209726443769" />
       </map>
     </option>
   </component>

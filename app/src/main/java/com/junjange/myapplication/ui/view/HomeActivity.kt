@@ -62,8 +62,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // 투표 생성 페이지로 이동
         binding.newPollBtn.setOnClickListener {
-            Toast.makeText(this, "투표 생성 페이지로 이동", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this@MainActivity, ::class.java))
+            startActivity(Intent(this@HomeActivity, NewPollActivity::class.java))
 
         }
 
@@ -167,8 +166,4 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
-
-
-
 }

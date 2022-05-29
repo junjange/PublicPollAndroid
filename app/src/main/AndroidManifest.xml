@@ -15,6 +15,9 @@
         android:theme="@style/Theme.UIPractice"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PollItem"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.StatisticsActivity"
             android:exported="false" />
         <activity
