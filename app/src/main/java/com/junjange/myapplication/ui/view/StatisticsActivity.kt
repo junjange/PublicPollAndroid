@@ -3,6 +3,8 @@ package com.junjange.myapplication.ui.view
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -10,16 +12,31 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
 import com.junjange.myapplication.databinding.ActivityStatisticsBinding
+import com.junjange.myapplication.databinding.ActivityVoteBinding
+import com.junjange.myapplication.ui.viewmodel.StatisticsViewModel
+import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
 class StatisticsActivity : AppCompatActivity() {
-    lateinit var binding: ActivityStatisticsBinding
+    private val binding by lazy { ActivityStatisticsBinding.inflate(layoutInflater) }
+    private val viewModel by lazy { ViewModelProvider(this, StatisticsViewModel.Factory(application))[StatisticsViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStatisticsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 데이터 바인딩
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         binding.piechart.setUsePercentValues(true)
+
+        // 여기서 api 호출!
+        viewModel.getStatRetrofit(84, 4, 0, 0)
+
+        // api를 호출하면서 바뀐 값들은 여기서 확인
+        // 계속해서 관찰함!
+        statSetObserver()
+
 
         val entries = ArrayList<PieEntry>()
         entries.add(PieEntry(508f,"Apple"))
@@ -54,5 +71,13 @@ class StatisticsActivity : AppCompatActivity() {
             animateY(1400, Easing.EaseInOutQuad)
             animate()
         }
+    }
+
+    private fun statSetObserver() {
+        viewModel.retrofitStat.observe(this, {
+            viewModel.retrofitStat.value?.let {
+                Log.d("ttt", it.toString())
+            }
+        })
     }
 }

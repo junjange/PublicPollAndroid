@@ -20,5 +20,5 @@ object API{
     const val DELETE_POLLS : String =  "/poll/{pollId}"
     const val MY_POLLS : String = "/poll/my"
     const val MY_BALLOT : String = "/ballot/my"
-    const val POST_STAT : String = "/stat"
+    const val POST_STAT : String = "/stat/"
 }
