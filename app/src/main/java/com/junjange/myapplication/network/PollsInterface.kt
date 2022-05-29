@@ -16,18 +16,17 @@ import retrofit2.http.POST
 interface PollsInterface {
     @POST(API.POST_SIGN_UP)  //연산 지정(post,get 등등)
     fun postSignUp( //body로 들어갈 필드 지정
-        @Header("Authorization") idToken: String,
         @Body signUpData: SignUp
     ): Call<SignUpReponse>
 
     @GET(API.GET_POST_MYPAGE)
-    fun getMyPageGet (
-        @Header("Authorization") idToken: String
-    ): Call<MyPage>
+    fun getMyPageGet (): Call<MyPage>
+
+    @POST(API.POST_SIGN_IN)
+    fun postSignIn (): Call<MyPage>
 
     @POST(API.GET_POST_MYPAGE)
     fun postMyPageEdit (
-        @Header("Authorization") idToken: String,
         @Body myPageEditData: MyPageEdit
     ): Call<SignUpReponse>
 

@@ -19,7 +19,6 @@ class SignUpSecondActivity : AppCompatActivity() {
     private var gender = ""
     private var age = 0
     private var tier = 1
-    private var idToken: String? = null
     private var user_interest = arrayOf<String>("","","")
     private var tagCount = 0
 
@@ -28,7 +27,6 @@ class SignUpSecondActivity : AppCompatActivity() {
         binding = ActivitySignUpSecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        idToken = intent.getStringExtra("Token").toString()
         email = intent.getStringExtra("email").toString()
 
         binding.nicknameEdit.addTextChangedListener(object : TextWatcher {
@@ -107,10 +105,9 @@ class SignUpSecondActivity : AppCompatActivity() {
         }
 
         binding.joinBt.setOnClickListener {
-            viewModel.signUp(idToken!!, email, nickname, age, gender, user_interest, this)
+            viewModel.signUp(email, nickname, age, gender, user_interest, this)
 
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("Token", idToken)
+            val intent = Intent(this, LocalSignInActivity::class.java)
             startActivity(intent)
         }
 

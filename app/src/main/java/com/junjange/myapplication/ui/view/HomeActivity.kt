@@ -20,7 +20,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, HomeViewModel.Factory(application))[HomeViewModel::class.java] }
     private lateinit var retrofitAdapter: QuickVoteAdapter
-    private var idToken: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +41,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setView()
         setObserver()
-
-        //이 토큰을 액티비티 이동할 때 인텐트에 넣어서 쓰면 됩니당~
-        idToken = intent.getStringExtra("Token").toString()
 
         // 투표 검색 페이지로 이동
         binding.searchBtn.setOnClickListener {
@@ -134,9 +130,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myPageDrawer-> {
                 // My Page 이동
-                val intent = Intent(this@HomeActivity, MyPageActivity::class.java)
-                intent.putExtra("Token", idToken)
-                startActivity(intent)
+                startActivity(Intent(this@HomeActivity, MyPageActivity::class.java))
 
             }
 
