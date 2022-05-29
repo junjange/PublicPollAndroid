@@ -106,6 +106,13 @@ interface PollsInterface {
     @GET(API.MY_BALLOT)
     suspend fun getMyBallot(): Response<MyBallot>
 
+    // stat
+    @POST(API.POST_STAT)
+    suspend fun getStat(
+        @Body statReqItem: StatReqItem
+
+    ): Response<Stat>
+
 
 
 }
