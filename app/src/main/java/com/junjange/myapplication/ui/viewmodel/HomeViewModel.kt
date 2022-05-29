@@ -31,7 +31,6 @@ class HomeViewModel(private val repository: QuickVoteRepository) : ViewModel(){
 
         val response = repository.retrofitPostBallot(PostBallotItem(pollId, itemNum))
         if(response.isSuccessful) _retrofitQuickPolls.value = repository.retrofitQuickPolls()
-        Log.d("ttt", response.body().toString())
     }
 
     // 재투표 하기

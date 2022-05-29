@@ -71,7 +71,7 @@ class PhotoVoteAdapter(val onClickListener: ItemClickListener, var voteState : B
 
                 binding.photoQuestionTxt.setTextColor(Color.parseColor("#929292"))
                 binding.photoQuestionTurnout.visibility = View.VISIBLE
-                binding.photoQuestionTurnout.text = "${round(viewPollsItem.stats!![position].percent*100) /100}%"
+                binding.photoQuestionTurnout.text = "${round(viewPollsItem.stats!![position].percent*100).toInt()}%"
 
                 // 나의 투표 확인
                 if (items!!.viewPollsItem.myBallots!!.find { it == item.itemNum } != null){

@@ -22,8 +22,6 @@ class MyBallotRepository (application : Application) {
     suspend fun retrofitMyBallot(): MyBallot {
         val response = PollsObject.getRetrofitService.getMyBallot()
 
-        Log.d("ttt", response.body().toString())
-
         return if (response.isSuccessful) response.body() as MyBallot else MyBallot(ArrayList())
 
     }

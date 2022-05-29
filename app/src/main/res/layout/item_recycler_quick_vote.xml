@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="21dp"
-                android:layout_marginStart="21dp"
+                android:layout_marginStart="36dp"
                 android:orientation="horizontal" >
 
                 <FrameLayout
@@ -63,21 +63,23 @@
                 </FrameLayout>
 
                 <!-- 티어 이미지 -->
-                <TextView
+                <ImageView
+                    android:id="@+id/tier"
                     android:text="티어"
-                    android:textSize="12sp"
-                    android:textColor="#9f9f9f"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:src="@drawable/layout_tier1"
+                    android:layout_gravity="center"
+                    android:layout_width="12sp"
+                    android:layout_height="12sp"
 
                     />
 
                 <TextView
                     android:id="@+id/nick"
                     android:text="Jeniffer"
+                    android:layout_gravity="center"
                     android:textSize="12sp"
                     android:textColor="#9f9f9f"
+                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

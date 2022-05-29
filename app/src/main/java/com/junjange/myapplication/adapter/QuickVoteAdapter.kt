@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.junjange.myapplication.R
 import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
@@ -23,7 +24,7 @@ import kotlin.math.round
 class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Adapter<QuickVoteAdapter.ViewHolder>() {
 
     private var items: QuickPolls = QuickPolls(ArrayList())
-    var voteState = false
+    var expired = false
 
     interface ItemClickListener {
         fun onQuickVoteClickListener(
@@ -43,12 +44,7 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.setItem(items.quickPollsItem[position])
-//        holder.checkItem(items.quickPollsItem[position])
         holder.bind(items.quickPollsItem[position], position)
-        Log.d("ttt", position.toString())
-
-
-
 
     }
 
@@ -59,34 +55,33 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
         @SuppressLint("SetTextI18n")
         fun bind(item: QuickPollsItem, position: Int) {
 
+
             if (item.myBallots == null){
-                voteState = false
-                // 빠른 투표 1번 항목 클릭시
-                binding.quickQuestion1Bg.setOnClickListener {
-                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), voteState)
+                if (!expired){
+                    // 빠른 투표 1번 항목 클릭시
+                    binding.quickQuestion1Bg.setOnClickListener {
+                        onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), false)
+                    }
+
+                    // 빠른 투표 2번 항목 클릭시
+                    binding.quickQuestion2Bg.setOnClickListener {
+                        onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), false)
+
+                    }
+
                 }
 
-                // 빠른 투표 2번 항목 클릭시
-                binding.quickQuestion2Bg.setOnClickListener {
-                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), voteState)
-
-                }
             }else{
+                if (!expired){
+                    binding.quickQuestion1Bg.setOnClickListener {
+                        onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), true)
+                    }
 
-                voteState = true
+                    // 빠른 투표 2번 항목 클릭시
+                    binding.quickQuestion2Bg.setOnClickListener {
+                        onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), true)
 
-                binding.quickQuestion1Bg.setOnClickListener {
-                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), voteState)
-                    Log.d("aaaa", item.id.toString())
-                    Log.d("bbbb", item.myBallots.toString())
-                }
-
-                // 빠른 투표 2번 항목 클릭시
-                binding.quickQuestion2Bg.setOnClickListener {
-                    onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), voteState)
-                    Log.d("aaaa", item.id.toString())
-                    Log.d("bbbb", item.myBallots.toString())
-
+                    }
                 }
 
 
@@ -122,8 +117,8 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
                 }
 
-                binding.quickQuestion1Turnout.text = "${round(items.quickPollsItem[position].stats!![0].percent*100)/100}%"
-                binding.quickQuestion2Turnout.text = "${round(items.quickPollsItem[position].stats!![1].percent*100)/100}%"
+                binding.quickQuestion1Turnout.text = "${round(items.quickPollsItem[position].stats!![0].percent*100).toInt()}%"
+                binding.quickQuestion2Turnout.text = "${round(items.quickPollsItem[position].stats!![1].percent*100).toInt()}%"
 
                 binding.quickQuestion1Turnout.visibility = View.VISIBLE
                 binding.quickQuestion2Turnout.visibility = View.VISIBLE
@@ -139,6 +134,15 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
         @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun setItem(item: QuickPollsItem){
+
+            when (item.tier) {
+                1 -> binding.tier.setImageResource(R.drawable.layout_tier1)
+                2 -> binding.tier.setImageResource(R.drawable.layout_tier2)
+                3 -> binding.tier.setImageResource(R.drawable.layout_tier3)
+                4 -> binding.tier.setImageResource(R.drawable.layout_tier4)
+                5 -> binding.tier.setImageResource(R.drawable.layout_tier5)
+            }
+
 
             binding.title.text =  item.contents
             binding.nick.text = item.nick
@@ -161,6 +165,7 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
                 }
                 else -> {
                     binding.dDay.text = "D+${-compareTime}"
+                    expired = true
 
 
                 }
@@ -175,14 +180,6 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
     override fun getItemViewType(position: Int): Int {
         return position
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun notifyData() {
-        notifyDataSetChanged()
-
-    }
-
-
 
 
     @SuppressLint("NotifyDataSetChanged")
