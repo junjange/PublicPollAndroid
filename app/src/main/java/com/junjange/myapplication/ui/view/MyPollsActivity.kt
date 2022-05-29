@@ -88,7 +88,7 @@ class MyPollsActivity  : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             R.id.myPageDrawer-> {
                 // My Page 이동
-                startActivity( Intent(this@MyPollsActivity, HotPollsActivity::class.java))
+                startActivity( Intent(this@MyPollsActivity, MyPageActivity::class.java))
 
             }
 

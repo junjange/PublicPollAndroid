@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.HotPollsAdapter
+import com.junjange.myapplication.data.MyPage
 import com.junjange.myapplication.databinding.ActivityHotPollsBinding
 import com.junjange.myapplication.ui.viewmodel.HotPollsViewModel
 
@@ -87,7 +88,7 @@ class HotPollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             R.id.myPageDrawer-> {
                 // My Page 이동
-//                startActivity( Intent(this@PollsActivity, HotPollsActivity::class.java))
+                startActivity( Intent(this@HotPollsActivity, MyPageActivity::class.java))
 
             }
 

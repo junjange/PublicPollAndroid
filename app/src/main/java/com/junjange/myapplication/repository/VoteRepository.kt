@@ -21,7 +21,15 @@ class VoteRepository(application : Application) {
         }
     }
 
-    // Use Retrofit
+    // 내가 만든 투표
+    suspend fun retrofitMyPolls(): MyPolls {
+        val response = PollsObject.getRetrofitService.getMyPolls()
+
+        return if (response.isSuccessful) response.body() as MyPolls else MyPolls(ArrayList())
+
+    }
+
+    // 내 투표
     suspend fun retrofitViewPolls(pollId : Int): ViewPolls {
         val response = PollsObject.getRetrofitService.getViewPolls(pollId)
 
@@ -42,7 +50,11 @@ class VoteRepository(application : Application) {
 
     }
 
+    // reVote
+    suspend fun retrofitDeleteReVote(pollId : Int): Response<JsonObject> {
+        return PollsObject.getRetrofitService.pollDelete(pollId)
 
+    }
 
 
     suspend fun retrofitComments(pollId : Int): Comment {

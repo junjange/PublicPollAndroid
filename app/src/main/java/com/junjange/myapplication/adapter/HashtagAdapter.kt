@@ -57,6 +57,9 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
 
         fun setItem(item: PollsComponent){
             binding.title.text =  item.contents
+            binding.hashtagTxt1.text =  items!!.hashtagItem.name
+
+
 
 
             // 이미지 여부에 따라 사진 투표 호출
@@ -73,6 +76,7 @@ class HashtagAdapter (val context: Context) : RecyclerView.Adapter<HashtagAdapte
             }else{
                 binding.pollImage.visibility = View.GONE
                 binding.title.setTextSize(Dimension.SP, 16F)
+
 
             }
         }

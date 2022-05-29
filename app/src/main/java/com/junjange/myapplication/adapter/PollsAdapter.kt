@@ -62,6 +62,28 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
         fun setItem(item: PollsItem){
             binding.title.text =  item.contents
 
+
+            when {
+                item.hashTags.size >= 2 -> {
+                    binding.hashtagTxt1.text = item.hashTags[0].name
+                    binding.hashtagCard1.visibility = View.VISIBLE
+                    binding.hashtagTxt2.text = item.hashTags[1].name
+                    binding.hashtagCard2.visibility = View.VISIBLE
+                }
+                item.hashTags.size == 1 -> {
+                    binding.hashtagTxt1.text = item.hashTags[0].name
+                    binding.hashtagCard1.visibility = View.VISIBLE
+                    binding.hashtagCard2.visibility = View.GONE
+
+                }
+                else -> {
+                    binding.hashtagCard1.visibility = View.GONE
+                    binding.hashtagCard2.visibility = View.GONE
+
+
+                }
+            }
+
             // 이미지 여부에 따라 사진 투표 호출
             if(item.presentImagePath != null){
 
@@ -76,6 +98,7 @@ class PollsAdapter(val context: Context) : RecyclerView.Adapter<PollsAdapter.Vie
             }else{
                 binding.pollImage.visibility = View.GONE
                 binding.title.setTextSize(Dimension.SP, 16F)
+
 
             }
 

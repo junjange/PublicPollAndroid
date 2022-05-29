@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GetTokenResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.HomeActivity
 
 class LocalSignInViewModel() : ViewModel() {
@@ -30,9 +31,12 @@ class LocalSignInViewModel() : ViewModel() {
                                 Log.d("토큰", idToken)
                                 intent.putExtra("Token", idToken)
                                 activity.startActivity(intent)
+                                PollsObject.token = idToken // 토큰 사용!
+
                             }
 
                         });
+
                 } else {
                     Toast.makeText(activity, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }
