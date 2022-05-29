@@ -14,10 +14,8 @@ data class NewPoll(
     @SerializedName("canComment") val canComment : Boolean,
     @SerializedName("isSingleVote") val isSingleVote : Boolean,
     @SerializedName("items") val items : ArrayList<Item>,
-){
-    data class Item(
-        @SerializedName("itemNum")val itemNum: Int,
-        @SerializedName("contents")val contents: String,
-        @SerializedName("hasImage")val hasImage: Boolean,
-    )
-}
+)data class Item(
+    @SerializedName("itemNum")val itemNum: Int,
+    @SerializedName("contents")val contents: String,
+    @SerializedName("hasImage")val hasImage: Boolean,
+)

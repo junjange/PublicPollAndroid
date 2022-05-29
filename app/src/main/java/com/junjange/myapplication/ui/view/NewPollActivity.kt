@@ -1,18 +1,27 @@
 package com.junjange.myapplication.ui.view
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
-import android.view.KeyEvent.KEYCODE_SPACE
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.MotionEvent
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonObject
 import com.junjange.myapplication.R
+import com.junjange.myapplication.data.Item
+import com.junjange.myapplication.data.NewPoll
 import com.junjange.myapplication.databinding.ActivityNewPollBinding
+import com.junjange.myapplication.network.PollsObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NewPollActivity : AppCompatActivity() {
     lateinit var binding: ActivityNewPollBinding
@@ -21,7 +30,17 @@ class NewPollActivity : AppCompatActivity() {
     var itemCount : Int = 3
     var itemText = Array(6,{""})
     var hashTagText = ArrayList<String>();
+    var text = ""
+    var contentsText = ""
+    var isPublic = false
+    var showNick = false
+    var canRevote = false
+    var canComment = false
+    var isSingleVote = false
+    var date = ""
+    var time = ""
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewPollBinding.inflate(layoutInflater)
@@ -38,7 +57,16 @@ class NewPollActivity : AppCompatActivity() {
             }
         }
 
+        binding.contentText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                contentsText = binding.contentText.text.toString()
+            }
+        })
+
         binding.item1Text.addTextChangedListener(object : TextWatcher {
+            var text = ""
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
@@ -60,21 +88,124 @@ class NewPollActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(p0: Editable?) {
-                hashTagText.add(binding.hashtagEdit.text.toString())
+                text = binding.hashtagEdit.text.toString()
             }
         })
         
         binding.hashtagEdit.setOnKeyListener { view, i, keyEvent ->
-            if (i == KeyEvent.KEYCODE_SPACE && i == KeyEvent.KEYCODE_ENTER) {
+            if (i == KeyEvent.KEYCODE_SPACE || i == KeyEvent.KEYCODE_ENTER) {
+                hashTagText.add(text)
                 addHashTag(hashTagText[hashTagText.size-1])
             }
             return@setOnKeyListener false
         }
 
-        binding.doneBt.setOnClickListener {
-            for (i in 0..itemCount-2) {
-                Log.d("아이템", itemText[i])
+        binding.yearEdit.setOnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                val calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+                var listener = DatePickerDialog.OnDateSetListener{_, i, i2, i3 ->
+                    binding.yearEdit.setText(i.toString())
+                    binding.monthEdit.setText(i2.toString())
+                    binding.dayEdit.setText(i3.toString())
+                    date = "$i-$i2-$i3"
+                }
+
+                var picker = DatePickerDialog(this, listener, year, month, day)
+                picker.show()
+
             }
+            return@setOnTouchListener false
+        }
+        binding.hourEdit.setOnTouchListener{ view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                val calendar = Calendar.getInstance()
+                var hour = calendar.get(Calendar.HOUR)
+                var minute = calendar.get(Calendar.MINUTE)
+
+                var listener = TimePickerDialog.OnTimeSetListener {_, i, i2 ->
+                    binding.hourEdit.setText(i.toString())
+                    binding.minEdit.setText(i2.toString())
+                    time = "T$i:$i2:00"
+                }
+
+                var picker = TimePickerDialog(this, listener, hour, minute, false)
+
+                picker.show()
+            }
+            return@setOnTouchListener false
+        }
+
+        binding.isPublic.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                binding.Public.id -> isPublic = true
+
+                binding.Private.id -> isPublic = false
+            }
+        }
+
+        binding.showNick.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                binding.show.id -> showNick = true
+
+                binding.hide.id -> showNick = false
+            }
+        }
+
+        binding.canRevote.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                binding.revoteAvailable.id -> canRevote = true
+
+                binding.revoteUnAvailable.id -> canRevote = false
+            }
+        }
+
+        binding.canComment.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                binding.commentAvailable.id -> canComment = true
+
+                binding.commentUnAvailable.id -> canComment = false
+            }
+        }
+
+        binding.isSingleVote.setOnCheckedChangeListener { group, i ->
+            when(i) {
+                binding.single.id -> isSingleVote = true
+
+                binding.multiple.id -> isSingleVote = false
+            }
+        }
+
+        binding.doneBt.setOnClickListener {
+            val service = PollsObject.getRetrofitService
+            val items = ArrayList<Item>();
+
+            for (i in 0..itemCount-2) {
+
+                items.add(Item(i+1, itemText[i].toString(), false))
+                Log.d("아이템", items.toString())
+            }
+
+
+            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
+
+            Log.d("보낼 결과", "$contentsText, $hashTagText, $date, $time, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
+
+            call.enqueue(object : Callback<JsonObject> {
+                override fun onResponse(
+                    call: Call<JsonObject>,
+                    response: Response<JsonObject>
+                ) {
+                    Log.d("성공", response.body().toString())
+                }
+
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    Log.d("실패", "크크루삥뽕")
+                }
+            })
         }
     }
 
@@ -105,12 +236,15 @@ class NewPollActivity : AppCompatActivity() {
 
     private fun addHashTag(text : String) {
         binding.hashtagEdit.text.clear()
+        Log.d("해시태그", hashTagText.toString())
         val view = layoutInflater.inflate(R.layout.hashtag_item, null)
         val deleteBt = view.findViewById<ImageView>(R.id.deleteBt)
 
         view.findViewById<TextView>(R.id.hashTagText).setText(text)
 
         deleteBt.setOnClickListener {
+            hashTagText.remove(view.findViewById<TextView>(R.id.hashTagText).text)
+            Log.d("해시태그", hashTagText.toString())
             layoutHashTagBoard?.removeView(view)
         }
 
