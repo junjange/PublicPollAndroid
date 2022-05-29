@@ -19,7 +19,6 @@ class EditInformationActivity : AppCompatActivity() {
     private var gender = ""
     private var age = 0
     private var tier = 1
-    private var idToken: String? = null
     private var user_interest = arrayOf<String>("","","")
     private var tagCount = 0
 
@@ -28,9 +27,7 @@ class EditInformationActivity : AppCompatActivity() {
         binding = ActivityEditInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        idToken = intent.getStringExtra("Token")
-
-        viewModel.myPageSetting(idToken!!, binding)
+        viewModel.myPageSetting(binding)
 
         binding.ageFirstLine.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId != -1 && isChecking) {
@@ -90,7 +87,7 @@ class EditInformationActivity : AppCompatActivity() {
 
         binding.doneBt.setOnClickListener {
             email = binding.emailEdit.text.toString()
-            viewModel.editMyPage(idToken!!, email, nickname, age, gender, user_interest, binding)
+            viewModel.editMyPage(email, nickname, age, gender, user_interest, binding)
         }
 
     }

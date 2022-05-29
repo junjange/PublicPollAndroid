@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GetTokenResult
+import com.junjange.myapplication.network.PollsObject
 import com.junjange.myapplication.ui.view.SignUpSecondActivity
 
 class LocalSignUpViewModel() : ViewModel(){
@@ -29,7 +30,7 @@ class LocalSignUpViewModel() : ViewModel(){
                                 task ->
                             if (task.isSuccessful()) {
                                 val idToken = task.getResult().getToken().toString();
-                                intent.putExtra("Token", idToken)
+                                PollsObject.token = idToken // 토큰 사용!
                                 activity.startActivity(intent)
                             }
 

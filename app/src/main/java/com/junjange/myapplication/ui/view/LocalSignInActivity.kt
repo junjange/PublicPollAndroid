@@ -13,7 +13,6 @@ class LocalSignInActivity : AppCompatActivity() {
     lateinit var binding: ActivityLocalSignInBinding
     private val viewModel : LocalSignInViewModel by viewModels()
 
-
     var email : String = ""
     var password : String = ""
 

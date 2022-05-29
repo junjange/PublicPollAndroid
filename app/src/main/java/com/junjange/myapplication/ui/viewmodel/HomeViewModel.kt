@@ -47,10 +47,4 @@ class HomeViewModel(private val repository: QuickVoteRepository) : ViewModel(){
             return HomeViewModel(QuickVoteRepository.getInstance(application)!!) as T
         }
     }
-
-
-
-
-
-
 }

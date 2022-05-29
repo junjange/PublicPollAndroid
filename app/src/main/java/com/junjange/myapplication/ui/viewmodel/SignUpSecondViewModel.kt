@@ -11,9 +11,9 @@ import retrofit2.Response
 
 class SignUpSecondViewModel() : ViewModel() {
 
-    fun signUp(idToken : String, email : String, nickname : String, age : Int, gender : String, userInterest : Array<String>, activity: Activity) {
+    fun signUp(email : String, nickname : String, age : Int, gender : String, userInterest : Array<String>, activity: Activity) {
         val service = PollsObject.getRetrofitService
-        val call = service.postSignUp(idToken, SignUp(email, nickname, age, gender, tier = 1, userInterest[0], userInterest[1], userInterest[2]))
+        val call = service.postSignUp(SignUp(email, nickname, age, gender, tier = 1, userInterest[0], userInterest[1], userInterest[2]))
 
         call.enqueue(object : retrofit2.Callback<SignUpReponse> {
             override fun onResponse(

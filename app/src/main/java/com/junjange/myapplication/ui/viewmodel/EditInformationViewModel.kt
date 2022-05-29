@@ -18,9 +18,9 @@ class EditInformationViewModel() : ViewModel() {
     var gender : String = ""
     var age : Int? = null
 
-    fun myPageSetting(idToken : String, binding : ActivityEditInformationBinding) {
+    fun myPageSetting(binding : ActivityEditInformationBinding) {
         val service = PollsObject.getRetrofitService
-        val call = service.getMyPageGet(idToken.toString())
+        val call = service.getMyPageGet()
         call.enqueue(object : Callback<MyPage> {
             override fun onResponse(
                 call: Call<MyPage>,
@@ -43,9 +43,9 @@ class EditInformationViewModel() : ViewModel() {
         })
     }
 
-    fun editMyPage(idToken: String, email : String, nickname : String, age : Int, gender : String, userInterest : Array<String>, binding: ActivityEditInformationBinding) {
+    fun editMyPage(email : String, nickname : String, age : Int, gender : String, userInterest : Array<String>, binding: ActivityEditInformationBinding) {
         val service = PollsObject.getRetrofitService
-        val call = service.postMyPageEdit(idToken.toString(), MyPageEdit(email, nickname, age, gender, userInterest[0],userInterest[1],userInterest[2]))
+        val call = service.postMyPageEdit(MyPageEdit(email, nickname, age, gender, userInterest[0],userInterest[1],userInterest[2]))
 
         call.enqueue(object : Callback<SignUpReponse> {
             override fun onResponse(
@@ -54,7 +54,7 @@ class EditInformationViewModel() : ViewModel() {
             ) {
                 Log.d("성공", response.body().toString())
 
-                myPageSetting(idToken, binding)
+                myPageSetting(binding)
             }
 
             override fun onFailure(call: Call<SignUpReponse>, t: Throwable) {

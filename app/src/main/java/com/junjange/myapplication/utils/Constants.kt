@@ -3,8 +3,8 @@ package com.junjange.myapplication.utils
 object API{
     const val BASE_URL : String = "http://13.209.119.116:8080" // 서버 주소
     const val POST_SIGN_UP : String = "/user/signUp"
-    const val POST_CHECK_NICK : String = "/user/checkNick"
     const val POST_SIGN_IN : String = "/user/signIn"
+    const val POST_CHECK_NICK : String = "/user/checkNick"
     const val GET_POST_MYPAGE : String = "/user/myPage"
     const val POST_POLL_ADD : String = "/poll/add"
     const val GET_ALL_POLLS : String = "/poll/all"
