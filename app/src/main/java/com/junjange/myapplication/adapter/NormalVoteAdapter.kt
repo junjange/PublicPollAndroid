@@ -52,7 +52,7 @@ class NormalVoteAdapter(val onClickListener: ItemClickListener, var voteState : 
 
                 binding.normalQuestionTurnout.setTextColor(Color.parseColor("#929292"))
                 binding.normalQuestionTurnout.visibility = View.VISIBLE
-                binding.normalQuestionTurnout.text = "${round(viewPollsItem.stats!![position].percent*100)/100}%"
+                binding.normalQuestionTurnout.text = "${round(viewPollsItem.stats!![position].percent*100).toInt()}%"
 
                 // 나의 투표 확인
                 if (items!!.viewPollsItem.myBallots!!.find { it == item.itemNum } != null){

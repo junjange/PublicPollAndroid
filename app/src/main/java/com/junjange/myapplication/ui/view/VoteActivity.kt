@@ -48,8 +48,6 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     private var checkVote = arrayListOf<Int>()
     private var canReVote = false
     private var canComment = true
-    private var myBallots : ArrayList<Int>? = null
-    private var stats : ArrayList<StatsItem>? = null
     private var voteState: Boolean = false
 
 
@@ -89,6 +87,8 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         myPollsSetObserver(id)
         commentSetView()
         commentSetObserver()
+
+        // 해시태그 txt/card 리스트
         val hashtagTxtList = mutableListOf(binding.hashtagTxt1, binding.hashtagTxt2, binding.hashtagTxt3, binding.hashtagTxt4, binding.hashtagTxt5)
         val hashtagCardList = mutableListOf(binding.hashtagCard1, binding.hashtagCard2, binding.hashtagCard3, binding.hashtagCard4, binding.hashtagCard5)
 
@@ -104,19 +104,16 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
         }
 
+        // Vote Button
         binding.voteBtn.setOnClickListener {
+
+            // 선택을 했다면
             if(checkVote.size > 0){
 
-                if (voteState){
-                    viewModel.postReVoteRetrofit(id, checkVote)
+                // voteState에 따라서 ballot api/ revote api 호출
+                if (voteState) viewModel.postReVoteRetrofit(id, checkVote) else viewModel.postBallotRetrofit(id, checkVote)
 
-                }else{
-                      viewModel.postBallotRetrofit(id, checkVote)
-
-                }
-                Log.d("ttt1", checkVote.toString())
-
-                // 원하는 화면 연결
+                // VoteActivity 다시 실행
                 val intent: Intent =  Intent(this@VoteActivity, VoteActivity::class.java).apply {
                     // 데이터 전달
                     putExtra("id", id)
@@ -124,19 +121,22 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 }
                 this.startActivity(intent)
+
+
             }else{
                 Toast.makeText(this,"항목을 선택해주세요.",Toast.LENGTH_SHORT).show()
             }
         }
 
+        // ReVote Button
         binding.reVoteBtn.setOnClickListener {
 
-            // 원하는 화면 연결
+            // VoteActivity 다시 실행
             val intent: Intent = Intent(this@VoteActivity, VoteActivity::class.java).apply {
                 // 데이터 전달
                 putExtra("id", id)
                 putExtra("presentImagePath", presentImagePath)
-                putExtra("voteState", true)
+                putExtra("voteState", true) // revote인지 확인하기 위해
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
             }
@@ -212,34 +212,24 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         viewModel.retrofitViewPolls.observe(this, {
 
             viewModel.retrofitViewPolls.value?.let { it1 -> normalVoteAdapter.setData(it1)
+
+                // 제목
                 binding.title.text = it1.viewPollsItem.contents
 
-
-                for (i in 0 until it1.viewPollsItem.hashTag.size){
-                    hashtagCardList[i].visibility = View.VISIBLE
-                    hashtagTxtList[i].text = it1.viewPollsItem.hashTag[i].name
-
+                // 티어
+                when (it1.viewPollsItem.tier) {
+                    1 -> binding.tier.setImageResource(R.drawable.layout_tier1)
+                    2 -> binding.tier.setImageResource(R.drawable.layout_tier2)
+                    3 -> binding.tier.setImageResource(R.drawable.layout_tier3)
+                    4 -> binding.tier.setImageResource(R.drawable.layout_tier4)
+                    5 -> binding.tier.setImageResource(R.drawable.layout_tier5)
                 }
 
-                canReVote = it1.viewPollsItem.canRevote
-                canComment = it1.viewPollsItem.canComment
-                val time = it1.viewPollsItem.endTime// 변환할 문자열
-                val now = LocalDateTime.now() // 현재 시간
-                //문자열 LocalDateTime 으로 변관
-                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //분단위 비교
+                // 투표율
+                for (i in 0 until it1.viewPollsItem.hashTag.size){
+                    hashtagCardList[i].visibility = View.VISIBLE
+                    hashtagTxtList[i].text = "#${it1.viewPollsItem.hashTag[i].name}"
 
-                when {
-                    compareTime.equals(0) -> {
-                        binding.dDay.text = "D-day"
-                    }
-                    compareTime > 0 -> {
-                        binding.dDay.text = "D-${compareTime}"
-
-                    }
-                    else -> {
-                        binding.dDay.text = "D+${compareTime}"
-                    }
                 }
 
                 // 익명
@@ -254,24 +244,58 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                     binding.commentList.visibility = View.GONE
                     binding.commentCnt.visibility = View.GONE
                     binding.commentIcon.visibility = View.GONE
+                    binding.keyboard.visibility = View.GONE
+
 
                 } else{
 
                     binding.voteBtn.visibility = View.GONE
                     binding.reVoteBtn.visibility = View.VISIBLE
                     binding.statisticsBtn.visibility = View.VISIBLE
+                    binding.keyboard.visibility = View.VISIBLE
 
-                    // 댓글
+
+                    // 재투표 여부
+                    if(it1.viewPollsItem.canRevote) binding.reVoteBtn.visibility = View.VISIBLE else binding.reVoteBtn.visibility = View.GONE
+
+                    // 댓글 여부
                     if (it1.viewPollsItem.canComment){
-                        if(it1.viewPollsItem.canRevote) binding.statisticsBtn.visibility = View.VISIBLE
-
-
                         binding.commentList.visibility = View.VISIBLE
                         binding.commentCnt.visibility = View.VISIBLE
                         binding.commentIcon.visibility = View.VISIBLE
+                        binding.keyboard.visibility = View.VISIBLE
+
+                    }else{
+                        binding.commentList.visibility = View.GONE
+                        binding.commentCnt.visibility = View.GONE
+                        binding.commentIcon.visibility = View.GONE
+                        binding.keyboard.visibility = View.GONE
+
                     }
 
 
+                }
+
+                // D-DAY
+                val time = it1.viewPollsItem.endTime// 변환할 문자열
+                val now = LocalDateTime.now() // 현재 시간
+                //문자열 LocalDateTime 으로 변관
+                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //분단위 비교
+
+                when {
+                    compareTime.equals(0) -> {
+                        binding.dDay.text = "D-day"
+                    }
+                    compareTime > 0 -> {
+                        binding.dDay.text = "D${compareTime}"
+
+                    }
+                    else -> {
+                        binding.dDay.text = "D+${-compareTime}"
+                        binding.reVoteBtn.visibility = View.GONE
+                        binding.voteBtn.visibility = View.GONE
+                    }
                 }
 
             }
@@ -298,7 +322,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
 
                 for (i in 0 until it1.viewPollsItem.hashTag.size){
                     hashtagCardList[i].visibility = View.VISIBLE
-                    hashtagTxtList[i].text = it1.viewPollsItem.hashTag[i].name
+                    hashtagTxtList[i].text = "#${it1.viewPollsItem.hashTag[i].name}"
 
                 }
 
@@ -306,26 +330,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                 canReVote = it1.viewPollsItem.canRevote
                 canComment = it1.viewPollsItem.canComment
 
-                val time = it1.viewPollsItem.endTime// 변환할 문자열
-                val now = LocalDateTime.now() // 현재 시간
-                //문자열 LocalDateTime 으로 변관
-                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //날짜 비교
 
-                when {
-                    compareTime.equals(0) -> {
-                        binding.dDay.text = "D-day"
-                    }
-                    compareTime > 0 -> {
-                        binding.dDay.text = "D${compareTime}"
-
-                    }
-                    else -> {
-                        binding.dDay.text = "D+${-compareTime}"
-
-
-                    }
-                }
                 // 익명
                 if(it1.viewPollsItem.showNick) binding.nick.text = it1.viewPollsItem.nick else binding.nick.text = "anonymous"
 
@@ -338,21 +343,60 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                     binding.commentList.visibility = View.GONE
                     binding.commentCnt.visibility = View.GONE
                     binding.commentIcon.visibility = View.GONE
+                    binding.keyboard.visibility = View.GONE
 
                 } else{
                     binding.voteBtn.visibility = View.GONE
                     binding.reVoteBtn.visibility = View.VISIBLE
+                    binding.keyboard.visibility = View.VISIBLE
 
-                    if(it1.viewPollsItem.canRevote) binding.statisticsBtn.visibility = View.VISIBLE
 
-                    // 댓글
+                    // 재투표 여부
+                    if(it1.viewPollsItem.canRevote) binding.reVoteBtn.visibility = View.VISIBLE else binding.reVoteBtn.visibility = View.GONE
+
+                    // 댓글 여부
                     if (it1.viewPollsItem.canComment){
                         binding.commentList.visibility = View.VISIBLE
                         binding.commentCnt.visibility = View.VISIBLE
                         binding.commentIcon.visibility = View.VISIBLE
+                        binding.keyboard.visibility = View.VISIBLE
+
+                    }else{
+                        binding.commentList.visibility = View.GONE
+                        binding.commentCnt.visibility = View.GONE
+                        binding.commentIcon.visibility = View.GONE
+                        binding.keyboard.visibility = View.GONE
+
                     }
 
 
+                }
+
+
+
+                // D-DAY
+                val time = it1.viewPollsItem.endTime// 변환할 문자열
+                val now = LocalDateTime.now() // 현재 시간
+                //문자열 LocalDateTime 으로 변관
+                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //날짜 비교
+
+
+                when {
+                    compareTime.equals(0) -> {
+                        binding.dDay.text = "D-day"
+                    }
+                    compareTime > 0 -> {
+                        binding.dDay.text = "D${compareTime}"
+
+                    }
+                    else -> {
+                        binding.dDay.text = "D+${-compareTime}"
+                        binding.reVoteBtn.visibility = View.GONE
+                        binding.voteBtn.visibility = View.GONE
+
+
+                    }
                 }
 
 

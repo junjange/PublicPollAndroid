@@ -237,7 +237,7 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
     override fun onDestroy() {
-        Log.d(TAG, "PhotoCollectionActivity - onDestroy() called")
+//        Log.d(TAG, "PhotoCollectionActivity - onDestroy() called")
         myCoroutineContext.cancel()  // MemoryLeak 방지를 위해 myCoroutineContext 해제
         super.onDestroy()
     }

@@ -92,9 +92,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         itemNum: ArrayList<Int>,
         voteState: Boolean
     ) {
-        if(!voteState) viewModel.postBallotRetrofit(item.id, itemNum) else viewModel.postReVoteRetrofit(item.id, itemNum)
-
-        retrofitAdapter.notifyData()
+        if(voteState) viewModel.postReVoteRetrofit(item.id, itemNum) else viewModel.postBallotRetrofit(item.id, itemNum)
 
 
     }

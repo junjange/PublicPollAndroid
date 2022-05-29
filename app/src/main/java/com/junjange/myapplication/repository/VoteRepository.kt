@@ -32,6 +32,7 @@ class VoteRepository(application : Application) {
     // 내 투표
     suspend fun retrofitViewPolls(pollId : Int): ViewPolls {
         val response = PollsObject.getRetrofitService.getViewPolls(pollId)
+        Log.d("tttview", response.body().toString())
 
         return response.body() as ViewPolls
 
@@ -39,7 +40,6 @@ class VoteRepository(application : Application) {
 
     // post
     suspend fun retrofitPostBallot(postBallotItem: PostBallotItem): Response<Ballot> {
-
         return PollsObject.getRetrofitService.ballot(postBallotItem)
 
     }
@@ -50,7 +50,6 @@ class VoteRepository(application : Application) {
 
     }
 
-    // reVote
     suspend fun retrofitDeleteReVote(pollId : Int): Response<JsonObject> {
         return PollsObject.getRetrofitService.pollDelete(pollId)
 
@@ -59,7 +58,6 @@ class VoteRepository(application : Application) {
 
     suspend fun retrofitComments(pollId : Int): Comment {
         val response = PollsObject.getRetrofitService.getComments(pollId)
-        Log.d("ttt", "tttt")
 
         return if (response.isSuccessful) response.body() as Comment else Comment(ArrayList())
 
