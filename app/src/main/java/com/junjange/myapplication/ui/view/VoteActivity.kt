@@ -1,18 +1,25 @@
 package com.junjange.myapplication.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.core.view.children
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import com.junjange.myapplication.R
@@ -23,6 +30,11 @@ import com.junjange.myapplication.data.ItemComponent
 import com.junjange.myapplication.data.StatsItem
 import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.VoteViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 
 class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, PhotoVoteAdapter.ItemClickListener,
@@ -39,6 +51,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     private var myBallots : ArrayList<Int>? = null
     private var stats : ArrayList<StatsItem>? = null
     private var voteState: Boolean = false
+
 
 
 
@@ -64,6 +77,8 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.lifecycleOwner = this
 
 
+
+
         val id = intent.getSerializableExtra("id") as Int
         val presentImagePath = intent.getSerializableExtra("presentImagePath")
         voteState = intent.getBooleanExtra("voteState", false)
@@ -71,17 +86,21 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         viewModel.getCommentsRetrofit(id)
         viewModel.getViewPollsRetrofit(id)
 
+        myPollsSetObserver(id)
         commentSetView()
         commentSetObserver()
+        val hashtagTxtList = mutableListOf(binding.hashtagTxt1, binding.hashtagTxt2, binding.hashtagTxt3, binding.hashtagTxt4, binding.hashtagTxt5)
+        val hashtagCardList = mutableListOf(binding.hashtagCard1, binding.hashtagCard2, binding.hashtagCard3, binding.hashtagCard4, binding.hashtagCard5)
+
 
         // 사진유무에 따라 일반투표/사진투표 리사이클러뷰 실행
         if (presentImagePath == null){
-            normalSetView(voteState)
-            normalSetObserver()
+            normalSetView()
+            normalSetObserver(hashtagTxtList, hashtagCardList )
 
         }else{
             photoSetView()
-            photoSetObserver()
+            photoSetObserver(hashtagTxtList, hashtagCardList)
 
         }
 
@@ -124,6 +143,20 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             this.startActivity(intent)
         }
 
+        // 통계 버튼
+        binding.statisticsBtn.setOnClickListener {
+
+        }
+
+
+        // 삭제 버튼
+        binding.deleteBtn.setOnClickListener {
+
+            onClickAllDeleteDialogButton(id)
+
+        }
+
+
         // 검색창 엔터
         binding.etCommentEnter.setOnKeyListener { _, keyCode, event ->
 
@@ -154,7 +187,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
     }
 
 
-    private fun normalSetView(voteState : Boolean){
+    private fun normalSetView(){
 
         normalVoteAdapter =  NormalVoteAdapter(this, voteState).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
@@ -170,14 +203,45 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.normalVoteList.adapter = normalVoteAdapter
     }
 
-    private fun normalSetObserver() {
+    @SuppressLint("SetTextI18n")
+    private fun normalSetObserver(
+        hashtagTxtList: MutableList<TextView>,
+        hashtagCardList: MutableList<CardView>
+    ) {
 
         viewModel.retrofitViewPolls.observe(this, {
 
             viewModel.retrofitViewPolls.value?.let { it1 -> normalVoteAdapter.setData(it1)
                 binding.title.text = it1.viewPollsItem.contents
+
+
+                for (i in 0 until it1.viewPollsItem.hashTag.size){
+                    hashtagCardList[i].visibility = View.VISIBLE
+                    hashtagTxtList[i].text = it1.viewPollsItem.hashTag[i].name
+
+                }
+
                 canReVote = it1.viewPollsItem.canRevote
                 canComment = it1.viewPollsItem.canComment
+                val time = it1.viewPollsItem.endTime// 변환할 문자열
+                val now = LocalDateTime.now() // 현재 시간
+                //문자열 LocalDateTime 으로 변관
+                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //분단위 비교
+
+                when {
+                    compareTime.equals(0) -> {
+                        binding.dDay.text = "D-day"
+                    }
+                    compareTime > 0 -> {
+                        binding.dDay.text = "D-${compareTime}"
+
+                    }
+                    else -> {
+                        binding.dDay.text = "D+${compareTime}"
+                    }
+                }
+
                 // 익명
                 if(it1.viewPollsItem.showNick) binding.nick.text = it1.viewPollsItem.nick else binding.nick.text = "anonymous"
 
@@ -223,14 +287,45 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
         binding.photoVoteList.adapter = photoVoteAdapter
     }
 
-    private fun photoSetObserver() {
+    @SuppressLint("SetTextI18n")
+    private fun photoSetObserver(
+        hashtagTxtList: MutableList<TextView>,
+        hashtagCardList: MutableList<CardView>
+    ) {
         viewModel.retrofitViewPolls.observe(this, {
 
             viewModel.retrofitViewPolls.value?.let { it1 -> photoVoteAdapter.setData(it1)
 
+                for (i in 0 until it1.viewPollsItem.hashTag.size){
+                    hashtagCardList[i].visibility = View.VISIBLE
+                    hashtagTxtList[i].text = it1.viewPollsItem.hashTag[i].name
+
+                }
+
                 binding.title.text = it1.viewPollsItem.contents
                 canReVote = it1.viewPollsItem.canRevote
                 canComment = it1.viewPollsItem.canComment
+
+                val time = it1.viewPollsItem.endTime// 변환할 문자열
+                val now = LocalDateTime.now() // 현재 시간
+                //문자열 LocalDateTime 으로 변관
+                val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                val compareTime = ChronoUnit.DAYS.between(now, convertTime) //날짜 비교
+
+                when {
+                    compareTime.equals(0) -> {
+                        binding.dDay.text = "D-day"
+                    }
+                    compareTime > 0 -> {
+                        binding.dDay.text = "D${compareTime}"
+
+                    }
+                    else -> {
+                        binding.dDay.text = "D+${-compareTime}"
+
+
+                    }
+                }
                 // 익명
                 if(it1.viewPollsItem.showNick) binding.nick.text = it1.viewPollsItem.nick else binding.nick.text = "anonymous"
 
@@ -284,6 +379,50 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             }
         })
     }
+
+    private fun myPollsSetObserver(id: Int) {
+        viewModel.retrofitMyPolls.observe(this, {
+            viewModel.retrofitMyPolls.value?.let { it1 ->
+                if (it1.pollsItem.find { it.id == id } != null) binding.deleteBtn.visibility = View.VISIBLE else binding.deleteBtn.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun onClickAllDeleteDialogButton(id : Int){
+
+        // 다이어로그 생성
+        val mHandler = Handler(Looper.getMainLooper())
+        mHandler.post {
+            val ad = AlertDialog.Builder(this@VoteActivity)
+            ad.setIcon(R.drawable.logo)
+            ad.setTitle("Delete Vote")
+            ad.setMessage("Are you sure you want to delete your vote?\nVoting content and information will be lost when a vote is deleted.")
+
+            // 확인버튼
+            ad.setPositiveButton("Done") { _, _ -> allDelete(id) }
+            // 취소버튼
+            ad.setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
+
+            ad.show()
+        }
+    }
+
+
+    private fun allDelete(id : Int){
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewModel.deletePollsRetrofit(id)
+        }
+        val intent = Intent(this@VoteActivity, PollsActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+
+
+        Toast.makeText(this, "투표를 삭제했습니다.", Toast.LENGTH_SHORT).show()
+
+
+    }
+
 
 
     /***
@@ -417,7 +556,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             }
             R.id.myPageDrawer-> {
                 // My Page 이동
-//                startActivity( Intent(this@VoteActivity, HotPollsActivity::class.java))
+                startActivity( Intent(this@VoteActivity, MyPageActivity::class.java))
 
             }
 

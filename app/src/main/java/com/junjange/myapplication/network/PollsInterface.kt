@@ -90,7 +90,9 @@ interface PollsInterface {
 
     // 투표 삭제하기
     @DELETE(API.DELETE_POLLS)
-    suspend fun pollDelete(): Response<JsonObject>
+    suspend fun pollDelete(
+        @Path("pollId") pollId : Int
+    ): Response<JsonObject>
 
     // My Polls
     @GET(API.MY_POLLS)

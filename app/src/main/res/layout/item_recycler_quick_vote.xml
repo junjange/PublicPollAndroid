@@ -23,16 +23,55 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="21dp"
-                android:orientation="horizontal"
-                android:layout_gravity="right" >
+                android:layout_marginStart="21dp"
+                android:orientation="horizontal" >
 
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/dDayBg"
+                        android:layout_width="wrap_content"
+                        android:minWidth="48dp"
+                        android:layout_height="20dp"
+                        app:strokeColor="#9bc7f6"
+                        app:cardCornerRadius="9dp"
+                        android:backgroundTint="#9bc7f6"
+                        app:strokeWidth="2dp"
+                        android:layout_margin="5dp"
+                        >
+                        <TextView
+                            android:layout_gravity="center"
+                            android:id="@+id/dDay"
+                            android:text="D-day"
+                            android:textSize="10sp"
+                            android:textColor="#ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </FrameLayout>
 
                 <!-- 티어 이미지 -->
+                <TextView
+                    android:text="티어"
+                    android:textSize="12sp"
+                    android:textColor="#9f9f9f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    />
 
                 <TextView
                     android:id="@+id/nick"
@@ -41,6 +80,8 @@
                     android:textColor="#9f9f9f"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
                     />
 
 

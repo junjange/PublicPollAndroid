@@ -10,6 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junjange.myapplication.data.QuickPolls
 import com.junjange.myapplication.data.QuickPollsItem
 import com.junjange.myapplication.databinding.ItemRecyclerQuickVoteBinding
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.round
 
 
@@ -34,6 +41,7 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
     // 전달받은 위치의 아이템 연결
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.setItem(items.quickPollsItem[position])
 //        holder.checkItem(items.quickPollsItem[position])
         holder.bind(items.quickPollsItem[position], position)
@@ -50,45 +58,17 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
         @SuppressLint("SetTextI18n")
         fun bind(item: QuickPollsItem, position: Int) {
-            Log.d("aaaa", item.id.toString())
-            Log.d("aaaa", item.myBallots.toString())
-
 
             if (item.myBallots == null){
                 voteState = false
                 // 빠른 투표 1번 항목 클릭시
                 binding.quickQuestion1Bg.setOnClickListener {
                     onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), voteState)
-                    notifyData()
-
-
-//                    binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-//                    binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
-//                    binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-//                    binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
-//                    binding.quickQuestion1Txt.setTextColor(Color.BLACK)
-//                    binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
-//                    binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
-//                    binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
-//                    binding.quickQuestion1Turnout.visibility = View.VISIBLE
-//                    binding.quickQuestion2Turnout.visibility = View.VISIBLE
                 }
 
                 // 빠른 투표 2번 항목 클릭시
                 binding.quickQuestion2Bg.setOnClickListener {
                     onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), voteState)
-                    notifyData()
-
-//                    binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
-//                    binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
-//                    binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
-//                    binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
-//                    binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
-//                    binding.quickQuestion2Txt.setTextColor(Color.BLACK)
-//                    binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
-//                    binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
-//                    binding.quickQuestion1Turnout.visibility = View.VISIBLE
-//                    binding.quickQuestion2Turnout.visibility = View.VISIBLE
 
                 }
             }else{
@@ -97,15 +77,15 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
                 binding.quickQuestion1Bg.setOnClickListener {
                     onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), voteState)
-                    notifyItemChanged(position)
-
+                    Log.d("aaaa", item.id.toString())
+                    Log.d("bbbb", item.myBallots.toString())
                 }
 
                 // 빠른 투표 2번 항목 클릭시
                 binding.quickQuestion2Bg.setOnClickListener {
                     onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[1].itemNum), voteState)
-                    notifyItemChanged(position)
-
+                    Log.d("aaaa", item.id.toString())
+                    Log.d("bbbb", item.myBallots.toString())
 
                 }
 
@@ -157,12 +137,35 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
         }
 
+        @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun setItem(item: QuickPollsItem){
 
             binding.title.text =  item.contents
             binding.nick.text = item.nick
             binding.quickQuestion1Txt.text = item.items[0].contents
             binding.quickQuestion2Txt.text = item.items[1].contents
+
+            val time = item.endTime// 변환할 문자열
+            val now = LocalDateTime.now() // 현재 시간
+            //문자열 LocalDateTime 으로 변관
+            val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            val compareTime = ChronoUnit.DAYS.between(now, convertTime) //분단위 비교
+
+            when {
+                compareTime.equals(0) -> {
+                    binding.dDay.text = "D-day"
+                }
+                compareTime > 0 -> {
+                    binding.dDay.text = "D${compareTime}"
+
+                }
+                else -> {
+                    binding.dDay.text = "D+${-compareTime}"
+
+
+                }
+            }
+
 
         }
 

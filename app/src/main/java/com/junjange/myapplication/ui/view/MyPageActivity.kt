@@ -24,6 +24,19 @@ class MyPageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.myPollsBt.setOnClickListener {
+            startActivity( Intent(this@MyPageActivity, MyPollsActivity::class.java))
+
+        }
+
+        binding.myBallotBt.setOnClickListener {
+            startActivity( Intent(this@MyPageActivity, MyBallotActivity::class.java))
+
+        }
+
+
+
+
         binding.appInformationBt.setOnClickListener{
             val intent = Intent(this, AppInformationActivity::class.java)
             startActivity(intent)
