@@ -57,8 +57,9 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
             binding.linearLayout.translationX = 0f
             binding.linearLayout.translationY = 0f
 
-
+            // 투표를 안했다면
             if (item.myBallots == null){
+                // 기간이 안지났다면
                 if (!expired){
                     // 빠른 투표 1번 항목 클릭시
                     binding.quickQuestion1Bg.setOnClickListener {
@@ -77,6 +78,7 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
                 }
 
             }else{
+                // 기간이 안지났다면
                 if (!expired){
                     binding.quickQuestion1Bg.setOnClickListener {
                         onClickListener.onQuickVoteClickListener(item, arrayListOf<Int>(item.items[0].itemNum), true)
@@ -90,16 +92,19 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
                 }
 
 
-                 if (items.quickPollsItem[position].myBallots!![0] == 1){
+
+                Log.d("ttt",items.quickPollsItem[position].myBallots.toString() )
+
+                if (items.quickPollsItem[position].myBallots!![0] == 1){
                         binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
                         binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
-//                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#ffffff"))
                         binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
 
 
 
                     }else{
-//                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#ffffff"))
                         binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
                         binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
                         binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
@@ -151,7 +156,9 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
 
             binding.title.text =  item.contents
-            binding.nick.text = item.nick
+
+            if(item.showNick) binding.nick.text = item.nick else binding.nick.text = "anonymous"
+
             binding.quickQuestion1Txt.text = item.items[0].contents
             binding.quickQuestion2Txt.text = item.items[1].contents
 
