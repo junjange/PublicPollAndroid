@@ -299,7 +299,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                         binding.dDay.text = "D-day"
                     }
                     compareTime > 0 -> {
-                        binding.dDay.text = "D${compareTime}"
+                        binding.dDay.text = "D-${compareTime}"
 
                     }
                     else -> {
@@ -360,6 +360,8 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                     binding.voteBtn.visibility = View.GONE
                     binding.reVoteBtn.visibility = View.VISIBLE
                     binding.keyboard.visibility = View.VISIBLE
+                    binding.statisticsBtn.visibility = View.VISIBLE
+
 
 
                     // 재투표 여부
@@ -398,7 +400,7 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                         binding.dDay.text = "D-day"
                     }
                     compareTime > 0 -> {
-                        binding.dDay.text = "D${compareTime}"
+                        binding.dDay.text = "D-${compareTime}"
 
                     }
                     else -> {

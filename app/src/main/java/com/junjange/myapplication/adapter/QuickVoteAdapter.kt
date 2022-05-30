@@ -54,6 +54,8 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
         @SuppressLint("SetTextI18n")
         fun bind(item: QuickPollsItem, position: Int) {
+            binding.linearLayout.translationX = 0f
+            binding.linearLayout.translationY = 0f
 
 
             if (item.myBallots == null){
@@ -69,6 +71,9 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
                     }
 
+                }else{
+                    // 내가 투표하지는 않았지만 투표기간이 지나 투표율을 확인해야할 경우
+                    // 코드 여기로!
                 }
 
             }else{
@@ -88,13 +93,13 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
                  if (items.quickPollsItem[position].myBallots!![0] == 1){
                         binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
                         binding.quickQuestion1Bg.strokeColor = Color.parseColor("#abbced")
-                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+//                        binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
                         binding.quickQuestion2Bg.strokeColor = Color.parseColor("#b3b6e8")
 
 
 
                     }else{
-                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
+//                        binding.quickQuestion1Bg.setCardBackgroundColor(Color.parseColor("#e9ebff"))
                         binding.quickQuestion1Bg.strokeColor = Color.parseColor("#b3b6e8")
                         binding.quickQuestion2Bg.setCardBackgroundColor(Color.parseColor("#e9efff"))
                         binding.quickQuestion2Bg.strokeColor = Color.parseColor("#abbced")
@@ -103,17 +108,18 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
                     }
 
                 if (!items.quickPollsItem[position].stats!![0].isBest){
+                    binding.quickQuestion1Txt.setTextColor(Color.BLACK)
+                    binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
+                    binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
+                    binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
+
+
+                }else{
                     binding.quickQuestion1Txt.setTextColor(Color.parseColor("#989898"))
                     binding.quickQuestion2Txt.setTextColor(Color.BLACK)
                     binding.quickQuestion1Turnout.setTextColor(Color.parseColor("#989898"))
                     binding.quickQuestion2Turnout.setTextColor(Color.BLACK)
 
-
-                }else{
-                    binding.quickQuestion1Txt.setTextColor(Color.BLACK)
-                    binding.quickQuestion2Txt.setTextColor(Color.parseColor("#989898"))
-                    binding.quickQuestion1Turnout.setTextColor(Color.BLACK)
-                    binding.quickQuestion2Turnout.setTextColor(Color.parseColor("#989898"))
 
                 }
 
@@ -158,9 +164,11 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
             when {
                 compareTime.equals(0) -> {
                     binding.dDay.text = "D-day"
+                    expired = false
                 }
                 compareTime > 0 -> {
-                    binding.dDay.text = "D${compareTime}"
+                    binding.dDay.text = "D-${compareTime}"
+                    expired = false
 
                 }
                 else -> {
