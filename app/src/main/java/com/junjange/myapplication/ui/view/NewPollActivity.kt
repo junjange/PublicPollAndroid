@@ -112,9 +112,19 @@ class NewPollActivity : AppCompatActivity() {
 
                 var listener = DatePickerDialog.OnDateSetListener{_, i, i2, i3 ->
                     binding.yearEdit.setText(i.toString())
-                    binding.monthEdit.setText(i2.toString())
-                    binding.dayEdit.setText(i3.toString())
-                    date = "$i-$i2-$i3"
+                    if (i2 < 10) {
+                        binding.monthEdit.setText("0${i2+1}")
+                    } else {
+                        binding.monthEdit.setText((i2+1).toString())
+                    }
+
+                    if (i3 < 10) {
+                        binding.dayEdit.setText("0${i3}")
+                    } else {
+                        binding.dayEdit.setText(i3.toString())
+                    }
+
+                    date = "$i-${binding.monthEdit.text}-${binding.dayEdit.text}"
                 }
 
                 var picker = DatePickerDialog(this, listener, year, month, day)
@@ -130,9 +140,20 @@ class NewPollActivity : AppCompatActivity() {
                 var minute = calendar.get(Calendar.MINUTE)
 
                 var listener = TimePickerDialog.OnTimeSetListener {_, i, i2 ->
-                    binding.hourEdit.setText(i.toString())
-                    binding.minEdit.setText(i2.toString())
-                    time = "T$i:$i2:00"
+
+                    if (i < 10) {
+                        binding.hourEdit.setText("0$i")
+                    } else {
+                        binding.hourEdit.setText(i.toString())
+                    }
+
+                    if (i2 < 10) {
+                        binding.minEdit.setText("0$i2")
+                    } else {
+                        binding.minEdit.setText(i2.toString())
+                    }
+
+                    time = "T${binding.hourEdit.text}:${binding.minEdit.text}:00"
                 }
 
                 var picker = TimePickerDialog(this, listener, hour, minute, false)
@@ -203,10 +224,10 @@ class NewPollActivity : AppCompatActivity() {
              * 5월을 선택했으면 4월로 되는..
              * **/
 
-            val endTime = "2022-07-29T07:33:00"
+            //val endTime = "2022-07-29T07:33:00"
 
 
-            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, endTime, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
+            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
 
             Log.d("보낼 결과", "$contentsText, $hashTagText, ${date+time}, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
 
