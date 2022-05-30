@@ -20,6 +20,9 @@ import com.junjange.myapplication.network.PollsObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -190,15 +193,29 @@ class NewPollActivity : AppCompatActivity() {
             }
 
 
-            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
+            /**
+             * 앱에서 날짜랑 시간을 넣으면
+             * 2022-7-29T7:33:00 <= 이런식으로 들어가서 안되는 것 같애
+             * 2022-07-29T07:33:00 <= 이런식으로 7앞에 0이 들어가야하는뎁
+             *
+             * 그리고 달력에서 날짜를 설정할 때
+             * 이전달로 선택되는 이슈가 있어!
+             * 5월을 선택했으면 4월로 되는..
+             * **/
 
-            Log.d("보낼 결과", "$contentsText, $hashTagText, $date, $time, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
+            val endTime = "2022-07-29T07:33:00"
+
+
+            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, endTime, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
+
+            Log.d("보낼 결과", "$contentsText, $hashTagText, ${date+time}, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
 
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(
                     call: Call<JsonObject>,
                     response: Response<JsonObject>
                 ) {
+                    Log.d("ttt", "통신 성공: ${response.isSuccessful}")
                     Log.d("성공", response.body().toString())
                 }
 
