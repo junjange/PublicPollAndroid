@@ -246,13 +246,14 @@ class NewPollActivity : AppCompatActivity(), IdCallback {
 
             val service = PollsObject.getRetrofitService
             val items = ArrayList<Item>();
+            //여기서 리스트 객체 생성
 
             for (i in 0..itemCount-2) {
-
+            //아이템 수 만큼 리스트 객체 안에 저장
                 items.add(Item(i+1, itemText[i].toString(), itemhasImage[i]))
                 Log.d("아이템", items.toString())
             }
-
+            //items 리스트 객체를 통채로 넣음
             val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, hasImage, isPublic, showNick, canRevote, canComment, isSingleVote, items))
 
             Log.d("보낼 결과", "$contentsText, $hashTagText, ${date+time}, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
@@ -272,7 +273,7 @@ class NewPollActivity : AppCompatActivity(), IdCallback {
                     t.message?.let { it1 -> Log.d("실패", it1) }
                 }
             })
-
+            finish()
         }
     }
 
