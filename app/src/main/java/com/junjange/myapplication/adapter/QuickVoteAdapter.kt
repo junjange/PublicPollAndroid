@@ -169,9 +169,11 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
             val compareTime = ChronoUnit.DAYS.between(now, convertTime) //분단위 비교
 
             when {
-                compareTime.equals(0) -> {
-                    binding.dDay.text = "D-day"
-                    expired = false
+                compareTime < 0 -> {
+                    binding.dDay.text = "D+${-compareTime}"
+                    expired = true
+
+
                 }
                 compareTime > 0 -> {
                     binding.dDay.text = "D-${compareTime}"
@@ -179,8 +181,9 @@ class QuickVoteAdapter(val onClickListener: ItemClickListener) : RecyclerView.Ad
 
                 }
                 else -> {
-                    binding.dDay.text = "D+${-compareTime}"
-                    expired = true
+                    binding.dDay.text = "D-day"
+                    expired = false
+
 
 
                 }
