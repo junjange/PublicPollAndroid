@@ -149,14 +149,11 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
             // VoteActivity 다시 실행
             val intent: Intent =  Intent(this@VoteActivity, StatisticsActivity::class.java).apply {
                 // 데이터 전달
-//                putExtra("id", id)
+                putExtra("id", id)
 //                putExtra("presentImagePath", presentImagePath)
 //                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             this.startActivity(intent)
-
-
-
         }
 
 
