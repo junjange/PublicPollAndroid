@@ -109,37 +109,37 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/ageAll"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="All"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/age10s"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="~10s"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton5"
+                        android:id="@+id/age20s"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="20s"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
@@ -154,37 +154,37 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton6"
+                        android:id="@+id/age30s"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="30s"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton8"
+                        android:id="@+id/age40s"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="40s"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton7"
+                        android:id="@+id/age50s"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="50s~"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
@@ -213,7 +213,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/genderAll"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -225,7 +225,7 @@
                     android:textStyle="normal" />
 
                 <RadioButton
-                    android:id="@+id/radioButton1"
+                    android:id="@+id/genderMan"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -237,7 +237,7 @@
                     android:textStyle="normal" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/genderWoman"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -275,37 +275,37 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton11"
+                        android:id="@+id/tierAll"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="All"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton12"
+                        android:id="@+id/tierBronze"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="Bronze"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton13"
+                        android:id="@+id/tierSilver"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="Silver"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
@@ -320,37 +320,37 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton14"
+                        android:id="@+id/tierGold"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="Gold"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton15"
+                        android:id="@+id/tierPlatinum"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="Platinum"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 
                     <RadioButton
-                        android:id="@+id/radioButton16"
+                        android:id="@+id/Diamond"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
                         android:fontFamily="sans-serif"
-                        android:text="Man"
+                        android:text="Diamond"
                         android:textColor="#a1a1a1"
                         android:textSize="12sp"
                         android:textStyle="normal" />

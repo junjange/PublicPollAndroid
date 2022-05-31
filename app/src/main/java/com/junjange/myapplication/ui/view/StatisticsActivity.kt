@@ -12,13 +12,16 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
 import com.junjange.myapplication.databinding.ActivityStatisticsBinding
-import com.junjange.myapplication.databinding.ActivityVoteBinding
 import com.junjange.myapplication.ui.viewmodel.StatisticsViewModel
-import com.junjange.myapplication.ui.viewmodel.VoteViewModel
 
 class StatisticsActivity : AppCompatActivity() {
     private val binding by lazy { ActivityStatisticsBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this, StatisticsViewModel.Factory(application))[StatisticsViewModel::class.java] }
+    private var isChecking = true
+    private var mCheckedId = 0
+    private var ageSelect = 0
+    private var genderSelect = 0
+    private var tierSelect = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,71 @@ class StatisticsActivity : AppCompatActivity() {
         // 계속해서 관찰함!
         statSetObserver()
 
+        drawGraph()
 
+        binding.ageAll.isChecked = true
+        binding.genderAll.isChecked = true
+        binding.tierAll.isChecked = true
+
+        binding.ageFirstLine.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.ageSecondLine.clearCheck()
+                mCheckedId = checkedId
+            }
+
+            if (checkedId == binding.ageAll.id) {
+                ageSelect = 0
+            } else if (checkedId == binding.age10s.id) {
+                ageSelect = 1
+            } else if (checkedId == binding.age20s.id) {
+                ageSelect = 2
+            }
+
+            isChecking = true
+        }
+        binding.ageSecondLine.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.ageFirstLine.clearCheck()
+                mCheckedId = checkedId
+            }
+
+            if (checkedId == binding.age30s.id) {
+                ageSelect = 3
+            } else if (checkedId == binding.age40s.id) {
+                ageSelect = 4
+            } else if (checkedId == binding.age50s.id) {
+                ageSelect = 5
+            }
+
+            isChecking = true
+        }
+
+        binding.gender.setOnCheckedChangeListener { group, checkedId ->
+
+        }
+
+        binding.tier1.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.tier2.clearCheck()
+                mCheckedId = checkedId
+            }
+            isChecking = true
+        }
+        binding.tier2.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId != -1 && isChecking) {
+                isChecking = false
+                binding.tier1.clearCheck()
+                mCheckedId = checkedId
+            }
+            isChecking = true
+        }
+
+    }
+
+    private fun drawGraph() {
         val entries = ArrayList<PieEntry>()
         entries.add(PieEntry(508f,"Apple"))
         entries.add(PieEntry(600f,"Orange"))
