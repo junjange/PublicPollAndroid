@@ -1,9 +1,14 @@
 package com.junjange.myapplication.ui.view
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -14,19 +19,29 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonObject
 import com.junjange.myapplication.R
 import com.junjange.myapplication.data.Item
+import com.junjange.myapplication.data.ItemImage
 import com.junjange.myapplication.data.NewPoll
+import com.junjange.myapplication.data.NewPollResponse
 import com.junjange.myapplication.databinding.ActivityNewPollBinding
 import com.junjange.myapplication.network.PollsObject
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.parse
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okio.BufferedSink
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.io.File
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NewPollActivity : AppCompatActivity() {
+class NewPollActivity : AppCompatActivity(), IdCallback {
     lateinit var binding: ActivityNewPollBinding
     var layoutPollBoard : LinearLayout? = null
     var layoutHashTagBoard : com.google.android.flexbox.FlexboxLayout? = null
@@ -35,6 +50,7 @@ class NewPollActivity : AppCompatActivity() {
     var hashTagText = ArrayList<String>();
     var text = ""
     var contentsText = ""
+    var hasImage = false
     var isPublic = false
     var showNick = false
     var canRevote = false
@@ -42,6 +58,12 @@ class NewPollActivity : AppCompatActivity() {
     var isSingleVote = false
     var date = ""
     var time = ""
+    var bitmap : Bitmap? = null
+    var itemImage = ArrayList<ItemImage>();
+    var itemhasImage = Array(6, {false})
+    var currentItemNum = 0
+
+    private val OPEN_GALLERY = 1
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -203,47 +225,54 @@ class NewPollActivity : AppCompatActivity() {
             }
         }
 
+        binding.item1Image.setOnClickListener {
+            currentItemNum = 1
+            openGallery()
+            binding.item1Image.isClickable = false
+            itemhasImage[0] = true
+        }
+
+        binding.item2Image.setOnClickListener {
+            currentItemNum = 2
+            openGallery()
+            binding.item2Image.isClickable = false
+            itemhasImage[1] = true
+        }
+
         binding.doneBt.setOnClickListener {
+            if (!itemImage.isEmpty()) {
+                hasImage = true
+            }
+
             val service = PollsObject.getRetrofitService
             val items = ArrayList<Item>();
 
             for (i in 0..itemCount-2) {
 
-                items.add(Item(i+1, itemText[i].toString(), false))
+                items.add(Item(i+1, itemText[i].toString(), itemhasImage[i]))
                 Log.d("아이템", items.toString())
             }
 
-
-            /**
-             * 앱에서 날짜랑 시간을 넣으면
-             * 2022-7-29T7:33:00 <= 이런식으로 들어가서 안되는 것 같애
-             * 2022-07-29T07:33:00 <= 이런식으로 7앞에 0이 들어가야하는뎁
-             *
-             * 그리고 달력에서 날짜를 설정할 때
-             * 이전달로 선택되는 이슈가 있어!
-             * 5월을 선택했으면 4월로 되는..
-             * **/
-
-            //val endTime = "2022-07-29T07:33:00"
-
-
-            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, false, isPublic, showNick, canRevote, canComment, isSingleVote, items))
+            val call = service.postAddPoll(NewPoll(contentsText, hashTagText, date+time, hasImage, isPublic, showNick, canRevote, canComment, isSingleVote, items))
 
             Log.d("보낼 결과", "$contentsText, $hashTagText, ${date+time}, $isPublic, $showNick, $canRevote, $canComment, $isSingleVote, ${items.toString()}")
 
-            call.enqueue(object : Callback<JsonObject> {
+            call.enqueue(object : Callback<NewPollResponse> {
                 override fun onResponse(
-                    call: Call<JsonObject>,
-                    response: Response<JsonObject>
+                    call: Call<NewPollResponse>,
+                    response: Response<NewPollResponse>
                 ) {
                     Log.d("ttt", "통신 성공: ${response.isSuccessful}")
                     Log.d("성공", response.body().toString())
+                    val pollID = response.body()!!.data.id
+                    onGetId(pollID)
                 }
 
-                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                    Log.d("실패", "크크루삥뽕")
+                override fun onFailure(call: Call<NewPollResponse>, t: Throwable) {
+                    t.message?.let { it1 -> Log.d("실패", it1) }
                 }
             })
+
         }
     }
 
@@ -262,11 +291,11 @@ class NewPollActivity : AppCompatActivity() {
         })
         numText.setText(num.toString())
 
-
-
         image.setOnClickListener {
-            layoutPollBoard?.removeView(view)
-            itemCount--
+            currentItemNum = num
+            openGallery()
+            binding.item2Image.isClickable = false
+            itemhasImage[num-1] = true
         }
 
         layoutPollBoard?.addView(view)
@@ -289,4 +318,72 @@ class NewPollActivity : AppCompatActivity() {
         layoutHashTagBoard?.addView(view)
 
     }
+
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == OPEN_GALLERY) {
+                var currentImageUrl : Uri? = data?.data
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
+                    itemImage.add(ItemImage(bitmap!!, currentItemNum))
+                    Log.d("??", itemImage.toString())
+
+                //여기서 이미지 변경
+                } catch (e:Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    private fun String.toPlainRequestBody() = requireNotNull(this).toRequestBody("text/plain".toMediaTypeOrNull())
+
+    private fun ImageUpload(bitmap: Bitmap,pollID: Int, itemNum : Int) {
+        val bitmapRequestBody = bitmap.let { BitmapRequestBody(bitmap) }
+        val bitmapMultipartBody : MultipartBody.Part? =
+            MultipartBody.Part.createFormData("file", "file", bitmapRequestBody)
+
+        val service = PollsObject.getRetrofitService
+        val call = service.postImage(bitmapMultipartBody, pollID.toString().toPlainRequestBody(), itemNum.toString().toPlainRequestBody())
+
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onResponse(
+                call: Call<JsonObject>,
+                response: Response<JsonObject>
+            ) {
+                Log.d("ttt", "통신 성공: ${response.isSuccessful}")
+                Log.d("성공", response.body().toString())
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("실패", t.toString())
+            }
+        })
+    }
+
+    class BitmapRequestBody(private val bitmap: Bitmap) : RequestBody() {
+        override fun contentType(): MediaType = "image/*".toMediaType()
+        override fun writeTo(sink: BufferedSink) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 99, sink.outputStream())
+        }
+    }
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.setType("image/*")
+        startActivityForResult(intent, OPEN_GALLERY)
+    }
+
+    override fun onGetId(id: Int) {
+        Log.d("ongetId", "$id")
+        for (i in 0 until itemImage.size) {
+            ImageUpload(itemImage[i].file,id, itemImage[i].item_num)
+        }
+    }
+
+}
+
+interface IdCallback{
+    fun onGetId(id: Int)
 }

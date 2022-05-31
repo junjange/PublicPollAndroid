@@ -3,11 +3,12 @@ package com.junjange.myapplication.network
 import com.google.gson.JsonObject
 import com.junjange.myapplication.data.*
 import com.junjange.myapplication.utils.API
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 import retrofit2.http.Body
-
 import retrofit2.http.POST
 
 
@@ -33,7 +34,7 @@ interface PollsInterface {
     @POST(API.POST_POLL_ADD)
     fun postAddPoll (
         @Body NewPollData : NewPoll
-    ): Call<JsonObject>
+    ): Call<NewPollResponse>
 
     // 전체 투표 조회
     @GET(API.GET_ALL_POLLS)
@@ -113,6 +114,11 @@ interface PollsInterface {
 
     ): Response<Stat>
 
-
-
+    @Multipart
+    @POST(API.POST_IMAGE)
+    fun postImage (
+        @Part file: MultipartBody.Part?,
+        @Part ("poll_id") poll_id: RequestBody,
+        @Part ("item_num") item_num: RequestBody
+    ): Call<JsonObject>
 }
