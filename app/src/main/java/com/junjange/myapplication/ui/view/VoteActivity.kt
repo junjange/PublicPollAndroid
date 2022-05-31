@@ -392,22 +392,27 @@ class VoteActivity : AppCompatActivity(), NormalVoteAdapter.ItemClickListener, P
                 val compareTime = ChronoUnit.DAYS.between(now, convertTime) //날짜 비교
 
 
-                when {
-                    compareTime.equals(0) -> {
-                        binding.dDay.text = "D-day"
-                    }
-                    compareTime > 0 -> {
-                        binding.dDay.text = "D-${compareTime}"
 
-                    }
-                    else -> {
+                when {
+                    compareTime < 0 -> {
                         binding.dDay.text = "D+${-compareTime}"
                         binding.reVoteBtn.visibility = View.GONE
                         binding.voteBtn.visibility = View.GONE
 
 
                     }
+                    compareTime > 0 -> {
+                        binding.dDay.text = "D-${compareTime}"
+
+                    }
+                    else -> {
+                        binding.dDay.text = "D-day"
+
+
+
+                    }
                 }
+                
 
 
             }
