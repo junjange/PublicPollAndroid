@@ -1,13 +1,18 @@
 package com.junjange.myapplication.ui.view
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import androidx.activity.viewModels
 import com.junjange.myapplication.databinding.ActivitySignUpSecondBinding
 import com.junjange.myapplication.ui.viewmodel.SignUpSecondViewModel
+import java.util.*
 
 class SignUpSecondActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignUpSecondBinding
@@ -26,6 +31,7 @@ class SignUpSecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpSecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setClear()
 
         email = intent.getStringExtra("email").toString()
 
@@ -36,6 +42,10 @@ class SignUpSecondActivity : AppCompatActivity() {
                 nickname = binding.nicknameEdit.text.toString()
             }
         })
+
+        binding.nickCheck.setOnClickListener {
+            viewModel.checkNick(nickname.trim(), binding)
+        }
 
         binding.ageFirstLine.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId != -1 && isChecking) {
@@ -111,6 +121,14 @@ class SignUpSecondActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    fun setClear() {
+        binding.nicknameEdit.text.clear()
+        binding.gender.clearCheck()
+        binding.ageFirstLine.clearCheck()
+        binding.ageSecondLine.clearCheck()
+        binding.tagChip.clearCheck()
     }
 //    fun setChipEnable(status: Boolean) {
 //        for (i in 0 until binding.tagChip.getChildCount()) {

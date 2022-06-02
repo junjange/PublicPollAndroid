@@ -54,6 +54,7 @@
       android:layout_height="46dp"
       android:layout_marginLeft="57dp"
       android:layout_marginTop="8dp"
+      android:inputType="textPassword"
       android:background="@drawable/round_corner" />
 
   <TextView
@@ -73,7 +74,22 @@
       android:layout_height="46dp"
       android:layout_marginLeft="57dp"
       android:layout_marginTop="8dp"
+      android:inputType="textPassword"
       android:background="@drawable/round_corner" />
+
+  <TextView
+      android:id="@+id/passwordCorrectText"
+      android:layout_width="wrap_content"
+      android:layout_height="21dp"
+      android:layout_marginLeft="57dp"
+      android:layout_marginTop="10dp"
+      android:fontFamily="sans-serif"
+      android:text="The password you entered is incorrect"
+      android:textColor="#FF5353"
+      android:visibility="invisible"
+      android:textSize="10sp"
+      android:textStyle="normal" />
+
 
   <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/next_bt"

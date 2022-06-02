@@ -20,6 +20,10 @@ interface PollsInterface {
         @Body signUpData: SignUp
     ): Call<SignUpReponse>
 
+    @POST(API.POST_CHECK_NICK)
+    fun postCheckNick(
+        @Body NickData: NickData
+    ): Call<CheckNickData>
     @GET(API.GET_POST_MYPAGE)
     fun getMyPageGet (): Call<MyPage>
 

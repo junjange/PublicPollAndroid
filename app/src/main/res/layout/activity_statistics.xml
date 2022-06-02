@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -10,7 +10,6 @@
 
 
 <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="926dp"
     android:background="#ffffff"
@@ -58,12 +57,13 @@
             android:textStyle="normal" />
 
         <TextView
+            android:id="@+id/statisticsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="56dp"
             android:layout_marginTop="40dp"
             android:fontFamily="sans-serif"
-            android:text="Statistics of  20s Man ..."
+            android:text="Statistics of  All ..."
             android:textColor="#8f8f8f"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -219,7 +219,7 @@
                     android:layout_marginRight="15dp"
                     android:buttonTint="#bbb1e5"
                     android:fontFamily="sans-serif"
-                    android:text="Man"
+                    android:text="All"
                     android:textColor="#a1a1a1"
                     android:textSize="12sp"
                     android:textStyle="normal" />
@@ -238,12 +238,12 @@
 
                 <RadioButton
                     android:id="@+id/genderWoman"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:buttonTint="#bbb1e5"
                     android:fontFamily="sans-serif"
-                    android:text="Man"
+                    android:text="Woman"
                     android:textColor="#a1a1a1"
                     android:textSize="12sp"
                     android:textStyle="normal" />
@@ -288,7 +288,7 @@
 
                     <RadioButton
                         android:id="@+id/tierBronze"
-                        android:layout_width="70dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
@@ -333,7 +333,7 @@
 
                     <RadioButton
                         android:id="@+id/tierPlatinum"
-                        android:layout_width="70dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"
@@ -345,7 +345,7 @@
 
                     <RadioButton
                         android:id="@+id/tierDiamond"
-                        android:layout_width="70dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:buttonTint="#bbb1e5"

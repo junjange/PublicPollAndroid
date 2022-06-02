@@ -110,6 +110,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "370829546500-nmus9101eb54a3fu0ojt1jvhd65tkpk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.junjange.myapplication",
+            "certificate_hash": "1a7bf65cc40b54cc93740d691c85ee9ae154d501"
+          }
+        },
+        {
           "client_id": "370829546500-t8028m9e7dn1o9v4rggenem175jbdajb.apps.googleusercontent.com",
           "client_type": 3
         }
