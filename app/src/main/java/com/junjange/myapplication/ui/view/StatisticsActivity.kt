@@ -23,6 +23,10 @@ class StatisticsActivity : AppCompatActivity() {
     private var genderSelect = 0
     private var tierSelect = 0
     private var ageChecking = false
+    private var ageText = "All"
+    private var genderText = "All"
+    private var tierText = "All"
+
     val colorsItems = ArrayList<Int>()
     var entries = ArrayList<PieEntry>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,19 +68,22 @@ class StatisticsActivity : AppCompatActivity() {
                 when (checkedId) {
                     binding.ageAll.id -> {
                         ageSelect = 0
+                        ageText = "All"
                     }
                     binding.age10s.id -> {
                         ageSelect = 1
+                        ageText = "~10s"
                     }
                     binding.age20s.id -> {
                         ageSelect = 2
+                        ageText = "20s"
                     }
 
                 }
 
                 viewModel.getStatRetrofit(id, ageSelect, genderSelect, tierSelect)
-                Log.d("age1 전송", "$ageSelect, $genderSelect, $tierSelect")
                 statSetObserver()
+                setText()
             }
             isChecking = true
         }
@@ -89,18 +96,21 @@ class StatisticsActivity : AppCompatActivity() {
                 when (checkedId) {
                     binding.age30s.id -> {
                         ageSelect = 3
+                        ageText = "30s"
                     }
                     binding.age40s.id -> {
                         ageSelect = 4
+                        ageText = "40s"
                     }
                     binding.age50s.id -> {
                         ageSelect = 5
+                        ageText = "50s~"
                     }
                 }
 
                 viewModel.getStatRetrofit(id, ageSelect, genderSelect, tierSelect)
-                Log.d("age2 전송", "$ageSelect, $genderSelect, $tierSelect")
                 statSetObserver()
+                setText()
             }
 
 
@@ -111,17 +121,21 @@ class StatisticsActivity : AppCompatActivity() {
             when (checkedId) {
                 binding.genderAll.id -> {
                     genderSelect = 0
+                    genderText = "All"
                 }
                 binding.genderMan.id -> {
                     genderSelect = 1
+                    genderText = "Man"
                 }
                 binding.genderWoman.id -> {
                     genderSelect = 2
+                    genderText = "Woman"
                 }
             }
             viewModel.getStatRetrofit(id, ageSelect, genderSelect, tierSelect)
             Log.d("gender 전송", "$ageSelect, $genderSelect, $tierSelect")
             statSetObserver()
+            setText()
         }
 
         binding.tier1.setOnCheckedChangeListener { group, checkedId ->
@@ -133,17 +147,20 @@ class StatisticsActivity : AppCompatActivity() {
                 when (checkedId) {
                     binding.tierAll.id -> {
                         tierSelect = 0
+                        tierText = "All"
                     }
                     binding.tierBronze.id -> {
                         tierSelect = 1
+                        tierText = "Bronze"
                     }
                     binding.tierSilver.id -> {
                         tierSelect = 2
+                        tierText = "Silver"
                     }
                 }
                 viewModel.getStatRetrofit(id, ageSelect, genderSelect, tierSelect)
-                Log.d("tier1전송", "$ageSelect, $genderSelect, $tierSelect")
                 statSetObserver()
+                setText()
 
             }
 
@@ -160,18 +177,21 @@ class StatisticsActivity : AppCompatActivity() {
                 when (checkedId) {
                     binding.tierGold.id -> {
                         tierSelect = 3
+                        tierText = "Gold"
                     }
                     binding.tierPlatinum.id -> {
                         tierSelect = 4
+                        tierText = "Platinum"
                     }
                     binding.tierDiamond.id -> {
                         tierSelect = 5
+                        tierText = "Diamond"
                     }
                 }
 
                 viewModel.getStatRetrofit(id, ageSelect, genderSelect, tierSelect)
-                Log.d("tier2 전송", "$ageSelect, $genderSelect, $tierSelect")
                 statSetObserver()
+                setText()
             }
             isChecking = true
         }
@@ -196,6 +216,43 @@ class StatisticsActivity : AppCompatActivity() {
             setEntryLabelColor(Color.BLACK)
             animateY(1400, Easing.EaseInOutQuad)
             animate()
+        }
+    }
+
+    private fun setText() {
+        if (ageText == "All" && genderText == "All" && tierText == "All") {
+            binding.statisticsText.text = "Statistics of All ..."
+        } else {
+            if (ageText != "All") {                 //age
+                binding.statisticsText.text = "Statistics of " + ageText + " ..."
+                if (tierText != "All") {            //age, tier
+                    binding.statisticsText.text =
+                        "Statistics of " + ageText + " " + tierText + " ..."
+                    if (genderText != "All") {      //age, tier, gender
+                        binding.statisticsText.text =
+                            "Statistics of " + ageText + " " + tierText + " " + genderText + " ..."
+                    }
+                } else {                            //age, gender
+                    if (genderText != "All") {
+                        binding.statisticsText.text =
+                            "Statistics of " + ageText + " " + genderText + " ..."
+                    }
+                }
+            } else {
+                if (tierText != "All") {            //tier
+                    binding.statisticsText.text =
+                        "Statistics of " + tierText + " ..."
+                    if (genderText != "All") {      //tier, gender
+                        binding.statisticsText.text =
+                            "Statistics of " + tierText + " " + genderText + " ..."
+                    }
+                } else {                            //gender
+                    if (genderText != "All") {
+                        binding.statisticsText.text =
+                            "Statistics of " + genderText + " ..."
+                    }
+                }
+            }
         }
     }
 

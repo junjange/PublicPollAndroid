@@ -41,4 +41,9 @@ class LocalSignInActivity : AppCompatActivity() {
             viewModel.SignIn(email, password, this)
         }
     }
+
+    fun setClear() {
+        binding.emailStr.text.clear()
+        binding.passwordStr.text.clear()
+    }
 }
