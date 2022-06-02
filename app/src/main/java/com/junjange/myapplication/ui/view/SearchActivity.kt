@@ -15,6 +15,8 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.SearchAdapter
 import com.junjange.myapplication.databinding.ActivitySearchBinding
@@ -215,8 +217,8 @@ class SearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
             R.id.logoutDrawer-> {
                 // 로그아웃
-//            startActivity(Intent(this@HomeActivity, MyPageActivity::class.java))
-
+                Firebase.auth.signOut()
+                startActivity(Intent(this@SearchActivity, MainActivity::class.java))
             }
 
         }

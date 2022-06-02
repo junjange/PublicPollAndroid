@@ -8,6 +8,8 @@ import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.PollsAdapter
 import com.junjange.myapplication.databinding.ActivityPollsBinding
@@ -100,8 +102,8 @@ class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
             R.id.logoutDrawer-> {
                 // 로그아웃
-//            startActivity(Intent(this@HomeActivity, MyPageActivity::class.java))
-
+                Firebase.auth.signOut()
+                startActivity(Intent(this@PollsActivity, MainActivity::class.java))
             }
 
         }

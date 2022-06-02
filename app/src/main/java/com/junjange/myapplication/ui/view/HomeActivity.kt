@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.junjange.myapplication.R
 import com.junjange.myapplication.adapter.QuickVoteAdapter
 import com.junjange.myapplication.data.QuickPollsItem
@@ -139,8 +141,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.logoutDrawer-> {
             // 로그아웃
-//            startActivity(Intent(this@HomeActivity, MyPageActivity::class.java))
-
+                Firebase.auth.signOut()
+                startActivity(Intent(this@HomeActivity, MainActivity::class.java))
         }
 
         }
