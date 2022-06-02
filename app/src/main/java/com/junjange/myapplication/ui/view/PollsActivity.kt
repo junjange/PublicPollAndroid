@@ -92,6 +92,18 @@ class PollsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
             }
 
+            R.id.newPollDrawer-> {
+                // My Page 이동
+                startActivity(Intent(this@PollsActivity, NewPollActivity::class.java))
+
+            }
+
+            R.id.logoutDrawer-> {
+                // 로그아웃
+//            startActivity(Intent(this@HomeActivity, MyPageActivity::class.java))
+
+            }
+
         }
         return false
     }
