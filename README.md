@@ -3,7 +3,7 @@
 
 ## Splash & Main Page
 <p align="center">
-<img width="250" alt="image" src="https://blog.kakaocdn.net/dn/sep4p/btrDVoJZN2e/1Qp4jqmdpmTr8VN7r6J90k/img.png">
+<img width="250" alt="image" src="https://blog.kakaocdn.net/dn/be8S05/btrDWDztmkj/q2ambWfNyDDpr4KLVh0SjK/img.png">
     &nbsp;&nbsp;
 <img width="250" alt="image" src="https://blog.kakaocdn.net/dn/cHXa0x/btrDYLwt38D/ZYdX5NaunZWofo3gyty09K/img.png">
   </p>
