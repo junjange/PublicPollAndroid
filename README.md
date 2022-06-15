@@ -87,3 +87,25 @@
  </p>
 </br></br></br>
 
+
+## **🛠️ Tech Stack**
+
+- Kotlin
+- Coroutine flow debounce
+- retrofit2
+- Firebase
+
+## **⚙️ Architecture**
+
+- MVVM
+
+## **📌 Part(Android)**
+
+- 안드로이드 개발
+
+## **💡 Learned**
+
+- **리사이클러뷰**에 다양한 함수를 사용하면서 익숙해질 수 있었다.
+- **retrofit2**을 통해 서버와 연결해보고 백엔드 개발자와 소통할 수 있었다.
+- **동적UI**에 대해 흥미가 생겼고 앞으로 공부해 봐야겠다고 생각했다.
+
